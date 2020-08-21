@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "5fa42534-bdf7-4039-98cc-d39efe988209",
+		"name": "tmt-nestjs-Gate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gate-auth:login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test7\",\n    \"email\":\"test7@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}gate-auth/login",
+					"host": [
+						"{{baseUrl}}gate-auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gate-auth:signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test8\",\n    \"email\":\"test8@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"roles\":[\"userApp\"],\n    \"mobileNumber\":\"9876543210\",\n    \"iBan\":\"iBan\",\n    \"restaurentNameEn\":\"test\",\n    \"restaurentNameAr\":\"testAr\",\n    \"storeAdminId\":\"Types.ObjectId('123')\",\n    \"restaurantIds\":[\"Types.ObjectId('123')\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}gate-auth/signup",
+					"host": [
+						"{{baseUrl}}gate-auth"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

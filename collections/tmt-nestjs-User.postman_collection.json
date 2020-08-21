@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "85950f8d-432f-4c40-99d4-0345708677db",
+		"name": "tmt-nestjs-user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup:mobile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"otp\":\"3164\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/mobile-signup",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"mobile-signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login:mobile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"otp\":\"3164\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/mobile-login",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"mobile-login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mobile:Send Otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"mobile\":\"7807807\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/otp",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh: for new Access token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJzdWIiOiJSQyIsImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NzM4NDUwfQ.MEYCIQCNLnBCGoZyndJqPmEjrzbqq0q2OB3Z-W_nG9ggZ2u4MQIhAKr_w9Pm-HFu9u1utupWZgkBV-K9OVlHoIxt9DxBUA3T",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accessToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NjUyOTUwfQ.MEUCIQDY8ohBbbOEgyfnEBcuzrZRJ222sKFB19cOjrn7Eph5UgIgT-Gx_YaSx_hXTCgN9Ty8iChqxXHBuFFrlR5DyW4zvhw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}auth/refresh",
+					"host": [
+						"{{baseUrl}}auth"
+					],
+					"path": [
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

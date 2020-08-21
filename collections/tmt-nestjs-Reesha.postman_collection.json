@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "65d3ab88-5e27-4db0-a5f3-2645cfb54504",
+		"name": "tmt-nestjs-Reesha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "roles:get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles",
+					"host": [
+						"{{baseUrl}}roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "\"USER\"",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles/create",
+					"host": [
+						"{{baseUrl}}roles"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "newName",
+							"value": "\"REESHA\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles/update/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}roles"
+					],
+					"path": [
+						"update",
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "newName",
+							"value": "\"REESHA\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles/delete/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}roles"
+					],
+					"path": [
+						"delete",
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:getbyId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}roles"
+					],
+					"path": [
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Get All",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles-mapper/",
+					"host": [
+						"{{baseUrl}}roles-mapper"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appType\":\"USER\",\n    \"roles\":[\"5efcd832fdb4108a090e29cb\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles-mapper/create",
+					"host": [
+						"{{baseUrl}}roles-mapper"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}roles-mapper/delete/5f08343ed5c40018c3aefaba",
+					"host": [
+						"{{baseUrl}}roles-mapper"
+					],
+					"path": [
+						"delete",
+						"5f08343ed5c40018c3aefaba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"appType\":\"userApp\",\n\"roles\":[\"5efcd832fdb4108a090e29cb\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles-mapper/update/5f08343ed5c40018c3aefaba",
+					"host": [
+						"{{baseUrl}}roles-mapper"
+					],
+					"path": [
+						"update",
+						"5f08343ed5c40018c3aefaba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles for App Type",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}roles-mapper/roles-for-app?appType=userApp",
+					"host": [
+						"{{baseUrl}}roles-mapper"
+					],
+					"path": [
+						"roles-for-app"
+					],
+					"query": [
+						{
+							"key": "appType",
+							"value": "userApp"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
