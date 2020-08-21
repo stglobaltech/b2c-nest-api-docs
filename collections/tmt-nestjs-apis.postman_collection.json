@@ -1,0 +1,592 @@
+{ 
+	"info": {
+		"_postman_id": "9caa4e34-87b1-4bf5-938a-1f7d40d03bec",
+		"name": "tmt-nestjs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "store-image-upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/abwbdallhmhmd/Documents/original.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/api/store/image-upload",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"store",
+						"image-upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup Mobile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"otp\":\"3164\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/mobile-signup",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"mobile-signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Mobile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"otp\":\"3164\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/mobile-login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"mobile-login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh: for new Access token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJzdWIiOiJSQyIsImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NzM4NDUwfQ.MEYCIQCNLnBCGoZyndJqPmEjrzbqq0q2OB3Z-W_nG9ggZ2u4MQIhAKr_w9Pm-HFu9u1utupWZgkBV-K9OVlHoIxt9DxBUA3T",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accessToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NjUyOTUwfQ.MEUCIQDY8ohBbbOEgyfnEBcuzrZRJ222sKFB19cOjrn7Eph5UgIgT-Gx_YaSx_hXTCgN9Ty8iChqxXHBuFFrlR5DyW4zvhw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/refresh",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Get All",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles-mapper/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles-mapper",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appType\":\"USER\",\n    \"roles\":[\"5efcd832fdb4108a090e29cb\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles-mapper/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles-mapper",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/roles-mapper/delete/5f08343ed5c40018c3aefaba",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles-mapper",
+						"delete",
+						"5f08343ed5c40018c3aefaba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles Mappers: Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"appType\":\"userApp\",\n\"roles\":[\"5efcd832fdb4108a090e29cb\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles-mapper/update/5f08343ed5c40018c3aefaba",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles-mapper",
+						"update",
+						"5f08343ed5c40018c3aefaba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roles for App Type",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjExNSwiZXhwIjoxNTk3NjUzMDE1fQ.MEQCIH5BrwvD1EgXzQ8lX1tn2qO-U30FalyEvcZQ4ws8vDFjAiBtSzT7nnAKqDbROZ_7YdVkpIKWRu2yto5Hu3V9kaM0RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles-mapper/roles-for-app?appType=userApp",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles-mapper",
+						"roles-for-app"
+					],
+					"query": [
+						{
+							"key": "appType",
+							"value": "userApp"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mobile: Send Otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryCode\":\"+91\",\n    \"mobile\":\"7807807\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3200/auth/otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3200",
+					"path": [
+						"auth",
+						"otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "\"USER\"",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "newName",
+							"value": "\"REESHA\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles/update/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles",
+						"update",
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "newName",
+							"value": "\"REESHA\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles/delete/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles",
+						"delete",
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "roles:getbyId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNhMzhlMWRhZjAyODQyODFlNDU1MTIiLCJzZXNzaW9uSWQiOiI1ZjNhMzk2MWZiZGJkYWNlNWI1N2FkNDQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MTI5NywiZXhwIjoxNTk3NjUyMTk3fQ.MEUCIQC9ev4xo3R55mC1jYVqEG44wmcYrOIqVNKpYmOdhp0ltQIgTE05WeRepY9zkQ-pOLCwJtv71dpln3WF7zLPINmroN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{baseUrl}}/roles/5f3a39d7daf0284281e45513",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"roles",
+						"5f3a39d7daf0284281e45513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gate-auth:signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test7\",\n    \"email\":\"test7@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"roles\":[\"userApp\"],\n    \"mobileNumber\":\"9876543210\",\n    \"iBan\":\"iBan\",\n    \"restaurentNameEn\":\"test\",\n    \"restaurentNameAr\":\"testAr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gate-auth/signup",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gate-auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gate-auth:login",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test7\",\n    \"email\":\"test7@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gate-auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gate-auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
