@@ -1,18 +1,21 @@
 {
 	"info": {
-		"_postman_id": "85950f8d-432f-4c40-99d4-0345708677db",
+		"_postman_id": "aaef75c1-9fbd-471c-b8fc-63b875e9a73a",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Signup:mobile",
+			"name": "Send Otp",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"otp\":\"3164\"\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message\n    otp\n  }\n}",
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807802\"\n  }\n}"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,25 +23,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}auth/mobile-signup",
+					"raw": "{{authServer}}",
 					"host": [
-						"{{baseUrl}}auth"
-					],
-					"path": [
-						"mobile-signup"
+						"{{authServer}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Login:mobile",
+			"name": "User Signup",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"countryCode\":\"+91\",\n    \"phoneNumber\":\"7807807\",\n    \"otp\":\"3164\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\"\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}\n",
+						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"0091\",\n\t\t\"mobile\": \"7807802\",\n\t\t\"email\": \"pious@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"iPhone11\",\n\t\t\"versionCode\": \"12.2\",\n\t\t\"otp\": \"8536\",\n\t\t\"deviceARN\": \"arn\",\n\t\t\"oneSignalId\": \"oneSignalId\"\n  }\n}"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,25 +49,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}auth/mobile-login",
+					"raw": "{{authServer}}",
 					"host": [
-						"{{baseUrl}}auth"
-					],
-					"path": [
-						"mobile-login"
+						"{{authServer}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Mobile:Send Otp",
+			"name": "User Login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"countryCode\":\"+91\",\n    \"mobile\":\"7807807\"\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}",
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807802\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"3681\"\n  }\n}"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,19 +75,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}auth/otp",
+					"raw": "{{authServer}}",
 					"host": [
-						"{{baseUrl}}auth"
-					],
-					"path": [
-						"otp"
+						"{{authServer}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Refresh: for new Access token",
+			"name": "New Access token",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -99,8 +99,11 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"accessToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6W10sImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NjUyOTUwfQ.MEUCIQDY8ohBbbOEgyfnEBcuzrZRJ222sKFB19cOjrn7Eph5UgIgT-Gx_YaSx_hXTCgN9Ty8iChqxXHBuFFrlR5DyW4zvhw\"\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation NewAccessToken($accessTokenInputDto: BuildAccessTokenInputDto!) {\n  refreshToken(accessTokenInputDto: $accessTokenInputDto) {\n    success\n    message\n    accessToken\n  }\n}\n",
+						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQzZWUxZmJhODM4Mjc1MDk1M2JlYzciLCJzZXNzaW9uSWQiOiI1ZjQzZWUxZjQ5ZTAzOTIwNzJiMWE5NDkiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTU5ODI4OTczMiwiZXhwIjoxNTk4MjkwNjMyfQ.MEUCIDFigLKf5hrOQEm7Ez55aiXPOR1PuFuIp5Cdf3FmTfNIAiEA9u4wLt71-QijNiZx7iNmmApg2peBxrNbXOYuC7kQmtg\"\n  }\n}"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -108,12 +111,40 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}auth/refresh",
+					"raw": "{{authServer}}",
 					"host": [
-						"{{baseUrl}}auth"
-					],
-					"path": [
-						"refresh"
+						"{{authServer}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQzZWUxZmJhODM4Mjc1MDk1M2JlYzciLCJzZXNzaW9uSWQiOiI1ZjQzZWUxZjQ5ZTAzOTIwNzJiMWE5NDkiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTU5ODI4OTkzNywiZXhwIjoxNTk4MjkwODM3fQ.MEYCIQC0ZEP-CTNDPwyXRhXhCHETyT2W9csu6s-xBtMALMx_ZgIhAPntX9S51QtnUKCJB-mp0qs6c1s35E0Xjqrc_uVcS_Qe",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetUserProfile{\n  getUserProfile {\n    mobile\n    email\n    name\n    countryCode\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{mainServer}}",
+					"host": [
+						"{{mainServer}}"
 					]
 				}
 			},
