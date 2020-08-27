@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5fa42534-bdf7-4039-98cc-d39efe988209",
+		"_postman_id": "6b692c4b-de7b-471c-9cdb-f5606434d569",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -52,6 +52,510 @@
 					],
 					"path": [
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCategories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNTc0NSwiZXhwIjoxNTk4NDM2NjQ1fQ.MEUCIQCGZJ4q_arJVdoJSi8gEVkeP0Bq5ktQ8-WbwAmXTBDnPQIgUuxoWhdihauSNle7icNFXQtBo2gaR-zHY4DoZkCYVTM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"variables": "{\n    \"storeId\":\"5f3bee2d66a6530db2e5a4c3\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNTU1NSwiZXhwIjoxNTk4NDM2NDU1fQ.MEUCIAjgChA7jaWBKrAzlom5Wk2S4P-r3LLxs1XDxylfBwL5AiEAgN6VdfoxbelYADGTBE2wbCCRjmM9dSz4eN_exHWZQaI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createCategory($categoryCreateInput: CategoryCreateInputDto!){\n  createCategory(categoryCreateInput:$categoryCreateInput){\n      status\n      message\n  }\n}",
+						"variables": "{\n\"categoryCreateInput\":{\n    \"categoryName\":\"Fruits\",\n    \"arCategoryName\":\"veg\",\n    \"isEnable\":true,\n    \"storeId\":\"5f3bee2d66a6530db2e5a4c3\"\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNTc0NSwiZXhwIjoxNTk4NDM2NjQ1fQ.MEUCIQCGZJ4q_arJVdoJSi8gEVkeP0Bq5ktQ8-WbwAmXTBDnPQIgUuxoWhdihauSNle7icNFXQtBo2gaR-zHY4DoZkCYVTM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            categoryName\n            arCategoryName\n            isEnable\n            _id\n        }\n    }\n}",
+						"variables": "{\n    \"categorySearchInput\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"categoryKey\":\"a\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwODgxNywiZXhwIjoxNTk4NTA5NzE3fQ.MEUCIDSLocOC3WoCVbB6G7Ecf2UjIceo8sJmP6Ew345CXxwDAiEAgwu_sUooxib_IqKMSoXWcb4tYuDz9aREdHhXsjklslg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       status\n       message\n    }\n}",
+						"variables": "{\n    \"categoryEditInput\":{\n        \"_id\":\"5f45faee0b645e7ab5087035\",\n        \"categoryName\":\"edited\",\n        \"arCategoryName\":\"edited\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCategoryIsEnable",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNjY5MiwiZXhwIjoxNTk4NDM3NTkyfQ.MEYCIQDULtITr2tAKJgN1g5bf3yoB-JGx7gEUYO23z47dEovTwIhAJAhNPP1ObmmM-_KkpiNeIdx0si1Jr_MwrL-icP0wJcf",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"5f45faee0b645e7ab5087035\",\n        \"isEnable\":false\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwNzQyOSwiZXhwIjoxNTk4NTA4MzI5fQ.MEUCIQCvXGlxPHHC2r2b_1nu29ffZ2Mm5yWPsm_KjGoh3zGVWwIgaPjakpgUylFYkfK94YvuW_xftUXhN2BLNeSQ1S5uqBw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    price\n    maxQuantity\n    payType\n    picture\n    isAvailable\n    }\n}",
+						"variables": "{\n    \"productCreateInput\":{\n        \"productName\":\"edited\",\n        \"arProductName\":\"new\",\n        \"description\":\"asas\",\n        \"arDescription\":\"asas\",\n        \"price\":12,\n        \"maxQuantity\":23,\n        \"payType\":\"any\",\n        \"picture\":\"asas\",\n        \"isAvailable\":true,\n        \"categoryIds\":[\"5f45faee0b645e7ab5087035\"],\n        \"storeCode\":\"1212\",\n        \"ownerId\":\"1212\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwODgxNywiZXhwIjoxNTk4NTA5NzE3fQ.MEUCIDSLocOC3WoCVbB6G7Ecf2UjIceo8sJmP6Ew345CXxwDAiEAgwu_sUooxib_IqKMSoXWcb4tYuDz9aREdHhXsjklslg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  editProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       status\n       message\n    }\n}",
+						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"5f472ff9b1e9d70a49aac998\",\n        \"productName\":\"edited\",\n        \"arProductName\":\"new\",\n        \"description\":\"asas\",\n        \"arDescription\":\"asas\",\n        \"price\":12,\n        \"maxQuantity\":23,\n        \"payType\":\"any\",\n        \"picture\":\"asas\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwNzQyOSwiZXhwIjoxNTk4NTA4MzI5fQ.MEUCIQCvXGlxPHHC2r2b_1nu29ffZ2Mm5yWPsm_KjGoh3zGVWwIgaPjakpgUylFYkfK94YvuW_xftUXhN2BLNeSQ1S5uqBw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
+						"variables": "{\n    \"productId\":\"5f474b2db1e9d70a49aac9a1\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNDIwNiwiZXhwIjoxNTk4NTE1MTA2fQ.MEUCIQD5OKV6CFOxGVHCAGH7HCFTv2-_9fxl4lb3KExg7z0eEAIgLde5Cdow7XoSQALZj1P4hUuhdBF77aFEKoYsl6X26U8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        status \n        message\n    }\n}",
+						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"5f45fbcb0b645e7ab5087036\",\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductsBasedOnCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"categoryId\":\"5f45faee0b645e7ab5087035\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"5f45faee0b645e7ab5087035\",\n        \"productKey\":\"a\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProductQuantity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productQuantityEditInput\":{\n        \"productId\":\"5f45fc230b645e7ab5087037\",\n        \"maxQuantity\":14\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProductPrice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productPriceEditInput\":{\n        \"productId\":\"5f45fc230b645e7ab5087037\",\n        \"price\":14\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProductAvailability",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productAvailabilityEditInput\":{\n        \"productId\":\"5f45fc230b645e7ab5087037\",\n        \"isAvailable\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxODMxNSwiZXhwIjoxNTk4NTE5MjE1fQ.MEQCIAKsnzCkyK2Jfb5xzdILJ8SFBXTUIMn8IZamkfp6yRM3AiBrXUeyGxtVZpMUW_twiv1RWhZ4DUj16Lyxe9Ld3USChg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProduct($productId:String!){\n    deleteProduct(productId:$productId){\n        status\n        message\n    }\n}",
+						"variables": "{\n    \"productId\":\"5f4774370775d40f5c907358\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productImage Upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxODMxNSwiZXhwIjoxNTk4NTE5MjE1fQ.MEQCIAKsnzCkyK2Jfb5xzdILJ8SFBXTUIMn8IZamkfp6yRM3AiBrXUeyGxtVZpMUW_twiv1RWhZ4DUj16Lyxe9Ld3USChg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/tmmmt/Pictures/alert box.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{main-server}}v1/api/product/image-upload",
+					"host": [
+						"{{main-server}}v1"
+					],
+					"path": [
+						"api",
+						"product",
+						"image-upload"
 					]
 				}
 			},
