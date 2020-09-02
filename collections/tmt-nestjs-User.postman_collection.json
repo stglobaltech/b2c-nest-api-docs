@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aaef75c1-9fbd-471c-b8fc-63b875e9a73a",
+		"_postman_id": "7b9fb8f2-d30f-4145-9d28-e8bc2d4af64b",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807802\"\n  }\n}"
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7123456\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -40,7 +40,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"0091\",\n\t\t\"mobile\": \"7807802\",\n\t\t\"email\": \"pious@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"iPhone11\",\n\t\t\"versionCode\": \"12.2\",\n\t\t\"otp\": \"8536\",\n\t\t\"deviceARN\": \"arn\",\n\t\t\"oneSignalId\": \"oneSignalId\"\n  }\n}"
+						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"1111111\",\n\t\t\"email\": \"pious@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"3490\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -65,8 +65,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}",
-						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807802\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"3681\"\n  }\n}"
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807801\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"5055\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -102,7 +102,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation NewAccessToken($accessTokenInputDto: BuildAccessTokenInputDto!) {\n  refreshToken(accessTokenInputDto: $accessTokenInputDto) {\n    success\n    message\n    accessToken\n  }\n}\n",
-						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQzZWUxZmJhODM4Mjc1MDk1M2JlYzciLCJzZXNzaW9uSWQiOiI1ZjQzZWUxZjQ5ZTAzOTIwNzJiMWE5NDkiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTU5ODI4OTczMiwiZXhwIjoxNTk4MjkwNjMyfQ.MEUCIDFigLKf5hrOQEm7Ez55aiXPOR1PuFuIp5Cdf3FmTfNIAiEA9u4wLt71-QijNiZx7iNmmApg2peBxrNbXOYuC7kQmtg\"\n  }\n}"
+						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"access_token\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
