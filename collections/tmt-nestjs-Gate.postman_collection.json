@@ -1,18 +1,21 @@
 {
 	"info": {
-		"_postman_id": "6b692c4b-de7b-471c-9cdb-f5606434d569",
+		"_postman_id": "c4900583-a561-47b9-a8a9-93f9dacc5a62",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "gate-auth:login",
+			"name": "Gate-Login [GQL]",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\":\"test7\",\n    \"email\":\"test7@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\"\n\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateLogin($gateLoginDto: GateLoginDto!) {\n  gateLogin(gateLoginDto: $gateLoginDto) {\n    success\n    accessToken\n    refreshToken\n    userId\n    }\n}",
+						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"tester127@testing.com\",\n    \"password\": \"test\",\n    \"appType\": \"GATE\",\n    \"deviceType\": \"WEB\"\n  }\n}"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,25 +23,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}gate-auth/login",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{baseUrl}}gate-auth"
-					],
-					"path": [
-						"login"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "gate-auth:signup",
+			"name": "Gate-Signup [GQL]",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\":\"test8\",\n    \"email\":\"test8@test.com\",\n    \"password\":\"password\",\n    \"appType\":\"USER\",\n    \"deviceType\":\"IOS\",\n    \"roles\":[\"userApp\"],\n    \"mobileNumber\":\"9876543210\",\n    \"iBan\":\"iBan\",\n    \"restaurentNameEn\":\"test\",\n    \"restaurentNameAr\":\"testAr\",\n    \"storeAdminId\":\"Types.ObjectId('123')\",\n    \"restaurantIds\":[\"Types.ObjectId('123')\"]\n}",
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    userId\n  }\n}",
+						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"tester\",\n        \"email\": \"tester130@testing.com\",\n        \"password\": \"test\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"7807807\",\n        \"iBan\": \"1234567\",\n        \"restuarantNameEn\": \"TestersRestuarant\"\n    }\n}\n"
+					},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,19 +49,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}gate-auth/signup",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{baseUrl}}gate-auth"
-					],
-					"path": [
-						"signup"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getCategories",
+			"name": "Get Product Categories [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -89,14 +89,14 @@
 			"response": []
 		},
 		{
-			"name": "createCategory",
+			"name": "Create Product Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNTU1NSwiZXhwIjoxNTk4NDM2NDU1fQ.MEUCIAjgChA7jaWBKrAzlom5Wk2S4P-r3LLxs1XDxylfBwL5AiEAgN6VdfoxbelYADGTBE2wbCCRjmM9dSz4eN_exHWZQaI",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -106,28 +106,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createCategory($categoryCreateInput: CategoryCreateInputDto!){\n  createCategory(categoryCreateInput:$categoryCreateInput){\n      status\n      message\n  }\n}",
-						"variables": "{\n\"categoryCreateInput\":{\n    \"categoryName\":\"Fruits\",\n    \"arCategoryName\":\"veg\",\n    \"isEnable\":true,\n    \"storeId\":\"5f3bee2d66a6530db2e5a4c3\"\n}\n}"
+						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    status\n    message\n  }\n}\n",
+						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeId\": \"5f510e69feea6e7a9bba81bf\",\n    \"categoryName\": \"Category1\",\n    \"arCategoryName\": \"ArCategory1\",\n    \"isEnable\": true\n  }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "searchCategory",
+			"name": "Search Product Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNTc0NSwiZXhwIjoxNTk4NDM2NjQ1fQ.MEUCIQCGZJ4q_arJVdoJSi8gEVkeP0Bq5ktQ8-WbwAmXTBDnPQIgUuxoWhdihauSNle7icNFXQtBo2gaR-zHY4DoZkCYVTM",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -137,28 +137,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query searchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            categoryName\n            arCategoryName\n            isEnable\n            _id\n        }\n    }\n}",
+						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            categoryName\n            arCategoryName\n            isEnable\n            _id\n        }\n    }\n}",
 						"variables": "{\n    \"categorySearchInput\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"categoryKey\":\"a\"\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "editCategory",
+			"name": "Edit Product Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwODgxNywiZXhwIjoxNTk4NTA5NzE3fQ.MEUCIDSLocOC3WoCVbB6G7Ecf2UjIceo8sJmP6Ew345CXxwDAiEAgwu_sUooxib_IqKMSoXWcb4tYuDz9aREdHhXsjklslg",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -168,7 +168,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       status\n       message\n    }\n}",
+						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       status\n       message\n    }\n}",
 						"variables": "{\n    \"categoryEditInput\":{\n        \"_id\":\"5f45faee0b645e7ab5087035\",\n        \"categoryName\":\"edited\",\n        \"arCategoryName\":\"edited\"\n    }\n}"
 					}
 				},
@@ -182,14 +182,14 @@
 			"response": []
 		},
 		{
-			"name": "updateCategoryIsEnable",
+			"name": "Enable Product Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODQzNjY5MiwiZXhwIjoxNTk4NDM3NTkyfQ.MEYCIQDULtITr2tAKJgN1g5bf3yoB-JGx7gEUYO23z47dEovTwIhAJAhNPP1ObmmM-_KkpiNeIdx0si1Jr_MwrL-icP0wJcf",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -199,28 +199,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
 						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"5f45faee0b645e7ab5087035\",\n        \"isEnable\":false\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "createProduct",
+			"name": "Create Product [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwNzQyOSwiZXhwIjoxNTk4NTA4MzI5fQ.MEUCIQCvXGlxPHHC2r2b_1nu29ffZ2Mm5yWPsm_KjGoh3zGVWwIgaPjakpgUylFYkfK94YvuW_xftUXhN2BLNeSQ1S5uqBw",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -235,23 +235,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "editProduct",
+			"name": "Edit Product [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwODgxNywiZXhwIjoxNTk4NTA5NzE3fQ.MEUCIDSLocOC3WoCVbB6G7Ecf2UjIceo8sJmP6Ew345CXxwDAiEAgwu_sUooxib_IqKMSoXWcb4tYuDz9aREdHhXsjklslg",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -261,28 +261,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  editProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       status\n       message\n    }\n}",
+						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       status\n       message\n    }\n}",
 						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"5f472ff9b1e9d70a49aac998\",\n        \"productName\":\"edited\",\n        \"arProductName\":\"new\",\n        \"description\":\"asas\",\n        \"arDescription\":\"asas\",\n        \"price\":12,\n        \"maxQuantity\":23,\n        \"payType\":\"any\",\n        \"picture\":\"asas\"\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getProduct",
+			"name": "Get Single Product [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUwNzQyOSwiZXhwIjoxNTk4NTA4MzI5fQ.MEUCIQCvXGlxPHHC2r2b_1nu29ffZ2Mm5yWPsm_KjGoh3zGVWwIgaPjakpgUylFYkfK94YvuW_xftUXhN2BLNeSQ1S5uqBw",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -292,28 +292,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
+						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
 						"variables": "{\n    \"productId\":\"5f474b2db1e9d70a49aac9a1\"\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteCategory",
+			"name": "Delete Product Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNDIwNiwiZXhwIjoxNTk4NTE1MTA2fQ.MEUCIQD5OKV6CFOxGVHCAGH7HCFTv2-_9fxl4lb3KExg7z0eEAIgLde5Cdow7XoSQALZj1P4hUuhdBF77aFEKoYsl6X26U8",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -328,23 +328,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getProductsBasedOnCategory",
+			"name": "Get Product Based on Category [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -354,28 +354,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"query": "query GetProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
 						"variables": "{\n    \"categoryId\":\"5f45faee0b645e7ab5087035\"\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "searchProduct",
+			"name": "Search Product [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -385,28 +385,28 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query searchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
 						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"5f45faee0b645e7ab5087035\",\n        \"productKey\":\"a\"\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateProductQuantity",
+			"name": "Update Product Quantity [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -421,23 +421,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateProductPrice",
+			"name": "Update Product Price [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -452,23 +452,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "updateProductAvailability",
+			"name": "Update Product Availablility [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxNzIzMCwiZXhwIjoxNTk4NTE4MTMwfQ.MEUCIQDTNtKjT0YPdG7hIHRZ78pOt3kYhPMijqDukme3gvSswAIgfEwbij7qSKHxSPNZHAzenfkAQ9laxIb40K8H8L20WK4",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -483,23 +483,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteProduct",
+			"name": "Delete Product [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxODMxNSwiZXhwIjoxNTk4NTE5MjE1fQ.MEQCIAKsnzCkyK2Jfb5xzdILJ8SFBXTUIMn8IZamkfp6yRM3AiBrXUeyGxtVZpMUW_twiv1RWhZ4DUj16Lyxe9Ld3USChg",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -510,27 +510,27 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation deleteProduct($productId:String!){\n    deleteProduct(productId:$productId){\n        status\n        message\n    }\n}",
-						"variables": "{\n    \"productId\":\"5f4774370775d40f5c907358\"\n}"
+						"variables": "{\n    \"productId\":\"5f45fc230b645e7ab5087037\"\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "productImage Upload",
+			"name": "Product Image Upload [REST]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5ODUxODMxNSwiZXhwIjoxNTk4NTE5MjE1fQ.MEQCIAKsnzCkyK2Jfb5xzdILJ8SFBXTUIMn8IZamkfp6yRM3AiBrXUeyGxtVZpMUW_twiv1RWhZ4DUj16Lyxe9Ld3USChg",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -543,19 +543,50 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/home/tmmmt/Pictures/alert box.png"
+							"src": "/Users/abwbdallhmhmd/Documents/base.png"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{main-server}}v1/api/product/image-upload",
+					"raw": "{{main-server}}/api/product/image-upload",
 					"host": [
-						"{{main-server}}v1"
+						"{{main-server}}"
 					],
 					"path": [
 						"api",
 						"product",
 						"image-upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name\n    ownerId\n  }\n}\n",
+						"variables": "{\n  \"ownerId\": \"5f510e69feea6e7a9bba81bf\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
 					]
 				}
 			},

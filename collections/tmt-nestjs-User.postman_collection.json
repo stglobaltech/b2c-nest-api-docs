@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Send Otp",
+			"name": "Send Otp [GQL]",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -14,7 +14,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7123456\"\n  }\n}"
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -23,16 +23,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{authServer}}",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{authServer}}"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "User Signup",
+			"name": "User Signup [GQL]",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -40,7 +40,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"1111111\",\n\t\t\"email\": \"pious@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"3490\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
+						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"7807807\",\n\t\t\"email\": \"pious12@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"7498\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -49,16 +49,16 @@
 					}
 				},
 				"url": {
-					"raw": "{{authServer}}",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{authServer}}"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "User Login",
+			"name": "User Login [GQL]",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -66,7 +66,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"0091\",\n    \"mobile\": \"7807801\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"5055\"\n  }\n}"
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"7498\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -75,23 +75,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{authServer}}",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{authServer}}"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Access token",
+			"name": "New Access token [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjMyODc4NGY3Y2I2MzIxMGY2ZWM2ZDciLCJzZXNzaW9uSWQiOiI1ZjMyODc4NWU0OGYwYjg5OTc4ZWI4ZTQiLCJzdWIiOiJSQyIsImlhdCI6MTU5NzY1MjA1MCwiZXhwIjoxNTk3NzM4NDUwfQ.MEYCIQCNLnBCGoZyndJqPmEjrzbqq0q2OB3Z-W_nG9ggZ2u4MQIhAKr_w9Pm-HFu9u1utupWZgkBV-K9OVlHoIxt9DxBUA3T",
+							"value": "{{refresh-token}}",
 							"type": "string"
 						}
 					]
@@ -101,8 +101,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation NewAccessToken($accessTokenInputDto: BuildAccessTokenInputDto!) {\n  refreshToken(accessTokenInputDto: $accessTokenInputDto) {\n    success\n    message\n    accessToken\n  }\n}\n",
-						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"access_token\"\n  }\n}"
+						"query": "mutation RefreshToken($accessTokenInputDto: BuildAccessTokenInputDto!){\n  refreshToken(accessTokenInputDto:$accessTokenInputDto){\n    accessToken\n  }\n}",
+						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjUxZGNlZWZlZWE2ZTdhOWJiYTgxYzIiLCJzZXNzaW9uSWQiOiI1ZjUxZGNlZTE4MTZhOWUzMThkNGI0OTMiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5OTIwMDQ5NCwiZXhwIjoxNTk5MjAxMzk0fQ.MEUCIBfejnVQj5A9g_dJAWhzrIt4Oxs7pfOP8rgbKnzcohtCAiEA-xP3uq3X_vH5NTS50lQRH5S3DG4IQ2hf51lsfvRENXE\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -111,23 +111,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{authServer}}",
+					"raw": "{{auth-server-gql}}",
 					"host": [
-						"{{authServer}}"
+						"{{auth-server-gql}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "User Profile",
+			"name": "User Profile [GQL]",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQzZWUxZmJhODM4Mjc1MDk1M2JlYzciLCJzZXNzaW9uSWQiOiI1ZjQzZWUxZjQ5ZTAzOTIwNzJiMWE5NDkiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTU5ODI4OTkzNywiZXhwIjoxNTk4MjkwODM3fQ.MEYCIQC0ZEP-CTNDPwyXRhXhCHETyT2W9csu6s-xBtMALMx_ZgIhAPntX9S51QtnUKCJB-mp0qs6c1s35E0Xjqrc_uVcS_Qe",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -142,9 +142,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{mainServer}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{mainServer}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
