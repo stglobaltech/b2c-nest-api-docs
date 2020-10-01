@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "734cd96d-11ce-443c-a69a-0043775213ac",
+		"_postman_id": "9d07224d-a2e9-46e7-b0c3-a8248168c112",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,7 +13,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message\n    otp\n  }\n}",
+						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n        en\n        ar\n    }\n    otp\n  }\n}",
 						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\"\n  }\n}"
 					},
 					"options": {
@@ -39,7 +39,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n  }\n}\n",
+						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message {\n        ar\n        en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
 						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"7807807\",\n\t\t\"email\": \"pious12@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"7498\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
 					},
 					"options": {
@@ -65,7 +65,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message {\n        ar\n        en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
 						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"7498\"\n  }\n}"
 					},
 					"options": {
