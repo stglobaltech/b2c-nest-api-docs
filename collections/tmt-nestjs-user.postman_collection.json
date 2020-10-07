@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9d07224d-a2e9-46e7-b0c3-a8248168c112",
+		"_postman_id": "1be80e97-ce07-4359-8955-a6d22add02b9",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -207,6 +207,99 @@
 					"graphql": {
 						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
 						"variables": "{\n  \"input\": {\n    \"name\": \"name\",\n    \"address\": \"address\",\n    \"buildingNo\": \"10\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [0,0],\n      \"type\": \"point\"\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Entity [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createEntity($input: EntityInputDto!) {\n  createEntity(entityInput: $input){\n    id\n    name {\n      en\n      ar\n    }\n    status\n    iconUrl\n    selectedIconUrl\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"name\": {\n      \"en\": \"Restaurant4\",\n      \"ar\": \"Restaurant AR4\"\n    },\n    \"sortIndex\": 90,\n    \"status\": \"ACTIVE\",\n    \"iconUrl\": \"fghjkl\",\n    \"selectedIconUrl\": \"ghjk\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Entities [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getAllEntity {\n  getAllEntity {\n    id\n    name {\n      en\n      ar\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entity [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"5f62f194fee6c61ea0ee916f\"\n}"
 					}
 				},
 				"url": {
