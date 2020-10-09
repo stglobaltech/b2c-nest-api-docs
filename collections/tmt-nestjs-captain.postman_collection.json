@@ -1,20 +1,60 @@
 {
 	"info": {
-		"_postman_id": "e34c6b7b-cf52-47f7-8785-218dbccdd062",
+		"_postman_id": "749b5c2d-9947-419f-ad2f-fef88cfe0a19",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Captain Signup [GQL]",
+			"name": "Send Otp [GQL] Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5128c03f-f549-4f39-9f8e-472afd78bca5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.sendOtp.otp);\r",
+							"    pm.environment.set(\"otp\", response.data.sendOtp.otp);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ab73a325-6ab5-4163-bb11-794c6550bfa2",
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"9630\",\n      \"countryCode\": \"IND\",\n      \"mobile\": \"7807801\",\n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"citcProvinceId\": \"String!\",\n      \"citcProvinceSaudiId\": \"String!\",\n      \"citcCityId\": \"String!\",\n      \"citcCitySaudiId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"deviceId\": \"String!\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"cityId\": \"String!\",\n      \"bankId\": \"String!\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ],\n      \"oneSignalId\": \"String!\"\n   }\n}"
+						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
 					}
 				},
 				"url": {
@@ -28,6 +68,43 @@
 		},
 		{
 			"name": "Captain Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1fc409a-1df6-40a9-9b25-94631525a10d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverLogin.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverLogin.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
+							"    const response1 = pm.response.json();\r",
+							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9b6aaa78-5d02-4fb9-a830-b67cc904e10f",
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", 11113333);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -35,7 +112,62 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}\n",
-						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"7807802\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"3203\"\n  }\n}"
+						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"{{otp}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Signup [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b93b074a-aac5-4da1-af5b-2e6bbbe8c46f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverSignup.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverSignup.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverSignup.accessToken);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c03a94c4-afcd-4cd2-a814-672954312e6d",
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", mobile);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n     \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\",\n      \"name\": \"090\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"citcProvinceId\": \"String!\",\n      \"citcProvinceSaudiId\": \"String!\",\n      \"citcCityId\": \"String!\",\n      \"citcCitySaudiId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"deviceId\": \"String!\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"cityId\": \"String!\",\n      \"bankId\": \"String!\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ],\n      \"oneSignalId\": \"String!\"\n   }\n}"
 					}
 				},
 				"url": {
