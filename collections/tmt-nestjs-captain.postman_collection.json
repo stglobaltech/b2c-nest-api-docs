@@ -77,6 +77,47 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Captain Document Upload [REST]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/Users/abwbdallhmhmd/Documents/base.png"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{auth-server}}/driver-auth/document-upload",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"driver-auth",
+						"document-upload"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
