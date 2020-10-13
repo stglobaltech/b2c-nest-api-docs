@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "14b71968-f205-48d1-885d-4ad6bd8a4a25",
+		"_postman_id": "85925eac-57bd-4665-a869-9285bb6678c0",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"9630\",\n      \"countryCode\": \"IND\",\n      \"mobile\": \"7807801\",\n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"citcProvinceId\": \"String!\",\n      \"citcProvinceSaudiId\": \"String!\",\n      \"citcCityId\": \"String!\",\n      \"citcCitySaudiId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"deviceId\": \"String!\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"cityId\": \"String!\",\n      \"bankId\": \"String!\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ],\n      \"oneSignalId\": \"String!\"\n   }\n}"
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"9630\",\n      \"countryCode\": \"IND\",\n      \"mobile\": \"7807801\",\n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"citcProvinceId\": \"String!\",\n      \"citcProvinceSaudiId\": \"String!\",\n      \"citcCityId\": \"String!\",\n      \"citcCitySaudiId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"cityId\": \"String!\",\n      \"bankId\": \"String!\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
 					}
 				},
 				"url": {
