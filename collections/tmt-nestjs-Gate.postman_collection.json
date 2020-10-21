@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2e1c87da-ab6b-487a-abe9-e7bdb0a6a645",
-		"name": "tmt-nestjs-Gate Updated",
+		"_postman_id": "eec3da5a-a2c5-4097-ac3d-3630fef4bfcd",
+		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b7386b67-fa10-454d-9275-f9c6cca0554f",
+						"id": "635c921c-5603-4074-8d65-11827664678f",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -62,7 +62,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1989d2f2-c468-441f-b677-63a49d699f73",
+						"id": "3d5fadf4-cfe7-4926-9f25-3a57138a83c0",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -108,7 +108,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2712ae0a-3e38-467f-9ae2-a5e89bb72e2f",
+						"id": "a5984135-6c8b-4181-9994-0d05c1f8ff8a",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -157,7 +157,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2b354522-81e8-4676-b37c-49f6e7d72c7e",
+						"id": "3d7cf0a0-15a2-4d6a-ba67-2560704cd9f5",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -210,7 +210,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d461c5b9-11fa-4324-9bfc-644038f65f9e",
+						"id": "6830e700-b471-4105-b31b-f37373cb46e6",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -259,7 +259,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a148308e-ffe8-49a4-a6c3-fc77c51577f9",
+						"id": "8d6d7c70-f61b-460e-9104-373b4939728c",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -309,7 +309,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e6706533-ce08-403e-a19d-55b707faf426",
+						"id": "943af90a-29d9-4bb0-8403-aaebfc16f9e7",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -355,7 +355,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b517f518-97d2-4607-91f6-a4e01ae54871",
+						"id": "571cf756-3eca-41cd-9075-10979951c8ed",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -404,7 +404,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ca6046db-9cb8-440f-b95c-62368f4ee847",
+						"id": "1a8453b0-7cb3-47f3-890e-0bc89564d3ff",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -457,7 +457,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bd696a44-1f78-477c-ac68-40d9d2fafbb5",
+						"id": "097c8a94-ec04-49c7-b14a-7aac5626a634",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -502,7 +502,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f0a17303-6033-48c7-b3e6-0bc05db84e7c",
+						"id": "98041a90-c41d-4b04-af8d-6f39d7d28086",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -551,7 +551,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "52727c07-6758-442a-b4ef-faa513ab9d0a",
+						"id": "36516803-8b77-4c8e-84b1-bda7d7eb55fd",
 						"exec": [
 							""
 						],
@@ -561,7 +561,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "21e9f537-2916-4e9b-9522-5ec4097505f5",
+						"id": "fc137411-cfc5-4f4d-944d-51b406a75414",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -606,7 +606,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0d5066db-090a-4bd1-8310-4ff306188c03",
+						"id": "4f2fa492-c95c-406a-b735-94df68ff3a52",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -652,7 +652,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3337e58c-744f-49e1-97f8-bf35bbcaced8",
+						"id": "6031fcfc-7eee-479f-9158-47420b8414db",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -698,7 +698,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cd8b5dc6-c2b0-4a45-8e6e-44a27e014b6c",
+						"id": "ca22a938-e6f4-49dd-9638-ad1da3eebbbf",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -745,7 +745,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "467d688d-93ca-482c-ada1-320e1e81a7c2",
+						"id": "19a969b0-81b9-4353-b117-91f5f6d6cf89",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -791,7 +791,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e6fc2e97-2830-4d4e-884b-50e0d1440ad0",
+						"id": "e10ba31b-5d42-43f6-bed1-1bd1e2742e27",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -879,7 +879,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "87167f35-fbc0-46cf-8fa7-49bb905f5e73",
+						"id": "434f519f-a72a-41a1-b23a-efebe3387ad7",
 						"exec": [
 							""
 						],
@@ -889,7 +889,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a9cf9b6b-9a9b-48fb-8ffe-4f2ab3276214",
+						"id": "32f90685-a674-4285-8ba4-d59bef831389",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -918,6 +918,99 @@
 					"graphql": {
 						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name\n    ownerId\n  }\n}\n",
 						"variables": "{\n  \"ownerId\": \"{{userId}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Store Configuration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName\n     categoryIds\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"branchCode\":\"16\",\n        \"displayName\":\"nes\",\n        \"storeCategoryIds\":[\"5eeb0e67a3d90731a5ae2011\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products Based On Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetProductsBasedOnStore($storeId:String!) {\n    getProductsBasedOnStore(storeId:$storeId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"storeId\":\"5f3bee2d66a6530db2e5a4c3\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Products Based On Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"productKey\":\"a\"\n    }\n}"
 					}
 				},
 				"url": {
