@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "e784c10f-4749-4c32-9140-2068d15d6da1",
+		"name": "geohash",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{main-server-gql}}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjNiZWUyYzJhMzg3ODBlMDgzODkxNzQiLCJzZXNzaW9uSWQiOiI1ZjNiZWUyZTQ5ZTAzOTIwNzIwNzYyYjkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwMzM0NDQ3OCwiZXhwIjoxNjAzNDMwODc4fQ.MEUCIQCJQlg0dNb79BfFR1H-S9hlJavsIYV36Swof5PIV966UAIgddN6qm1chBV1gEDecNZ6AWY7rXdj49c8UDh05NMJM-o\",",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    status\n    message\n  }\n}",
+						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"5f8ee34855e63bc901c3a3fb\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{main-server-gql}}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    status\n    message\n  }\n}",
+						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"5f8ee34855e63bc901c3a3fb\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
