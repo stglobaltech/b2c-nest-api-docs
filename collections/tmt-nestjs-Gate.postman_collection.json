@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eec3da5a-a2c5-4097-ac3d-3630fef4bfcd",
+		"_postman_id": "3480564c-0046-4351-824f-8e1584fe8775",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "635c921c-5603-4074-8d65-11827664678f",
+						"id": "c3e746ff-de5b-4109-8368-4a00a34683b4",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -62,7 +62,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d5fadf4-cfe7-4926-9f25-3a57138a83c0",
+						"id": "d6fd8b54-3437-41ea-83b7-cf9a124db69b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -108,7 +108,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a5984135-6c8b-4181-9994-0d05c1f8ff8a",
+						"id": "bded3ec6-8b06-4633-86ea-3208332915a5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -157,7 +157,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d7cf0a0-15a2-4d6a-ba67-2560704cd9f5",
+						"id": "aa3ccdc5-fd70-47ef-a069-03172dcc2e93",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -210,7 +210,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6830e700-b471-4105-b31b-f37373cb46e6",
+						"id": "093a476d-db6b-4ad6-bbf0-03ec2ad5a8f9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -259,7 +259,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8d6d7c70-f61b-460e-9104-373b4939728c",
+						"id": "8c3988ed-1b9a-42c6-aab8-59785e0955f2",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -309,7 +309,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "943af90a-29d9-4bb0-8403-aaebfc16f9e7",
+						"id": "78294691-d0d8-4fa3-9a64-0dbd6b5b5dbe",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -355,7 +355,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "571cf756-3eca-41cd-9075-10979951c8ed",
+						"id": "56770fac-9f71-4851-b866-f53d66694d8f",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -404,7 +404,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1a8453b0-7cb3-47f3-890e-0bc89564d3ff",
+						"id": "03ee0292-c543-48be-9bca-0c8798a5dd1a",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -457,7 +457,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "097c8a94-ec04-49c7-b14a-7aac5626a634",
+						"id": "af1a9e84-0d3f-47f3-a8a8-e04de88e0bb2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -502,7 +502,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "98041a90-c41d-4b04-af8d-6f39d7d28086",
+						"id": "3dc28853-2c4e-4a3e-a9a2-0fa98086ef99",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -551,7 +551,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "36516803-8b77-4c8e-84b1-bda7d7eb55fd",
+						"id": "c3ba71b3-23dd-49b2-a2fd-70095010b91d",
 						"exec": [
 							""
 						],
@@ -561,7 +561,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fc137411-cfc5-4f4d-944d-51b406a75414",
+						"id": "1b943557-8ad9-4b8d-98b2-08cad2d18a8e",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -606,7 +606,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4f2fa492-c95c-406a-b735-94df68ff3a52",
+						"id": "3b8dbce1-aabb-4b83-8790-ba594bdea580",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -652,7 +652,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6031fcfc-7eee-479f-9158-47420b8414db",
+						"id": "57adf1cf-a159-41fd-afca-49a60268f87b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -698,7 +698,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ca22a938-e6f4-49dd-9638-ad1da3eebbbf",
+						"id": "b4d9c5da-45c7-4fee-ba1b-425ade4c7b33",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -745,7 +745,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "19a969b0-81b9-4353-b117-91f5f6d6cf89",
+						"id": "d5494822-0c47-4488-9c1f-fbad2b0c4bdb",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -791,7 +791,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e10ba31b-5d42-43f6-bed1-1bd1e2742e27",
+						"id": "979f469b-ca37-4a50-929f-5b728cb056a9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -879,7 +879,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "434f519f-a72a-41a1-b23a-efebe3387ad7",
+						"id": "7b294730-bf49-4e2d-b5bf-0c624f23cc4d",
 						"exec": [
 							""
 						],
@@ -889,7 +889,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "32f90685-a674-4285-8ba4-d59bef831389",
+						"id": "f0d11ab8-af82-4cd9-adad-48f052af3752",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -1011,6 +1011,37 @@
 					"graphql": {
 						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
 						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"productKey\":\"a\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwMzM0ODI3MSwiZXhwIjoxNjAzNDM0NjcxfQ.MEYCIQDw6ZSUM6Vs_cPQCokoAHXxnyGF7lGLxNMB6xPu9xN1uwIhAKet_SBnL1DJk1oUfxvUgdBT_Y0VgGxBq_QL1_Nc3ENw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name\n        arName\n       iconUrl\n    }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
