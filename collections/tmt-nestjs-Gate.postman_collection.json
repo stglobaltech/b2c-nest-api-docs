@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3480564c-0046-4351-824f-8e1584fe8775",
+		"_postman_id": "3673d8f2-088b-4183-89cd-2b60e8cfdab6",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c3e746ff-de5b-4109-8368-4a00a34683b4",
+						"id": "8439e8d8-4fc6-435d-90a6-75530b32de30",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -48,9 +48,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{auth-server-gql}}",
+					"raw": "{{main-server}}",
 					"host": [
-						"{{auth-server-gql}}"
+						"{{main-server}}"
 					]
 				}
 			},
@@ -62,7 +62,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d6fd8b54-3437-41ea-83b7-cf9a124db69b",
+						"id": "b27061e2-73ff-4a0c-b0e6-853a6a18c5be",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -108,7 +108,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bded3ec6-8b06-4633-86ea-3208332915a5",
+						"id": "213fffc4-3f38-4950-8efe-3cd555c69138",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -157,7 +157,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "aa3ccdc5-fd70-47ef-a069-03172dcc2e93",
+						"id": "18c7bce3-1967-4e87-bdcc-1e4f95c0ca28",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -210,7 +210,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "093a476d-db6b-4ad6-bbf0-03ec2ad5a8f9",
+						"id": "1a756e87-805a-4249-867f-33adae500e44",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -259,7 +259,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8c3988ed-1b9a-42c6-aab8-59785e0955f2",
+						"id": "7a0bf71e-8e3f-40ba-80ef-bbff8742f85f",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -309,7 +309,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "78294691-d0d8-4fa3-9a64-0dbd6b5b5dbe",
+						"id": "c6ebb74c-6e8d-49d8-987b-b39cb340bbf4",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -355,7 +355,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "56770fac-9f71-4851-b866-f53d66694d8f",
+						"id": "3603c61c-f83b-4971-999b-d551bb18e4ce",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -404,7 +404,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "03ee0292-c543-48be-9bca-0c8798a5dd1a",
+						"id": "6a157ec0-d2e8-43d7-92d4-7faa11b80c02",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -457,7 +457,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af1a9e84-0d3f-47f3-a8a8-e04de88e0bb2",
+						"id": "c24c4086-925e-4606-8bdd-09925c1c0fa8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -502,7 +502,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3dc28853-2c4e-4a3e-a9a2-0fa98086ef99",
+						"id": "f22386dc-9911-4a7c-b663-d609df42f10c",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -551,7 +551,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "c3ba71b3-23dd-49b2-a2fd-70095010b91d",
+						"id": "527b0b5f-8baf-47be-9c10-03af24f14bf8",
 						"exec": [
 							""
 						],
@@ -561,7 +561,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1b943557-8ad9-4b8d-98b2-08cad2d18a8e",
+						"id": "1e3cf496-bc27-48f2-b8f2-f74315c252e2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -606,7 +606,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3b8dbce1-aabb-4b83-8790-ba594bdea580",
+						"id": "37b32023-8be2-44f0-8a95-74ee7a1f886e",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -652,7 +652,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "57adf1cf-a159-41fd-afca-49a60268f87b",
+						"id": "f9cc2195-bbd6-4f4b-8406-a9589d29ccdd",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -698,7 +698,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4d9c5da-45c7-4fee-ba1b-425ade4c7b33",
+						"id": "bf2ce7f5-1983-4900-927c-55fdfd99f472",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -745,7 +745,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d5494822-0c47-4488-9c1f-fbad2b0c4bdb",
+						"id": "8a5dcfec-3603-4c0a-b8ae-dcba4afbf5ee",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -791,7 +791,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "979f469b-ca37-4a50-929f-5b728cb056a9",
+						"id": "008503cc-5b07-438e-aff7-b44da7493fb0",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -879,7 +879,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7b294730-bf49-4e2d-b5bf-0c624f23cc4d",
+						"id": "b3dc6932-bb58-4b6c-8e8a-00063458b00d",
 						"exec": [
 							""
 						],
@@ -889,7 +889,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f0d11ab8-af82-4cd9-adad-48f052af3752",
+						"id": "b3ac28ea-9104-4f2a-a036-1839547e4c95",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -1042,6 +1042,37 @@
 					"graphql": {
 						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name\n        arName\n       iconUrl\n    }\n}",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update entity key in store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNDI5OTg1NiwiZXhwIjoxNjA0Mzg2MjU2fQ.MEQCIF9vIrsZrM_kRtlc36Vy9rUbV3Oks6mRjpt_7a2ANBe_AiAH0T9NeFHLYYFsE3uAhxrscz7kDREru4MDVWMGLmknDw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  status\n  message\n    }\n}",
+						"variables": "{\n  \"storeEntityEditInput\": {\n    \"storeId\": \"5f3bee2d66a6530db2e5a4c3\",\n    \"entityIds\":[\"5f9fb55c43ef294af2b32f3c\"]\n  }\n}"
 					}
 				},
 				"url": {
