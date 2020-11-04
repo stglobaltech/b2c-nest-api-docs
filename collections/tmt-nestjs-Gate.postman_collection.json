@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "09fffd9b-5e92-48b5-b0be-4f69f9b139d7",
+		"_postman_id": "c90f8f41-923e-4bd0-91ad-9adcb1822fb1",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af7c6d17-e1a9-427b-81fe-c9d6a9a43e3e",
+						"id": "66fbbd44-d7f4-4859-af41-211409f1ad20",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -88,7 +88,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "910f0b67-329e-4afe-86d6-b8312587103b",
+						"id": "1f0b1b20-b424-4092-a9d5-c67788cebb1e",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -138,7 +138,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9013a9db-367e-4533-af2f-832a74f712c5",
+						"id": "686970f6-b38b-4a06-b17d-deb3fc3e8c3c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -184,7 +184,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "90529cae-dd69-4906-8c33-0af4b76958fb",
+						"id": "59cf9870-839e-4223-b8cc-dddc1bae96bc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -230,7 +230,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8c3a2be2-5e53-4bce-b4cc-b0b8b66383d0",
+						"id": "5c2f899d-4c65-4a9c-9ebc-e9b7562ed428",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -343,7 +343,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "303cbe2f-7f47-4af0-abd8-08732d1ed6a2",
+						"id": "97a4bb8a-cafb-490d-a872-5bdeae5ac2f3",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -389,7 +389,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b22bf644-505e-48d2-b5fc-e31c5d162a05",
+						"id": "e904afbf-43c8-48b3-aaa2-f7e560131386",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -435,7 +435,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9b3f4900-bf5c-4c74-9e90-b1cc3d039668",
+						"id": "321734ce-883d-4079-8718-920ec98aa325",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -482,7 +482,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b3112db1-ca60-4b7c-92d5-d57e6fd1d396",
+						"id": "fd7ce237-a19b-4459-842c-a96d9ba83126",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -531,7 +531,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8241256f-2593-4ff7-b2c5-6a9d5c42a32c",
+						"id": "ed70d437-e2c0-4d58-ba14-9ccbbc41b7b5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -576,7 +576,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7d9e1d80-a452-4ca8-84a3-832e2f6d7cd3",
+						"id": "0411ec9d-5e68-4c8a-8abc-036ae9ca7f9d",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -656,7 +656,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "36515917-ac7d-4137-8480-7ef462260188",
+						"id": "6cbf78c5-647a-41a6-ac2c-b158a51dd990",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -774,7 +774,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3f498789-442e-472b-befa-3a81207b7bed",
+						"id": "df8b6752-8ec6-45bf-99dc-968b01ffc991",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -827,7 +827,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2aa636a0-978a-4c78-a768-b6232c56157c",
+						"id": "f3fff0d3-94c8-4098-b6a2-4d401f1f8633",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -876,7 +876,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "fe4212d3-b9d3-489a-88ce-7348e748f091",
+						"id": "91fbef6d-23d7-4ee3-841d-e854bb997d2d",
 						"exec": [
 							""
 						],
@@ -886,7 +886,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "64a9c7e9-bad2-467a-a699-240ca0e6ac42",
+						"id": "b8940659-08b8-4150-abdf-7abca1388dc8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -931,7 +931,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8a10fa2c-3bd6-4dbe-b2a1-fc1612aa1472",
+						"id": "3af0ce59-a9d0-497c-96c4-f8ab0ecec341",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -984,7 +984,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "664072be-42f4-4800-8d65-4c243d0da675",
+						"id": "fd79ea2d-164e-46c5-a859-958911a602d8",
 						"exec": [
 							""
 						],
@@ -994,7 +994,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6d255c9b-700c-4dfb-9c04-4d707804e51b",
+						"id": "655556ce-8412-44f9-9ad9-d45d1449413e",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -1040,7 +1040,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8712d363-e4a5-4b22-8703-2f688d197da1",
+						"id": "244669e3-e7ca-4bbd-89af-b258a7cd2c4c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1104,6 +1104,68 @@
 					"graphql": {
 						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       status\n       message\n    }\n}",
 						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"edited\",\n        \"contactNumber\":\"9876543226\",\n        \"countryCode\":\"IND\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stores using different multiple variable",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNDQ4Mjg3NywiZXhwIjoxNjA0NTY5Mjc3fQ.MEYCIQDJgbknNvQ-r-RFgnxp-H7TjyrebVUbeDORX6hhNH3QUgIhAItfkNsxffCc6TRJn3hxWqcrXXZl-41JEUEBo9Ws9x6F",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!) {\n  getStores(storeFindInputDto: $storeFindInputDto) {\n      pagination{\n      page\n    },\n    stores{\n        _id\n        name\n    }\n  }\n}",
+						"variables": "{\n    \"storeFindInputDto\":{\n        \"paginate\":{\"page\":  1,\n            \"recordsPerPage\":1},\n        \"entityId\":\"5f9fb55c43ef294af2b32f3c\",\n        \"categoryIds\":[\"5f5735b5f044f836dac05a58\"]\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update store availability",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNDQ4Mjg3NywiZXhwIjoxNjA0NTY5Mjc3fQ.MEYCIQDJgbknNvQ-r-RFgnxp-H7TjyrebVUbeDORX6hhNH3QUgIhAItfkNsxffCc6TRJn3hxWqcrXXZl-41JEUEBo9Ws9x6F",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreAvailability($storeAvailabilityEditInput: StoreAvailabilityEditInputDto!) {\n  updateStoreAvailability(storeAvailabilityEditInput: $storeAvailabilityEditInput) {\n  _id\n    }\n}",
+						"variables": "{\n    \"storeAvailabilityEditInput\":{\n    \"storeId\": \"5f3bee2d66a6530db2e5a4c3\",\n    \"isAvailable\": false\n}\n}"
 					}
 				},
 				"url": {
