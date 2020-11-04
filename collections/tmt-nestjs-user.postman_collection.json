@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "85fb9097-3df7-481f-944c-c432d8685f80",
+		"_postman_id": "b71757b9-1902-4b28-8093-e44e70ea1c17",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d652e2d8-c6a4-4617-8b39-5fd85314646d",
+						"id": "027062d5-15e5-4b8b-b43d-97b2f1a8d5db",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -33,7 +33,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "42837a6f-4134-4a83-9584-81d04aed11f3",
+						"id": "616a4b73-2f22-44f3-8c58-2f8cae92d971",
 						"exec": [
 							"//pm.variables.set(\"countryCode\",\"IND\");\r",
 							"//pm.variables.set(\"mobileNo\",\"500012350\");"
@@ -72,7 +72,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "bd3d9c11-97bb-437b-bf08-98453820c77a",
+						"id": "21d56b22-89ad-4f90-933c-50154135d668",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -83,7 +83,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2013f613-524d-4431-bb5a-fcac432a6809",
+						"id": "7993e435-3346-4f4c-946a-6116cc2f0ad7",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -131,7 +131,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8fd0c557-4644-4b9a-b8f8-91e608e02ba5",
+						"id": "d596aa20-fb03-4d42-826b-96cb32f66525",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -186,7 +186,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "33c0019c-13bd-4647-9118-dce88d7d114c",
+						"id": "4cdec214-f100-40d2-bb13-5f4b8da9b012",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -241,7 +241,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "57950951-4364-435f-914f-5b0f90cd0ef4",
+						"id": "24e04f09-c15c-44f2-9967-03fedcaab4e9",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -327,7 +327,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c40b4cf5-b209-49a9-bba6-2277b9cafa85",
+						"id": "64058310-4f19-48ca-b625-6393d855e647",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -378,7 +378,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2fcd1677-a4ef-4c64-af04-87e6cab6b12f",
+						"id": "975c0d0b-ed13-40d9-a28f-6ce352fbacd4",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -427,7 +427,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf46ce31-9f23-46f4-b107-a3d5931dc64f",
+						"id": "e3754705-58c6-42bb-a91a-5032e1823862",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -471,13 +471,44 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getStores in UserApp",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjZkZmFhM2QwMWIwMjExYzJiYTYyNjUiLCJzZXNzaW9uSWQiOiI1ZjZkZmFhMzMwZTRkZjEyZmJhNjZlNDYiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwNDQ5NDIyMCwiZXhwIjoxNjA0NTgwNjIwfQ.MEUCIQDWrJkXHmSkq2KW7lsYNLqM73lujiETR0bdLtq4N62iWgIgDQGuh6-btCihQ7kr2EBB4W9EuuaTbkSKsXHPMsDINMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "e3df3022-73b7-4204-8e6f-2a9c8d529ab4",
+				"id": "0a6a2ac9-6f5f-4309-a7ad-e82f869e290f",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -488,7 +519,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4b372b3f-3ca1-4cfb-92ea-3a43b3737725",
+				"id": "2553e482-5d7a-4fff-ba40-8b17caf1e91a",
 				"type": "text/javascript",
 				"exec": [
 					""

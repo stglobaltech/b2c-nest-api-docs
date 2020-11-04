@@ -1116,14 +1116,14 @@
 			"response": []
 		},
 		{
-			"name": "Get stores using different multiple variable",
+			"name": "Get stores using different multiple variable in GateApp",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNDQ4Mjg3NywiZXhwIjoxNjA0NTY5Mjc3fQ.MEYCIQDJgbknNvQ-r-RFgnxp-H7TjyrebVUbeDORX6hhNH3QUgIhAItfkNsxffCc6TRJn3hxWqcrXXZl-41JEUEBo9Ws9x6F",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjU4OGZjMmY5ZTI3ODY2ZmQ1OWIxNTYiLCJzZXNzaW9uSWQiOiI1ZjU4OGZjMjkxZDQ4NmI3YTU1Mjk0ZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNDQ5NDQ0MywiZXhwIjoxNjA0NTgwODQzfQ.MEQCIGUwVKf0BhEoAi1xbdge2r8Sry_lvee8nl8PHc4vB8CoAiBzdDXQ3F-QXsxPHF3fSjatEDxJ5dJapk2M7WyD5gTpHg",
 							"type": "string"
 						}
 					]
@@ -1133,8 +1133,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!) {\n  getStores(storeFindInputDto: $storeFindInputDto) {\n      pagination{\n      page\n    },\n    stores{\n        _id\n        name\n    }\n  }\n}",
-						"variables": "{\n    \"storeFindInputDto\":{\n        \"paginate\":{\"page\":  1,\n            \"recordsPerPage\":1},\n        \"entityId\":\"5f9fb55c43ef294af2b32f3c\",\n        \"categoryIds\":[\"5f5735b5f044f836dac05a58\"]\n}\n}"
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
