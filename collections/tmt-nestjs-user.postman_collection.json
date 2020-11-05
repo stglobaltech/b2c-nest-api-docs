@@ -373,6 +373,99 @@
 			"response": []
 		},
 		{
+			"name": "Create Entity [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createEntity($input: EntityInputDto!) {\n  createEntity(entityInput: $input){\n    id\n    name {\n      en\n      ar\n    }\n    status\n    iconUrl\n    selectedIconUrl\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"name\": {\n      \"en\": \"Restaurant4\",\n      \"ar\": \"Restaurant AR4\"\n    },\n    \"sortIndex\": 90,\n    \"status\": \"ACTIVE\",\n    \"iconUrl\": \"fghjkl\",\n    \"selectedIconUrl\": \"ghjk\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Entities [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getAllEntity {\n  getAllEntity {\n    id\n    name {\n      en\n      ar\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entity [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"5f62f194fee6c61ea0ee916f\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Address [GQL]",
 			"event": [
 				{
