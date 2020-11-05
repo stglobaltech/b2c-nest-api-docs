@@ -1,20 +1,55 @@
 {
 	"info": {
-		"_postman_id": "1be80e97-ce07-4359-8955-a6d22add02b9",
+		"_postman_id": "b71757b9-1902-4b28-8093-e44e70ea1c17",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Send Otp [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "027062d5-15e5-4b8b-b43d-97b2f1a8d5db",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"otp\",jsonData.data.sendOtp.otp);\r",
+							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"\r",
+							"    console.log(\"Otp = \", jsonData.data.sendOtp.otp);\r",
+							"    console.log(\"countryCode = \", pm.variables.get('countryCode'));\r",
+							"    console.log(\"mobileNo = \", pm.variables.get('mobileNo'));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "616a4b73-2f22-44f3-8c58-2f8cae92d971",
+						"exec": [
+							"//pm.variables.set(\"countryCode\",\"IND\");\r",
+							"//pm.variables.set(\"mobileNo\",\"500012350\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query sendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n        en\n        ar\n    }\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\"\n  }\n}"
+						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -33,14 +68,47 @@
 		},
 		{
 			"name": "User Signup [GQL]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "21d56b22-89ad-4f90-933c-50154135d668",
+						"exec": [
+							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
+							"pm.variables.set(\"email\",email);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7993e435-3346-4f4c-946a-6116cc2f0ad7",
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"Verify User Signup\", function(){\r",
+							"    pm.expect(json.data.userSignup.success).to.be.true;\r",
+							"    var email = pm.variables.get('email');\r",
+							"    console.log(\"User Email, \",email);\r",
+							"    pm.environment.set(\"uEmail\",email);\r",
+							"\r",
+							"    pm.environment.set(\"token\",json.data.userSignup.accessToken);\r",
+							"    pm.environment.set(\"refreshToken\", json.data.userSignup.refreshToken);\r",
+							"    console.log(\"token = \", pm.environment.get(\"token\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n    message {\n        ar\n        en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n    \"name\": \"Mohammed\",\n\t\t\"countryCode\": \"IND\",\n\t\t\"mobile\": \"7807807\",\n\t\t\"email\": \"pious12@good.com\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"7498\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
+						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
+						"variables": "{\n  \"userSignupInputDto\": {\n     \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobileNo}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -59,14 +127,43 @@
 		},
 		{
 			"name": "User Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d596aa20-fb03-4d42-826b-96cb32f66525",
+						"exec": [
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify User Login\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    console.log(\"Api response = \",json.data.userLogin.success);\r",
+							"    //pm.expect(json.data.userLogin.success).to.be.true;\r",
+							"    if(json.data.userLogin.success == true) {\r",
+							"        pm.environment.set(\"token\",json.data.userLogin.accessToken);\r",
+							"        pm.environment.set(\"refreshToken\", json.data.userLogin.refreshToken);\r",
+							"    }\r",
+							"    console.log(\"token = \", pm.environment.get(\"token\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"isSignupRequired true run Signup\", function(){\r",
+							"    pm.expect(json.data.userLogin.isSignUpRequired).to.be.true\r",
+							"   if((json.data.userLogin.isSignUpRequired) == true)\r",
+							"        postman.setNextRequest(\"User Signup\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n    message {\n        ar\n        en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"IND\",\n    \"mobile\": \"7807807\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"7498\"\n  }\n}"
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"{{otp}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -85,13 +182,32 @@
 		},
 		{
 			"name": "New Access token [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cdec214-f100-40d2-bb13-5f4b8da9b012",
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"New Access Token\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    console.log(\"Api response = \",json.data.refreshToken.success);\r",
+							"    pm.expect(json.data.refreshToken.success).to.be.true;\r",
+							"    pm.environment.set(\"token\",json.data.refreshToken.accessToken);\r",
+							"    console.log(\"token = \", pm.environment.get(\"token\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{refresh-token}}",
+							"value": "{{refreshToken}}",
 							"type": "string"
 						}
 					]
@@ -102,7 +218,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation RefreshToken($accessTokenInputDto: BuildAccessTokenInputDto!){\n  refreshToken(accessTokenInputDto:$accessTokenInputDto){\n    accessToken\n  }\n}",
-						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjUxZGNlZWZlZWE2ZTdhOWJiYTgxYzIiLCJzZXNzaW9uSWQiOiI1ZjUxZGNlZTE4MTZhOWUzMThkNGI0OTMiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTU5OTIwMDQ5NCwiZXhwIjoxNTk5MjAxMzk0fQ.MEUCIBfejnVQj5A9g_dJAWhzrIt4Oxs7pfOP8rgbKnzcohtCAiEA-xP3uq3X_vH5NTS50lQRH5S3DG4IQ2hf51lsfvRENXE\"\n  }\n}"
+						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"{{token}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -121,13 +237,31 @@
 		},
 		{
 			"name": "User Profile [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24e04f09-c15c-44f2-9967-03fedcaab4e9",
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"Verify User Profile\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    pm.expect(json.data.getUserProfile.mobile).to.eql(pm.variables.get('mobileNo'));\r",
+							"    pm.expect(json.data.getUserProfile.countryCode).to.eql(pm.variables.get('countryCode'));\r",
+							"    //pm.expect(json.data.getUserProfile.email).to.eql(pm.environment.get('uEmail'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -137,7 +271,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetUserProfile{\n  getUserProfile {\n    mobile\n    email\n    name\n    countryCode\n  }\n}",
+						"query": "query GetUserProfile{\n  getUserProfile {\n      mobile\n      email\n      name\n    countryCode\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -189,13 +323,33 @@
 		},
 		{
 			"name": "Save Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64058310-4f19-48ca-b625-6393d855e647",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const variable = pm.response.json();\r",
+							"    pm.environment.set(\"addressId\", variable.data.saveAddress.id);\r",
+							"});\r",
+							"pm.test(\"Response time validation\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -206,13 +360,13 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"name\": \"name\",\n    \"address\": \"address\",\n    \"buildingNo\": \"10\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [0,0],\n      \"type\": \"point\"\n    }\n  }\n}"
+						"variables": "{\n  \"input\": {\n    \"name\": \"{{addrName}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [12.96738173,80.15095264],\n      \"type\": \"point\"\n    }\n  }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -313,13 +467,31 @@
 		},
 		{
 			"name": "Delete Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "975c0d0b-ed13-40d9-a28f-6ce352fbacd4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.deleteAddress.status).to.eql(\"SUCCESS\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -330,13 +502,13 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation DeleteAddress($input: AddressDeleteInputDto!) {\n  deleteAddress(addressDeleteInput:$input) {\n    status\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"addressId\": \"some ID\"\n  }\n}"
+						"variables": "{\n  \"input\": {\n    \"addressId\": \"{{addressId}}\"\n  }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -344,13 +516,33 @@
 		},
 		{
 			"name": "Get All Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3754705-58c6-42bb-a91a-5032e1823862",
+						"exec": [
+							"/*\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.environment.set(\"addressId\", response.data.getAllAddress[0].id);\r",
+							"});\r",
+							"*/\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -365,13 +557,67 @@
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getStores in UserApp",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjZkZmFhM2QwMWIwMjExYzJiYTYyNjUiLCJzZXNzaW9uSWQiOiI1ZjZkZmFhMzMwZTRkZjEyZmJhNjZlNDYiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwNDQ5NDIyMCwiZXhwIjoxNjA0NTgwNjIwfQ.MEUCIQDWrJkXHmSkq2KW7lsYNLqM73lujiETR0bdLtq4N62iWgIgDQGuh6-btCihQ7kr2EBB4W9EuuaTbkSKsXHPMsDINMw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0a6a2ac9-6f5f-4309-a7ad-e82f869e290f",
+				"type": "text/javascript",
+				"exec": [
+					"pm.variables.set(\"countryCode\",\"IND\");",
+					"pm.variables.set(\"mobileNo\",\"500012350\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2553e482-5d7a-4fff-ba40-8b17caf1e91a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}
