@@ -1,17 +1,75 @@
 {
 	"info": {
-		"_postman_id": "88435c1d-f882-43f7-b8c0-878f07dc283b",
+		"_postman_id": "346676d2-1f84-41e8-bfad-1425b3afb069",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Captain Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7bc5cb2-7279-413f-be61-e7c02ed6ea7d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverLogin.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverLogin.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
+							"    const response1 = pm.response.json();\r",
+							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f993f461-ab74-42e1-9c3d-2bd7f3dde191",
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", 11113333);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}\n",
+						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"{{otp}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Send Otp [GQL] Copy",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "4675203f-5483-4a56-a762-d26fc55c1deb",
+						"id": "3d59016d-e153-4422-bd70-d8d56ea8ea99",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -31,7 +89,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "9d2ddc68-b8be-4951-8e33-0f161a13398c",
+						"id": "38d519aa-414c-4994-a3bb-f968c8dac4f6",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -67,70 +125,12 @@
 			"response": []
 		},
 		{
-			"name": "Captain Login [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "2c452105-d6d3-4104-975c-0eb1830dfc43",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Success validation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.driverLogin.success).to.eql(true);\r",
-							"\r",
-							"    const response = pm.response.json();\r",
-							"    console.log(response.data.driverLogin.accessToken);\r",
-							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
-							"    const response1 = pm.response.json();\r",
-							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
-							"});\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "19e43f45-a38c-4d8b-a724-44dd53f20e7f",
-						"exec": [
-							"pm.environment.set(\"countryCode\", \"IND\");\r",
-							"//pm.environment.set(\"mobile\", 11113333);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}\n",
-						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"{{otp}}\"\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Captain Signup [GQL]",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "81a92c62-b2d9-4e90-a819-167b86b81711",
+						"id": "9751f7c8-3a37-4ff7-88b9-f693650a0ebe",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +151,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "4bced380-0bff-4d94-b1a0-bbcefb7e1bf8",
+						"id": "d89c76f1-148d-44e2-a8ad-c010f8e75ad6",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -180,14 +180,105 @@
 			"response": []
 		},
 		{
+			"name": "Captain City List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36bf9464-4f0b-4446-b8e9-659fda70b027",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListCities{\n  listCities {\n    cityId\n    name {\n      ar\n      en\n    }\n  }\n}",
+						"variables": ""
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Car Type List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da4af962-319d-4fb5-b57b-3800a8a0445c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
+						"variables": ""
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Captain Profile [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f98a9cf-91b9-4448-b176-36dd3f3a3935",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -199,6 +290,9 @@
 					"graphql": {
 						"query": "query DriverProfile {\n  getDriverProfile {\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
+					},
+					"options": {
+						"graphql": {}
 					}
 				},
 				"url": {
@@ -212,6 +306,20 @@
 		},
 		{
 			"name": "Captain Document Upload [REST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0a45594-c46c-4a5f-bc87-e726e1ff7009",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -221,7 +329,7 @@
 						{
 							"key": "document",
 							"type": "file",
-							"src": "/Users/abwbdallhmhmd/Documents/base.png"
+							"src": "/C:/Users/Muthu Dhiva/Downloads/tmmtlogo.jpg"
 						},
 						{
 							"key": "",
@@ -229,7 +337,10 @@
 							"src": [],
 							"disabled": true
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "{{auth-server}}/driver-auth/document-upload",
@@ -243,7 +354,7 @@
 					"query": [
 						{
 							"key": "",
-							"value": null,
+							"value": "",
 							"disabled": true
 						}
 					]
@@ -252,49 +363,21 @@
 			"response": []
 		},
 		{
-			"name": "Captain Car Type List [GQL]",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Captain City List [GQL]",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query ListCities{\n  listCities {\n    cityId\n    name {\n      ar\n      en\n    }\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Captain Bank List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b62a5d9c-dab8-47c1-aafe-b043f64ecb57",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -303,6 +386,9 @@
 					"graphql": {
 						"query": "query ListBanks{\n  listBanks {\n    bankId\n    name {\n      ar\n      en\n    }\n  }\n}",
 						"variables": ""
+					},
+					"options": {
+						"graphql": {}
 					}
 				},
 				"url": {
