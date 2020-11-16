@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1f6a04c3-a43d-440e-a448-f784d2c9e87a",
+		"_postman_id": "c0edd769-b37e-44b5-9ebd-dd9717b3cadf",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "68a0cc1f-2da3-409b-9fd3-153f7246ef39",
+						"id": "7971ac1e-4711-4b87-98f5-8dded18dc44d",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -66,7 +66,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5089c3cc-a4a6-4a15-a0ad-a29968ce0ccc",
+						"id": "50b38c24-e68b-4075-9128-28a8fc5f3d01",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -96,8 +96,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createEntity($input: EntityInputDto!) {\n  createEntity(entityInput: $input){\n    id\n    name {\n      en\n      ar\n    }\n    status\n    iconUrl\n    selectedIconUrl\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"name\": {\n      \"en\": \"Indian food55\",\n      \"ar\": \"Indian food55\"\n    },\n    \"sortIndex\": 40,\n    \"status\": \"ACTIVE\",\n    \"iconUrl\": \"fghjkl\",\n    \"selectedIconUrl\": \"ghjk    \"\n  }\n}"
+						"query": "mutation CreateEntity($entityInput: EntityCreateInputDto!) {\n  createEntity(entityInput: $entityInput) {\n    name {\n      ar\n      en\n    }\n    subEntityIds\n    type\n    adminStoreId\n    entityCategories\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n    dataAPIQuery\n    cityIds\n  }\n}\n",
+						"variables": "{\n  \"entityInput\": {\n     \"name\": { \"ar\": \"مطاعم1\", \"en\": \"RESTAURANTS1\" },\n      \"subEntityIds\": [],\n      \"type\": \"RESTAURANT\",\n      \"adminStoreId\": \"5fa94319bdfe015122f09ffc\",\n      \"entityCategories\": [],\n      \"withoutDelivery\": true,\n      \"iconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d3aab20-2344-11eb-a74a-275df72bee34.png\",\n        \"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0ae5c80-2341-11eb-9b7d-cdb409930e55.png\"},\n      \"fullWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2e28b4a0-2344-11eb-9b7d-cdb409930e55.png\",\"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a1142330-2341-11eb-a74a-275df72bee34.png\"},\n      \"halfWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d98f7c0-2344-11eb-a74a-275df72bee34.png\", \"en\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0eb1760-2341-11eb-9b7d-cdb409930e55.png\" },\n      \"uiType\": 0,\n      \"sortIndex\": 1,\n      \"status\": \"ACTIVE\",\n      \"dataAPIQuery\": \"dataAPIQuery\",\n      \"cityIds\": []\n  }\n}"
 					},
 					"options": {
 						"graphql": {}
@@ -118,7 +118,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2d762f4e-fe63-49fe-b30a-f5accbb05cc6",
+						"id": "5208aeb1-4d50-414c-a634-aec7fb772830",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -210,7 +210,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7b6f4f84-366a-4d0c-b9ce-904804220f7b",
+						"id": "bd161441-95fa-42c2-82c8-3d428d61a058",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "575e78f8-ca5a-4523-bb14-63f930eedfbf",
+						"id": "51b68480-3078-463d-9e9c-8465f4b0d5f6",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -272,7 +272,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e1ef557b-8d03-41b0-97b5-742d78f61ce6",
+						"id": "db1480cc-b134-4798-837e-cdf969eb304f",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -320,7 +320,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4c5c3978-d5c3-4778-a41b-4d8de2daa2f5",
+						"id": "df91ab5f-b197-4499-9685-4480daf7470b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -342,7 +342,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7a87fca7-a3b7-4758-806c-189fdb2170a3",
+						"id": "6be19d3b-34fa-45b0-ac7c-9f384fef7b7b",
 						"exec": [
 							"//pm.variables.set(\"countryCode\",\"IND\");\r",
 							"//pm.variables.set(\"mobileNo\",\"500012350\");"
@@ -381,7 +381,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "46fef698-c2f2-455f-a492-3d5395d70dc0",
+						"id": "cf81bf5b-068f-4d5c-8cf5-faf62da26f61",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -429,7 +429,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8ce89c09-678e-4446-8071-c1b0f82b572b",
+						"id": "473b34f9-34d5-4598-ae21-fbe1d2663539",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -455,7 +455,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getAllEntity {\n  getAllEntity {\n    id\n     name{\n      en\n      ar\n    }\n  }\n}",
+						"query": "query GetAllEntity {\n  getAllEntity {\n    id\n    name {\n      ar\n      en\n    }\n    type\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n  }\n}",
 						"variables": ""
 					},
 					"options": {
@@ -477,7 +477,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3ce8c98c-e92c-43ab-a195-9c9a57139e13",
+						"id": "dcc48b58-4aa0-44bc-8978-ebaf283d70e9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -525,7 +525,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7a01fb56-04b4-49db-a53e-55e3d82ce720",
+						"id": "36135282-28bb-45f3-a97a-16673debc1d4",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -576,7 +576,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d875df70-e69b-4377-95db-5ea2a30fad13",
+						"id": "14c682ca-b27f-4be8-88a2-a43f23747a17",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -625,7 +625,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6adc65e7-171d-47a1-8ca0-fc0a45d6b28a",
+						"id": "4e5ba2e1-850f-442b-bfa2-6fd0ce5b12b4",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -667,13 +667,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Home Business Entity Group List [GQL]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entities {\n      name {\n        ar\n        en\n      }\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "8dd38b00-06ee-48cc-b9eb-f0653e663451",
+				"id": "ac190bcd-09bd-4727-8428-afd55a36a0ee",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -684,7 +705,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "d4a735fc-7a67-4037-adae-27780e3ff062",
+				"id": "7a9d5989-55e6-4721-a045-90c9b051d20e",
 				"type": "text/javascript",
 				"exec": [
 					""
