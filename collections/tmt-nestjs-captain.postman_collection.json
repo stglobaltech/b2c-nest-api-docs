@@ -399,6 +399,37 @@
 				}
 			},
 			"response": []
+		},{
+			"name": "Captain online/offline status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\nchangeDriverAvailabilityFor(isOnline:Boolean)\n}",
+						"variables": "{\"isOnline\":true}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				},
+				"description": "This api handles the captain online and offline status"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
