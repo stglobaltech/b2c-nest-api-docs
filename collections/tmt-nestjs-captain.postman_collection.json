@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "258bf36a-456b-470c-986e-a339debe272b",
+		"_postman_id": "00ab1604-ce06-4cae-b332-3992d2f586db",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9bacbca5-9d92-4dac-9a5a-bfe51374d252",
+						"id": "071ac3f2-cf31-491e-9ada-0c43d50ac0da",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -35,7 +35,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "49e89eb5-3a58-4c73-991b-7d67d33ed10d",
+						"id": "7eeb21e2-4e96-453e-803c-b4b2435641a2",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -69,7 +69,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "96632b6c-4178-4c66-8c02-3f63cec54bef",
+						"id": "fcbb0209-5f56-4702-b460-e19df0628886",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +89,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "3fb8e8cb-eb15-4b9d-8216-7539b723d0d0",
+						"id": "63511506-47a3-47c9-aa6a-7dc428160f55",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +130,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "95d255ec-9d94-4f6b-b601-8ed9e7d87a6a",
+						"id": "ec9c1e95-4e45-4ca8-87c4-89028a0c6b7b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +151,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b13b41d2-7dfc-4396-87b1-81d990e714bf",
+						"id": "848d6b92-6b48-4943-baf5-942a5488edb6",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -185,7 +185,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "66123251-b2f7-45b6-8dda-d60377d78115",
+						"id": "1cde6f7e-37e8-4e41-a3e7-275fa7cc2fa1",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -223,7 +223,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "30f02438-ff19-48e8-9ba4-60cfaaa851f9",
+						"id": "2e618a69-7eb6-40fb-abd3-c1efcf052851",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4da874d-3e9d-483b-8cc1-dabf2efd94c3",
+						"id": "25e15f84-3774-4825-93bc-34117863912e",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -288,7 +288,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query DriverProfile {\n  getDriverProfile {\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
+						"query": "query DriverProfile {\n  getDriverProfile {\n    isOnline\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
 					},
 					"options": {
@@ -310,7 +310,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cd3549b2-4396-4f8b-9878-c598156d61fe",
+						"id": "67d70cfa-19cc-4244-b96f-00efe43fc019",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -368,7 +368,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c424d65d-1e2e-45dc-afba-18fe0fcdc2f6",
+						"id": "14e5e798-1ab9-4857-882d-426c03973aa7",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
