@@ -1134,7 +1134,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					},
 					"options": {
 						"graphql": {}
@@ -1216,7 +1216,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n      }\n    }\n}",
-						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"recordsPerPage\":10\n    }\n}\n}"
+						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}\n}"
 					},
 					"options": {
 						"graphql": {}
