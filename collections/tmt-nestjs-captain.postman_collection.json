@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "346676d2-1f84-41e8-bfad-1425b3afb069",
+		"_postman_id": "00783b93-b15a-4ec0-9fae-0ed6f57180f4",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d7bc5cb2-7279-413f-be61-e7c02ed6ea7d",
+						"id": "53df6c56-f8e3-48f2-a4cd-ec402ba58184",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -35,7 +35,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f993f461-ab74-42e1-9c3d-2bd7f3dde191",
+						"id": "a127be7a-c96c-49a4-a0e7-fb82109ec825",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -69,7 +69,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d59016d-e153-4422-bd70-d8d56ea8ea99",
+						"id": "fc017e23-5b87-4231-83f7-da404a9d4b9d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +89,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "38d519aa-414c-4994-a3bb-f968c8dac4f6",
+						"id": "15b1c5ab-c110-430a-b74b-8270c4572068",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +130,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9751f7c8-3a37-4ff7-88b9-f693650a0ebe",
+						"id": "0e0bed8b-ddee-45af-b7d2-ebcb52bd7743",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +151,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d89c76f1-148d-44e2-a8ad-c010f8e75ad6",
+						"id": "bc443db3-bd71-4c7d-8b38-8ccddc38ffb1",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -185,7 +185,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "36bf9464-4f0b-4446-b8e9-659fda70b027",
+						"id": "63a5370b-5d00-43fb-99e6-f9ea879d3f0d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -223,7 +223,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "da4af962-319d-4fb5-b57b-3800a8a0445c",
+						"id": "1222ada8-9900-4119-ac89-f06f5cfbe962",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5f98a9cf-91b9-4448-b176-36dd3f3a3935",
+						"id": "691dc3c3-6e87-4e84-92d1-ec775a3f375d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -310,7 +310,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e0a45594-c46c-4a5f-bc87-e726e1ff7009",
+						"id": "80c6ab40-4fdd-40a4-9ff7-12f4d1989740",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -368,7 +368,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b62a5d9c-dab8-47c1-aafe-b043f64ecb57",
+						"id": "13a90a49-12a6-4f27-b743-6911d3b81a33",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -389,6 +389,37 @@
 					},
 					"options": {
 						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Online Status Toggle [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChangeDriverAvailability($isOnline: Boolean!) {\n  changeDriverAvailabilityFor(isOnline: $isOnline) {\n    message\n  }\n}\n",
+						"variables": "{\n  \"isOnline\": true\n}"
 					}
 				},
 				"url": {
