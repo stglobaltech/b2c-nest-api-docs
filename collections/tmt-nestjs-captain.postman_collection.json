@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "00783b93-b15a-4ec0-9fae-0ed6f57180f4",
+		"_postman_id": "a4e317ec-943f-4aec-8e51-af4864b43e1a",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "53df6c56-f8e3-48f2-a4cd-ec402ba58184",
+						"id": "89af1b96-2375-4cd2-acd6-d5b8f419ca9c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -35,7 +35,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a127be7a-c96c-49a4-a0e7-fb82109ec825",
+						"id": "b85a7c2b-9ee6-4916-9c64-df7f003b349e",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -69,7 +69,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fc017e23-5b87-4231-83f7-da404a9d4b9d",
+						"id": "9e83d9fa-36d0-4094-896e-7c53aa184531",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +89,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "15b1c5ab-c110-430a-b74b-8270c4572068",
+						"id": "728e14d8-b81c-44bd-8a09-c1bd50f4cf64",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +130,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0e0bed8b-ddee-45af-b7d2-ebcb52bd7743",
+						"id": "b27994d4-d147-4b08-b87b-f60d2ccd322d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +151,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "bc443db3-bd71-4c7d-8b38-8ccddc38ffb1",
+						"id": "822ccbc7-ddd6-4c31-b610-6f6c664b115a",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -185,7 +185,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "63a5370b-5d00-43fb-99e6-f9ea879d3f0d",
+						"id": "07745774-f75c-4acb-9538-54915aef7d66",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -223,7 +223,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1222ada8-9900-4119-ac89-f06f5cfbe962",
+						"id": "397ce1a1-6463-4ce5-82dd-054d66d85d3a",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "691dc3c3-6e87-4e84-92d1-ec775a3f375d",
+						"id": "d7171efe-b407-4cf6-86e5-dced758494e9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -310,7 +310,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "80c6ab40-4fdd-40a4-9ff7-12f4d1989740",
+						"id": "a627dfd9-3258-4ecd-a6a4-3a50f0a52266",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -368,7 +368,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "13a90a49-12a6-4f27-b743-6911d3b81a33",
+						"id": "711a4078-d365-4839-b9ef-93db4c07b468",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
