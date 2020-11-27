@@ -180,7 +180,7 @@
 			"response": []
 		},
 		{
-			"name": "Captain City List [GQL]",
+			"name": "Captain Place List [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -201,8 +201,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ListCities{\n  listCities {\n    cityId\n    name {\n      ar\n      en\n    }\n  }\n}",
-						"variables": ""
+						"query": "query ListPlaces($filterPlaces: FilterPlacesInputDto!) {\n  listPlaces(filterPlaces: $filterPlaces) {\n    places {\n      name {\n        ar\n        en\n      }\n    }\n    pagination {\n      hasPrevPage\n      hasNextPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"filterPlaces\": {\n    \"type\": \"CITY\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 20\n    }\n  }\n}"
 					},
 					"options": {
 						"graphql": {}
@@ -288,7 +288,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query DriverProfile {\n  getDriverProfile {\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
+						"query": "query DriverProfile {\n  getDriverProfile {\n    isOnline\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
 					},
 					"options": {
