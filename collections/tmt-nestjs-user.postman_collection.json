@@ -22,7 +22,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 =======
 {
 	"info": {
-		"_postman_id": "330e9384-25aa-47fa-b2a5-3ccafa065a85",
+		"_postman_id": "98665c23-3e74-4a4d-8e85-58ff5bea17b2",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -33,7 +33,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "5df48d25-c28f-4eef-9e10-99ad0529a2e3",
+						"id": "f368c97e-51d8-42ae-b031-b7a1e6290624",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -88,7 +88,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "8e1c42ac-84e0-4551-a93f-ea4dd25b9a09",
+						"id": "55ff5834-c3d3-4915-9d16-5fc232359ab1",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -140,7 +140,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "1c239e74-b1fd-423c-ba9c-926e5f731d8a",
+						"id": "8ea4da92-ffee-4fa7-80df-bde792da58fe",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -232,7 +232,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "c36cb2eb-0d18-4806-88a1-cebb374f0a20",
+						"id": "a531d2c4-ef06-489d-82d1-7ec414b6d705",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -283,7 +283,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "e9a7f04d-1b88-40f5-92ce-73dfeca220ec",
+						"id": "0ea66c20-ee23-4d18-8849-7651e47a9c74",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -294,7 +294,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "8b0ecb65-d46f-4399-b614-b403a4235b31",
+						"id": "8dd4ec4d-95c2-4aac-9dfc-f08d8e58dc36",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -342,7 +342,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "db745d7c-5bbd-481e-8c81-5d7919512e1f",
+						"id": "155ad012-e3af-48ed-8649-f8a6bc4d3577",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -364,7 +364,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b0b7da9f-8438-4874-9afb-1af155dbba99",
+						"id": "a18e37ca-6a73-4f44-894d-1ae85f398839",
 						"exec": [
 							"//pm.variables.set(\"countryCode\",\"IND\");\r",
 							"//pm.variables.set(\"mobileNo\",\"500012350\");"
@@ -403,7 +403,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "a50fc8bb-0a73-4e59-80ef-bb1e40f23973",
+						"id": "823e221d-3c5d-4e09-ad90-52f8a1c4eca7",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -451,7 +451,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "51b6a833-d96e-4949-b325-c7a1e2141d5a",
+						"id": "244a46e0-d1fa-49a3-bd31-ab14afecad85",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -499,7 +499,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "4a6ed6f7-d46b-45fc-8342-352243502a03",
+						"id": "c3110247-5312-48ce-a023-e5d608d4e9cf",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -547,7 +547,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "8957dc87-2a6f-4ca3-abaa-0d4c6fba7c8f",
+						"id": "a976a579-b167-4383-bfb5-2749838fccea",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -598,7 +598,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "de4d40c3-03a0-4f86-b5e4-3d8a227204b9",
+						"id": "a6d460aa-c2a7-41cd-983c-39566adad332",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -647,7 +647,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "5a5e3feb-63ac-4905-b98d-5b0ddbd19a90",
+						"id": "8895e69d-71ee-454a-8fb1-8bcf58958516",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -696,7 +696,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "ca44eabb-96ff-4f7c-8cff-223d800a50d9",
+						"id": "af4a5f17-8cad-4c75-a869-7c0f1ae50d2e",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -731,7 +731,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				{
 					"listen": "test",
 					"script": {
-						"id": "06a3a61f-06f7-40ae-bfbc-8347116ad3c0",
+						"id": "c3af45ed-f204-4130-885c-d4b7a79a2d7f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -769,13 +769,168 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Add product to cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
+						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"123\",\n        \"product\": {\n            \"productId\": \"5fc4bbc264fefb41568814a9\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Final testing\",\n                \"ar\": \"Final testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n  }\n}\n",
+						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApplyPromoCode",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ApplyPromoCode($promoCodeInput: PromoCodeInput!){\napplyPromoCode(promoCodeInput: $promoCodeInput) { \n    id\n    promoCode\n    expiresAt\n  }\n}\n",
+						"variables": "{\n    \"promoCodeInput\": {\n        \"cartId\": \"5fc4bcd564fefb41568814ac\",\n        \"promoCode\": \"happy friday\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveProductFromCart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation \n  RemoveProductFromCart($removeInput:RemoveCartProductInput!) {\n      removeProductFromCart(removeInput:$removeInput){\n        totalPrice\n        totalQuotedPrice\n  }\n}\n",
+						"variables": "{\n    \"removeInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"productId\": \"5fc4bbc264fefb41568814a9\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCartMessage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateCartMessage($messageInput: UpdateCartMessageInput!) {\n    updateCartMessage(messageInput: $messageInput) {\n    status\n  }\n}\n",
+						"variables": "{\n    \"messageInput\": {\n    \"cartId\": \"5fc4bcd564fefb41568814ac\",\n    \"message\": \"msg updated\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c238b38e-dc68-4f62-b221-ef06b175cf85",
+				"id": "414cb0ee-8958-403a-8944-0875368de542",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -786,7 +941,7 @@ In proposel the accept and rreject will won't appear - YR71610181479058
 		{
 			"listen": "test",
 			"script": {
-				"id": "2ce49005-5722-436f-b456-72d843f53330",
+				"id": "4053e988-fecb-4c7b-99d8-85419c734d14",
 				"type": "text/javascript",
 				"exec": [
 					""
