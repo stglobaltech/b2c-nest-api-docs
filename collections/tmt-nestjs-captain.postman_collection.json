@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a4e317ec-943f-4aec-8e51-af4864b43e1a",
+		"_postman_id": "b7f7a07a-2362-42aa-863a-ff2e67f4d0da",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "89af1b96-2375-4cd2-acd6-d5b8f419ca9c",
+						"id": "dd3e0120-b716-4d66-bcbf-55651eba1fc1",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -35,7 +35,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b85a7c2b-9ee6-4916-9c64-df7f003b349e",
+						"id": "c270e45a-4535-4940-a4a1-457f0387c64d",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -69,7 +69,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9e83d9fa-36d0-4094-896e-7c53aa184531",
+						"id": "92c97265-ca45-4dc9-8955-09800f521aa5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +89,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "728e14d8-b81c-44bd-8a09-c1bd50f4cf64",
+						"id": "5e9c59ae-1e3d-4108-95a3-6d53424c014d",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +130,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b27994d4-d147-4b08-b87b-f60d2ccd322d",
+						"id": "0a61a7ca-ab44-4bfb-a8bb-70ebb07b164f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +151,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "822ccbc7-ddd6-4c31-b610-6f6c664b115a",
+						"id": "c607c92b-65ee-4f0f-9418-06cd98a9eb3f",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -185,7 +185,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "07745774-f75c-4acb-9538-54915aef7d66",
+						"id": "b3938ac1-d718-4b53-8f96-f3a6b114795c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -223,7 +223,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "397ce1a1-6463-4ce5-82dd-054d66d85d3a",
+						"id": "d9ae1f75-81df-4afa-8fe8-4bac9afb80a3",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d7171efe-b407-4cf6-86e5-dced758494e9",
+						"id": "b3a15304-91ad-4830-a18f-7a76e1463d27",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -310,7 +310,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a627dfd9-3258-4ecd-a6a4-3a50f0a52266",
+						"id": "8551da04-431f-469b-be85-28a6a1622464",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -368,7 +368,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "711a4078-d365-4839-b9ef-93db4c07b468",
+						"id": "baff5fba-f814-4691-9fad-992d01013017",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -418,7 +418,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation ChangeDriverAvailability($isOnline: Boolean!) {\n  changeDriverAvailabilityFor(isOnline: $isOnline) {\n    message\n  }\n}\n",
+						"query": "mutation ChangeDriverAvailability($isOnline: Boolean!) {\n  changeDriverAvailabilityFor(isOnline: $isOnline)  {\n      success\n      message {\n        en\n        ar\n      }\n    }\n}\n",
 						"variables": "{\n  \"isOnline\": true\n}"
 					}
 				},
