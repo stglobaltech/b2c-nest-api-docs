@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "98665c23-3e74-4a4d-8e85-58ff5bea17b2",
+		"_postman_id": "c7ecdc01-113c-4bfd-9526-c28d3e423d73",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f368c97e-51d8-42ae-b031-b7a1e6290624",
+						"id": "f4ae3f10-e399-4316-9580-71d18d710c3d",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -66,7 +66,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "55ff5834-c3d3-4915-9d16-5fc232359ab1",
+						"id": "723b919b-574c-4e6a-b5b0-9de736340fdb",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -118,7 +118,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8ea4da92-ffee-4fa7-80df-bde792da58fe",
+						"id": "94ccbacc-585f-45cd-af1a-544e4be68b4b",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -210,7 +210,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a531d2c4-ef06-489d-82d1-7ec414b6d705",
+						"id": "26ef8afa-210f-410c-bb90-ca76f608b4cc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +261,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "0ea66c20-ee23-4d18-8849-7651e47a9c74",
+						"id": "dcab8be7-9615-4bc7-b5f1-fdeef5496b57",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -272,7 +272,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8dd4ec4d-95c2-4aac-9dfc-f08d8e58dc36",
+						"id": "eb285eaf-eece-4c0f-a392-3f0e8ccecaf6",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -320,7 +320,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "155ad012-e3af-48ed-8649-f8a6bc4d3577",
+						"id": "1e6697fe-f44d-44ba-a2fc-0b74191a76cc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -342,7 +342,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a18e37ca-6a73-4f44-894d-1ae85f398839",
+						"id": "2c78ecba-df4d-4275-9616-49ea482d5bf7",
 						"exec": [
 							"//pm.variables.set(\"countryCode\",\"IND\");\r",
 							"//pm.variables.set(\"mobileNo\",\"500012350\");"
@@ -358,7 +358,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\"\n  }\n}"
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"12347890\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -381,7 +381,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "823e221d-3c5d-4e09-ad90-52f8a1c4eca7",
+						"id": "41393441-004e-4a6b-bed2-c0eba6113efd",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -429,7 +429,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "244a46e0-d1fa-49a3-bd31-ab14afecad85",
+						"id": "a3dc6837-fef1-41fc-92a6-307acac0d3f0",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -477,7 +477,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c3110247-5312-48ce-a023-e5d608d4e9cf",
+						"id": "9605ee5e-edbf-4d93-8f7c-83a367661a1f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -525,7 +525,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a976a579-b167-4383-bfb5-2749838fccea",
+						"id": "b68c76e4-5ccf-4605-8960-db9551921092",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -576,7 +576,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a6d460aa-c2a7-41cd-983c-39566adad332",
+						"id": "3590c9e7-38d1-4703-a1a5-bdf17fdf76c8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -625,7 +625,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8895e69d-71ee-454a-8fb1-8bcf58958516",
+						"id": "b1192e07-f1f6-4eb2-9fa6-b822192704a5",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -674,7 +674,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af4a5f17-8cad-4c75-a869-7c0f1ae50d2e",
+						"id": "9717bd62-1c92-4874-955c-a07c8b70dd70",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -709,7 +709,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c3af45ed-f204-4130-885c-d4b7a79a2d7f",
+						"id": "de45e9e8-ec8c-4b51-8eba-983c3fc27328",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -750,6 +750,20 @@
 		},
 		{
 			"name": "Add product to cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "edebd6f1-e422-4216-ad14-9b81356c42ce",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -767,7 +781,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
-						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"123\",\n        \"product\": {\n            \"productId\": \"5fc4bbc264fefb41568814a9\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Final testing\",\n                \"ar\": \"Final testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
+						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"5fc8cbc9a9eb6412fc0489cf\",\n        \"product\": {\n            \"productId\": \"5fc8cc31a9eb6412fc0489d2\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Finatttl testing\",\n                \"ar\": \"Finalttt testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
 					}
 				},
 				"url": {
@@ -781,6 +795,20 @@
 		},
 		{
 			"name": "Get Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f32344d0-0385-40f6-9431-47da224856e9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -797,7 +825,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n  }\n}\n",
+						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n         price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
 						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
 					}
 				},
@@ -812,6 +840,24 @@
 		},
 		{
 			"name": "ApplyPromoCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ac2f16b-e569-40ea-87a8-61ca56ac1a4b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"promoid\",jsonData.data.applyPromoCode.id);\r",
+							"    console.log(\"Promocode name\", jsonData.data.applyPromoCode.promoCode);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -843,6 +889,20 @@
 		},
 		{
 			"name": "RemoveProductFromCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "90253835-e325-4e7e-a48e-0370ae698bac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -860,7 +920,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation \n  RemoveProductFromCart($removeInput:RemoveCartProductInput!) {\n      removeProductFromCart(removeInput:$removeInput){\n        totalPrice\n        totalQuotedPrice\n  }\n}\n",
-						"variables": "{\n    \"removeInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"productId\": \"5fc4bbc264fefb41568814a9\"\n    }\n}"
+						"variables": "{\n    \"removeInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"productId\": \"5fcdfb37215cf75b8151d1ff\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -874,6 +934,22 @@
 		},
 		{
 			"name": "UpdateCartMessage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea6ae548-172d-44fe-9c0c-2209105a96f8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const jsondata = pm.response.json();\r",
+							"console.log(jsondata.data.updateCartMessage.status);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -908,7 +984,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "414cb0ee-8958-403a-8944-0875368de542",
+				"id": "759b4dba-9eea-4605-b6d4-c215f1ae6e1e",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -919,7 +995,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4053e988-fecb-4c7b-99d8-85419c734d14",
+				"id": "6f8d3543-4e21-43e5-92b9-f4db7e4622ea",
 				"type": "text/javascript",
 				"exec": [
 					""
