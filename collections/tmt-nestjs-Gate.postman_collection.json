@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c2565600-d5eb-4fc1-9678-7f4aebc4134b",
+		"_postman_id": "70c9d2c0-feb4-494e-870c-42478c25afe2",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cdce30fa-114d-462d-a436-9cf861a7d965",
+						"id": "9384e026-aa8e-4f7e-9806-74ade6eae965",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -60,7 +60,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "878d0f26-2f35-48f9-983f-d10f7fb37c6b",
+						"id": "91962536-a7ab-44ea-97f6-a25949d4ac1b",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -110,7 +110,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "479171c5-63af-4605-a38e-7a91a665c777",
+						"id": "0518efa5-d72f-4213-a0c2-84f137605552",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -159,7 +159,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "64201c91-8aa0-4827-b922-89bd11f37803",
+						"id": "aac4f139-c539-4e47-af78-fdd319016db2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -208,7 +208,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a1e2ec37-e372-433d-bcb7-6423069543b2",
+						"id": "20715ac1-3c51-463e-abb4-ee4af0d4b858",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -295,7 +295,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "cb01c0e7-2ee1-453b-9505-fc308c53c16c",
+						"id": "395743fc-6f63-4c6e-8666-a44decebb66f",
 						"exec": [
 							""
 						],
@@ -305,7 +305,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "083ba127-cb5a-4aeb-8272-f5f681b8606e",
+						"id": "c8a36458-2954-46d7-a8da-d53b59bf8355",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -350,7 +350,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d3cae0d9-af8a-45e9-a936-1c4f4e5b7326",
+						"id": "7fcd73a4-7680-4dfd-8e76-121596a51aae",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -396,7 +396,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f7c50870-cf0c-40be-a4e9-d34fed006618",
+						"id": "0ce5c612-e2f6-4e5c-b5f3-a468f43fa566",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -451,7 +451,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1a6a43f9-7c91-4757-8540-5faf86ef376d",
+						"id": "00dc8d69-1ee6-41a6-8e65-e69b579360f5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -501,7 +501,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6416e599-13c8-4125-abdb-d1c73595923e",
+						"id": "0f39f15c-6774-462a-bab4-85817c342bdb",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -550,7 +550,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e1f37d92-295d-48b7-8cb3-aa5159c634b4",
+						"id": "5c5d3567-f2ec-45d4-9b95-1624f2f37621",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -596,7 +596,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f0711a43-f05d-4b95-ad43-fbcf8f330cf2",
+						"id": "dff0d379-e310-41ec-b113-cee6c3622605",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -614,7 +614,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "9dfca115-c016-4487-817b-4ae45f1b29fe",
+						"id": "73f1d320-e826-45f7-a05a-455e42c2700c",
 						"exec": [
 							"let str = '';\r",
 							"const key = 'abcdefgh1234567';\r",
@@ -697,7 +697,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "986f4538-ebe2-400e-906e-e0af0aa721d5",
+						"id": "515c8d82-d935-47cd-9f32-7fdbfad5954a",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -781,7 +781,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9b04388a-9df0-4049-a4cb-d483ac273799",
+						"id": "8a35983d-9554-4c00-b56a-5f593c4afb26",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -833,7 +833,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6d051b94-f085-41d6-a7aa-3a36656d179b",
+						"id": "03408d4a-dd5b-4a07-aa2c-60fcff04be63",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -880,7 +880,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "264b65c4-1101-473c-984a-20f6f8e3bc8f",
+						"id": "801c1a73-4931-44ef-8464-55387d4929d9",
 						"exec": [
 							""
 						],
@@ -890,7 +890,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "80411e6d-5abb-47a4-937f-6ee23fd587a7",
+						"id": "e91dbbc9-1b41-4c57-83bd-3e8df0a3c2c6",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -936,7 +936,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0ecc05e6-f767-4f11-8e43-f50ead834a59",
+						"id": "9285526b-638a-40e6-b9d2-8356f06843e9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -982,7 +982,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ea07cebb-fb2b-4839-84b3-7a1f8fe09ea6",
+						"id": "2f75764c-9c1d-47d7-9866-5a7b8f0f69db",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1061,7 +1061,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a03306b8-a31c-47be-9947-4b9291c8af8c",
+						"id": "1c5e441f-ce2a-4a5e-9b7b-95ff5d096a6f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1107,7 +1107,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "04344a10-a1f9-4577-907e-ab5eaf3ef71a",
+						"id": "512f6248-4dc2-4e79-b080-338d3f76af88",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1155,7 +1155,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cff4d96e-f6cb-4d48-9028-68caa84b4ce5",
+						"id": "c04f871e-a3dc-4292-b0f0-ce2e98af6989",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1237,7 +1237,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2f738e1e-4187-4444-99bd-f33c94f5b81d",
+						"id": "76d0116f-92cd-45c8-956b-dcc17105068a",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1427,6 +1427,564 @@
 					"graphql": {
 						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    status\n    message{\n      en\n    }\n  }\n}",
 						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"5fc75997a9eb6412fc048400\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product options",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddProductOptions($productOptionsInput:ProductOptionsInputDto!){\n    addProductOptions(productOptionsInput:$productOptionsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        _id\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"name\": {\n            \"en\": \"english\",\n            \"ar\": \"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 0,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit product option",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductOption($productEditOptionInput:ProductEditOptionInputDto!){\n    editProductOption(productEditOptionInput:$productEditOptionInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productEditOptionInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\":\"5fe0286c3f0afe5c38a320e3\",\n        \"name\": {\n            \"en\":\"english\",\n            \"ar\":\"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 10,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product option",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductOption($productOptionsInput:ProductOptionsDeleteInputDto!){\n    deleteProductOption(productOptionsInput:$productOptionsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\":\"5fe0286c3f0afe5c38a320e3\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product values",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductValues($productValuesInput:ProductValuesInputDto!){\n    addProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productValuesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"pictures\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit product values",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductValues($productValuesInput:ProductValuesInputDto!){\n    editProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productValuesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"pictures\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Meals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMeals($productMealsInput:ProductMealsInputDto!){\n    addProductMeals(productMealsInput:$productMealsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productMealsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"isMandatory\": false,\n        \"types\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 0,\n                \"basePrice\": 0,\n                \"vatPrice\": 0,\n                \"offerPrice\": 0,\n                \"vatPercentage\": 0\n            },\n            \"isDisabled\": false,\n            \"picture\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product meals type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMealsType($productTypesInput:ProductTypesCreateDto!){\n    addProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calroies\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product Meals Type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductMealsType($productTypesInput:ProductTypeEditDto!){\n    editProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"productTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"typeId\": \"5fe029f53f0afe5c38a32116\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calroies\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMealsPackage($ProductPackagesInput:ProductPackagesInputDto!){\n    addProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n       meals{\n        isMandatory\n        _id\n        packages{\n            typeIds\n        }\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"packages\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"isDisabled\": false,\n            \"isMandatory\": false,\n            \"picture\": \"String\",\n            \"typeIds\": [\n                \"5fe029f53f0afe5c38a32116\"\n            ]\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductMealsPackage($ProductPackagesInput:PackageEditDto!){\n    editProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"packageId\": \"5fe029f53f0afe5c38a32116!\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"picture\": \"String\",\n        \"typeIds\": [\n            \"String\"\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductMealsPackage($ProductPackagesInput:ProductPackageDeleteInputDto!){\n    deleteProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"packageId\": \"String!\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProductMealsType",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductMealsType($ProductTypesInput:ProductTypeDeleteInputDto!){\n    deleteProductMealsType(ProductTypesInput:$ProductTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"variables": "{\n    \"ProductTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"typeId\": \"5fe02a103f0afe5c38a3211f\"   \n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBranchAdminAndStore",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name\n        arName\n        displayName\n        arDisplayName\n        branchCode\n        countryCode\n        description\n        arDescription\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
+						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"5fe01da3c3fd4a5c90710956\",\n        \"parentStoreId\": \"5fe01da33f0afe5c38a320d0\",\n        \"username\": \"String\",\n        \"email\": \"String@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restuarantNameEn\": \"String\",\n        \"restuarantNameAr\": \"String\",\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductOptions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductOptions($productOptionsToggle:ProductOptionToggleDto!){\n    toggleProductOptions(productOptionsToggle:$productOptionsToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productOptionsToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductValues",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductValues($productValuesToggle:ProductValuesToggleDto!){\n    toggleProductValues(productValuesToggle:$productValuesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productValuesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesId\": \"5fe029693f0afe5c38a32108\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMeals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMeals($productMealsToggle:ProductMealsToggleDto!){\n    toggleProductMeals(productMealsToggle:$productMealsToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealsToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"mealsId\": \"5fe06f98ebcf9f138332cb39\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMealTypes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMealTypes($productMealTypesToggle:ProductMealTypesToggleDto!){\n    toggleProductMealTypes(productMealTypesToggle:$productMealTypesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealTypesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"productMealId\": \"5fe06f98ebcf9f138332cb39\",\n        \"productMealTypesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMealPackages",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMealPackages($productMealPackagesToggle:ProductMealPackagesToggleDto!){\n    toggleProductMealPackages(productMealPackagesToggle:$productMealPackagesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealPackagesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"productMealId\": \"5fe06f98ebcf9f138332cb39\",\n        \"productMealPackagesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
 				"url": {
