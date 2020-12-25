@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1e2468be-84d6-436e-9414-befda84601d8",
+		"_postman_id": "19dcc335-2e3e-4dd4-9d7e-3bced645ff6d",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1995,6 +1995,37 @@
 					"graphql": {
 						"query": "mutation deleteBranchAdminAndStore($deleteBranchInput: DeleteBranchInputDto!) {\n  deleteBranchAdminAndStore(deleteBranchInput: $deleteBranchInput) {\n      success\n      message{\n          en\n          ar\n      }\n    }\n}",
 						"variables": "{\n    \"deleteBranchInput\": {\n        \"restaurantId\": \"{{id}}\",\n        \"ownerId\": \"5fe5b4d5734ad30d7bfd1b5e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoreTags",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreTags($storeTagsUpdateDto: StoreTagsUpdateInputDto!){\n  updateStoreTags(storeTagsUpdateDto:$storeTagsUpdateDto) {\n      success\n      message{\n          en\n          ar\n      }\n  }\n}",
+						"variables": "{\n    \"storeTagsUpdateDto\": {\n        \"storeId\": \"5fe60d781074ec6ede9c6e50\",\n        \"tagIds\": [\"5fe606301074ec6ede9c6e49\"]\n    }\n}"
 					}
 				},
 				"url": {
