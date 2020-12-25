@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c7ecdc01-113c-4bfd-9526-c28d3e423d73",
+		"_postman_id": "66486170-29dc-4574-8568-69efc3d16537",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f4ae3f10-e399-4316-9580-71d18d710c3d",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -66,7 +65,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "723b919b-574c-4e6a-b5b0-9de736340fdb",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -98,9 +96,6 @@
 					"graphql": {
 						"query": "mutation CreateEntity($entityInput: EntityCreateInputDto!) {\n  createEntity(entityInput: $entityInput) {\n    name {\n      ar\n      en\n    }\n    subEntityIds\n    type\n    adminStoreId\n    entityCategories\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n    dataAPIQuery\n    cityIds\n  }\n}\n",
 						"variables": "{\n  \"entityInput\": {\n     \"name\": { \"ar\": \"مطاعم1\", \"en\": \"RESTAURANTS1\" },\n      \"subEntityIds\": [],\n      \"type\": \"RESTAURANT\",\n      \"adminStoreId\": \"5fa94319bdfe015122f09ffc\",\n      \"entityCategories\": [],\n      \"withoutDelivery\": true,\n      \"iconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d3aab20-2344-11eb-a74a-275df72bee34.png\",\n        \"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0ae5c80-2341-11eb-9b7d-cdb409930e55.png\"},\n      \"fullWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2e28b4a0-2344-11eb-9b7d-cdb409930e55.png\",\"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a1142330-2341-11eb-a74a-275df72bee34.png\"},\n      \"halfWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d98f7c0-2344-11eb-a74a-275df72bee34.png\", \"en\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0eb1760-2341-11eb-9b7d-cdb409930e55.png\" },\n      \"uiType\": 0,\n      \"sortIndex\": 1,\n      \"status\": \"ACTIVE\",\n      \"dataAPIQuery\": \"dataAPIQuery\",\n      \"cityIds\": []\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -118,7 +113,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "94ccbacc-585f-45cd-af1a-544e4be68b4b",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -210,7 +204,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "26ef8afa-210f-410c-bb90-ca76f608b4cc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +254,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "dcab8be7-9615-4bc7-b5f1-fdeef5496b57",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -272,7 +264,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "eb285eaf-eece-4c0f-a392-3f0e8ccecaf6",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -320,7 +311,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1e6697fe-f44d-44ba-a2fc-0b74191a76cc",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -342,7 +332,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2c78ecba-df4d-4275-9616-49ea482d5bf7",
 						"exec": [
 							"//pm.variables.set(\"countryCode\",\"IND\");\r",
 							"//pm.variables.set(\"mobileNo\",\"500012350\");"
@@ -381,7 +370,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "41393441-004e-4a6b-bed2-c0eba6113efd",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -409,9 +397,6 @@
 					"graphql": {
 						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
 						"variables": "{\n  \"id\": \"5f62f194fee6c61ea0ee916f\"\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -429,7 +414,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a3dc6837-fef1-41fc-92a6-307acac0d3f0",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -457,9 +441,6 @@
 					"graphql": {
 						"query": "query GetAllEntity {\n  getAllEntity {\n    id\n    name {\n      ar\n      en\n    }\n    type\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -477,7 +458,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9605ee5e-edbf-4d93-8f7c-83a367661a1f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -503,11 +483,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
 						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -525,7 +502,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b68c76e4-5ccf-4605-8960-db9551921092",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -576,7 +552,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3590c9e7-38d1-4703-a1a5-bdf17fdf76c8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -625,7 +600,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b1192e07-f1f6-4eb2-9fa6-b822192704a5",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -674,7 +648,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9717bd62-1c92-4874-955c-a07c8b70dd70",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -709,7 +682,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "de45e9e8-ec8c-4b51-8eba-983c3fc27328",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -735,7 +707,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
+						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName{en \n      ar}\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
 						"variables": "{\n  \"userStoreProductsFindInputDto\": {\n    \"storeId\": \"5f588fc268800866e8c4cf4e\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 10\n    }\n  }\n}"
 					}
 				},
@@ -754,7 +726,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "edebd6f1-e422-4216-ad14-9b81356c42ce",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -799,7 +770,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f32344d0-0385-40f6-9431-47da224856e9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -844,7 +814,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0ac2f16b-e569-40ea-87a8-61ca56ac1a4b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -893,7 +862,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "90253835-e325-4e7e-a48e-0370ae698bac",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -938,7 +906,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ea6ae548-172d-44fe-9c0c-2209105a96f8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -984,7 +951,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "759b4dba-9eea-4605-b6d4-c215f1ae6e1e",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -995,13 +961,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6f8d3543-4e21-43e5-92b9-f4db7e4622ea",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
