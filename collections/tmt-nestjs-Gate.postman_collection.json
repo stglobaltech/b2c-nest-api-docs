@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "70c9d2c0-feb4-494e-870c-42478c25afe2",
+		"_postman_id": "19dcc335-2e3e-4dd4-9d7e-3bced645ff6d",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -40,8 +40,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        status \n        message\n    }\n}",
-						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"5f7ac2772bf16e5989802e7f\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -89,14 +89,14 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"categoryEditInput\":{\n        \"storeId\": \"{{id}}\",\n        \"_id\":\"{{catId}}\",\n        \"categoryName\":\"dhoni123\",\n        \"arCategoryName\":\"ijinj\"\n    }\n}"
+						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"categoryEditInput\": {\n        \"storeId\": \"{{id}}\",\n        \"_id\": \"{{catId}}\",\n        \"name\": {\n            \"en\": \"dhoni123\",\n            \"ar\": \"ijinj\"\n        }\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -137,7 +137,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            categoryName\n            arCategoryName\n            isEnable\n            _id\n        }\n    }\n}",
+						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            name{\n                en\n                ar\n            }\n            isEnable\n            _id\n        }\n    }\n}",
 						"variables": "{\n    \"categorySearchInput\":{\n        \"storeId\":\"{{id}}\",\n        \"categoryKey\":\"a\"\n    }\n}"
 					}
 				},
@@ -185,14 +185,14 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           name{\n               en\n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
 						"variables": "{\n    \"storeId\":\"{{id}}\"\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -237,8 +237,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":\"ed\",\n        \"arProductName\":\"ola\",\n        \"description\":\"asas\",\n        \"arDescription\":\"asas\",\n        \"price\":0,\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryIds\":\"{{catId}}\",\n        \"picture\":\"asas\"\n    }\n}"
+						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":{\"en\":\"ed\",\n        \"ar\":\"ola\"},\n        \"description\":{\"en\":\"asas\",\n        \"ar\":\"asas\"},\n        \"price\":{\"price\":0},\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryIds\":\"{{catId}}\",\n        \"picture\":\"asas\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -268,7 +268,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name\n        arName\n       iconUrl\n    }\n}",
+						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name{\n            en\n            ar\n        }\n       iconUrl\n    }\n}",
 						"variables": ""
 					}
 				},
@@ -321,7 +321,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"query": "query GetProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
 						"variables": "{\n    \"categoryId\":\"{{catId}}\"\n}"
 					}
 				},
@@ -366,7 +366,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           name{\n               en \n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
 						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"isEnable\":true\n    }\n}"
 					}
 				},
@@ -417,7 +417,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  status\n  message\n    }\n}",
+						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  success\n  message{\n      en \n      ar\n  }\n    }\n}",
 						"variables": "{\n  \"storeEntityEditInput\": {\n    \"storeId\": \"{{id}}\", \n    \"entityIds\":[\"5f86c4ffb2d623678a366ce0\"]\n  }\n}"
 					}
 				},
@@ -466,7 +466,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteProduct($productId:String!){\n    deleteProduct(productId:$productId){\n        status\n        message\n    }\n}",
+						"query": "mutation deleteProduct($productId:String!){\n    deleteProduct(productId:$productId){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
 						"variables": "{\n    \"productId\":\"{{Productid}}\"\n}"
 					}
 				},
@@ -556,7 +556,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
 						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\"\n    }\n}"
 					}
 				},
@@ -612,8 +612,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    userId\n  }\n}",
-						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"game04\",\n        \"email\": \"{{emailid}}\",\n        \"password\": \"Samdhiva@12\",\n        \"appType\": \"GATE\",\n        \"countryCode\": \"IND\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"7807807\",\n        \"iBan\": \"1234567\",\n        \"restuarantNameEn\": \"GameRestaurent\"\n    }\n}\n"
+						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message{\n        en\n        ar\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}",
+						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"game04\",\n        \"email\": \"{{emailid}}\",\n        \"password\": \"Samdhiva@12\",\n        \"appType\": \"GATE\",\n        \"countryCode\": \"IND\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"7807807\",\n        \"iBan\": \"1234567\",\n        \"restuarantName\": {\n            \"en\": \"GameRestaurent\",\n            \"ar\": \"GameRestaurent\"\n        }\n    }\n}"
 					},
 					"options": {
 						"raw": {
@@ -707,8 +707,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    status\n    message\n  }\n}\n",
-						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeId\": \"{{id}}\",\n    \"categoryName\": \"Cake123\",\n    \"arCategoryName\": \"ArCategory1\",\n    \"isEnable\": true\n  }\n}"
+						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
+						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeId\": \"{{id}}\",\n    \"name\": {\"en\":\"Cake123ww\",\n    \"ar\": \"ArCategory1ww\"},\n    \"isEnable\": true\n  }\n}"
 					}
 				},
 				"url": {
@@ -728,7 +728,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -738,8 +738,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"productKey\":\"a\"\n    }\n}"
+						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName{en\n       ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"{{id}}\",\n        \"productKey\":\"a\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -786,8 +786,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    isAvailable\n    }\n}",
-						"variables": "{\n    \"productCreateInput\":{\n        \"productName\":\"Final testing\",\n        \"arProductName\":\"Final Testing\",\n        \"description\":\"will be nice\",\n        \"arDescription\":\"will be nice\",\n        \"price\":20,\n        \"maxQuantity\":23,\n        \"payType\":\"any\",\n        \"picture\":\"asas\",\n        \"isAvailable\":true,\n        \"categoryIds\":\"{{catId}}\",\n        \"storeCode\":\"{{id}}\",\n        \"ownerId\":\"{{userId}}\"\n    }\n}"
+						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n    }\n}",
+						"variables": "{\n    \"productCreateInput\": {\n        \"productName\": {\n            \"en\": \"Final testing\",\n            \"ar\": \"Final Testing\"\n        },\n        \"description\": {\n            \"en\": \"will be nice\",\n            \"ar\": \"will be nice\"\n        },\n        \"price\": {\n            \"price\": 20\n        },\n        \"maxQuantity\": 23,\n        \"payType\": \"any\",\n        \"picture\": \"asas\",\n        \"isAvailable\": true,\n        \"categoryIds\": \"{{catId}}\",\n        \"storeCode\": \"{{id}}\",\n        \"ownerId\": \"{{userId}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -832,8 +832,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
-						"variables": "{\n    \"productPriceEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"price\":0\n        \n    }\n}"
+						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n      _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productPriceEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"price\":{\"price\":0}\n        \n    }\n}"
 					}
 				},
 				"url": {
@@ -886,7 +886,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name\n    ownerId\n  }\n}\n",
+						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name{\n        en\n        ar\n    }\n    ownerId\n  }\n}\n",
 						"variables": "{\n  \"ownerId\": \"{{userId}}\"\n}"
 					}
 				},
@@ -931,7 +931,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName{\n            en\n            ar \n        }\n       description{\n           en \n           ar \n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
 						"variables": "{\n    \"productAvailabilityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"isAvailable\":false\n    }\n}"
 					}
 				},
@@ -975,7 +975,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
+						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName{\n           en\n           ar\n       }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
 						"variables": "{\n    \"productId\":\"{{Productid}}\"\n}"
 					}
 				},
@@ -1006,8 +1006,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName\n     categoryIds\n    }\n}",
-						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":\"nes\",\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
+						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName{\n         en \n         ar \n     }\n     categoryIds\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":{\"en\":\"nes\",\"ar\":\"nes\"},\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
 					}
 				},
 				"url": {
@@ -1051,7 +1051,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
+						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n      _id\n        productName{en  \n        ar}\n       description{en \n       ar}\n       price{price}\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
 						"variables": "{\n    \"productQuantityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"maxQuantity\":12\n    }\n}"
 					}
 				},
@@ -1095,7 +1095,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{\n          en\n          ar\n      }\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
 						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
@@ -1170,7 +1170,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n      }\n    }\n}",
+						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName{en\n        ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n      }\n    }\n}",
 						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}\n}"
 					}
 				},
@@ -1218,8 +1218,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"3324\",\n        \"contactNumber\":\"9876543226\",\n        \"countryCode\":\"IND\"\n    }\n}"
+						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"23,hajj\",\n        \"contactNumber\":\"9876543226\",\n        \"countryCode\":\"IND\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1239,7 +1239,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmMxMjE5ODFmNTA2ZTQxNzBmYWRhMmMiLCJzZXNzaW9uSWQiOiI1ZmMxMjE5OTJhMjhhOTI0MWUzYzM0OGIiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNjQ5MjY1OSwiZXhwIjoxNjA2NTc5MDU5fQ.MEQCIEhQp81HAgOU36HXOm4p9lj7qq02qMx_EC4aw5kXKCSEAiAR73ywgLdWuD2qn_F4eze_uesMlvGXcjnnLFOhB5Y1Xg",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -1250,7 +1250,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n  storeId,\n  sun{\n      startHour,startMinute,endHour,endMinute\n  }\n  dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n  }\n}\n}",
-						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"5f3bee2d66a6530db2e5a4c3\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2020-11-14T00:00:00.000\",\n                \"endDate\": \"2020-11-16T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
+						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"{{id}}\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2020-11-14T00:00:00.000\",\n                \"endDate\": \"2020-11-16T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
 					}
 				},
 				"url": {
@@ -1270,7 +1270,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmMwZmYxYWMzYjNkOTM5Y2JiYjUzNmIiLCJzZXNzaW9uSWQiOiI1ZmMwZmYxYTJhMjhhOTI0MWUzNjExODkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNjQ4Mzc2OCwiZXhwIjoxNjA2NTcwMTY4fQ.MEUCIA_EpeqzyTcPyZzgEhrh8JvxSE7jpAfFAMRyc9BWh3S6AiEA-kSD5DOwOx8fEjVmP0WPS0zw0niOQvbXmJKPN9w0Z3A",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -1281,7 +1281,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n",
-						"variables": "{\n  \"storeId\": \"5f3bee2d66a6530db2e5a4c3\"\n}"
+						"variables": "{\n  \"storeId\": \"{{id}}\"\n}"
 					}
 				},
 				"url": {
@@ -1301,7 +1301,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmMwZmYxYWMzYjNkOTM5Y2JiYjUzNmIiLCJzZXNzaW9uSWQiOiI1ZmMwZmYxYTJhMjhhOTI0MWUzNjExODkiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYwNjQ4Mzc2OCwiZXhwIjoxNjA2NTcwMTY4fQ.MEUCIA_EpeqzyTcPyZzgEhrh8JvxSE7jpAfFAMRyc9BWh3S6AiEA-kSD5DOwOx8fEjVmP0WPS0zw0niOQvbXmJKPN9w0Z3A",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -1343,7 +1343,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query findPolygon($storeId: String!){\n  findPolygon(storeId: $storeId) {\n    polygon {\n      coordinates\n      type\n    }\n    GeoPolygon{\n      features{\n        geometry{\n          coordinates\n          type\n        }\n      }\n    }\n  }\n}\n",
-						"variables": "{\n    \"storeId\": \"5fc75997a9eb6412fc048400\"\n}"
+						"variables": "{\n    \"storeId\": \"{{id}}\"\n}"
 					}
 				},
 				"url": {
@@ -1373,8 +1373,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    status\n    message{\n      en\n    }\n  }\n}",
-						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"5fc75997a9eb6412fc048400\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
+						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    success\n    message{\n      en\n      ar\n    }\n  }\n}",
+						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"{{id}}\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
 					}
 				},
 				"url": {
@@ -1404,8 +1404,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation AddProductOptions($productOptionsInput:ProductOptionsInputDto!){\n    addProductOptions(productOptionsInput:$productOptionsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        _id\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
-						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"name\": {\n            \"en\": \"english\",\n            \"ar\": \"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 0,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\"\n    }\n}"
+						"query": "mutation AddProductOptions($productOptionsInput:ProductOptionsInputDto!){\n    addProductOptions(productOptionsInput:$productOptionsInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        _id\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n     \n    }\n    }\n}",
+						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"name\": {\n            \"en\": \"english\",\n            \"ar\": \"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 0,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1435,7 +1435,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editProductOption($productEditOptionInput:ProductEditOptionInputDto!){\n    editProductOption(productEditOptionInput:$productEditOptionInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation editProductOption($productEditOptionInput:ProductEditOptionInputDto!){\n    editProductOption(productEditOptionInput:$productEditOptionInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    \n    }\n    }\n}",
 						"variables": "{\n    \"productEditOptionInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\":\"5fe0286c3f0afe5c38a320e3\",\n        \"name\": {\n            \"en\":\"english\",\n            \"ar\":\"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 10,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\"\n    }\n}"
 					}
 				},
@@ -1466,7 +1466,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteProductOption($productOptionsInput:ProductOptionsDeleteInputDto!){\n    deleteProductOption(productOptionsInput:$productOptionsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation deleteProductOption($productOptionsInput:ProductOptionsDeleteInputDto!){\n    deleteProductOption(productOptionsInput:$productOptionsInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\":\"5fe0286c3f0afe5c38a320e3\"\n    }\n}"
 					}
 				},
@@ -1497,7 +1497,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation addProductValues($productValuesInput:ProductValuesInputDto!){\n    addProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation addProductValues($productValuesInput:ProductValuesInputDto!){\n    addProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productValuesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"pictures\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
 					}
 				},
@@ -1528,7 +1528,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editProductValues($productValuesInput:ProductValuesInputDto!){\n    editProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation editProductValues($productValuesInput:ProductValuesInputDto!){\n    editProductValues(productValuesInput:$productValuesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productValuesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"pictures\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
 					}
 				},
@@ -1559,7 +1559,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation addProductMeals($productMealsInput:ProductMealsInputDto!){\n    addProductMeals(productMealsInput:$productMealsInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation addProductMeals($productMealsInput:ProductMealsInputDto!){\n    addProductMeals(productMealsInput:$productMealsInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productMealsInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"isMandatory\": false,\n        \"types\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 0,\n                \"basePrice\": 0,\n                \"vatPrice\": 0,\n                \"offerPrice\": 0,\n                \"vatPercentage\": 0\n            },\n            \"isDisabled\": false,\n            \"picture\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calroies\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
 					}
 				},
@@ -1590,7 +1590,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation addProductMealsType($productTypesInput:ProductTypesCreateDto!){\n    addProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation addProductMealsType($productTypesInput:ProductTypesCreateDto!){\n    addProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    meals{\n        isMandatory\n        _id\n        types{_id}\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calroies\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
 					}
 				},
@@ -1621,7 +1621,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editProductMealsType($productTypesInput:ProductTypeEditDto!){\n    editProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation editProductMealsType($productTypesInput:ProductTypeEditDto!){\n    editProductMealsType(productTypesInput:$productTypesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"productTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"typeId\": \"5fe029f53f0afe5c38a32116\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calroies\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
 					}
 				},
@@ -1652,7 +1652,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation addProductMealsPackage($ProductPackagesInput:ProductPackagesInputDto!){\n    addProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n       meals{\n        isMandatory\n        _id\n        packages{\n            typeIds\n        }\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation addProductMealsPackage($ProductPackagesInput:ProductPackagesInputDto!){\n    addProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n       meals{\n        isMandatory\n        _id\n        packages{\n            typeIds\n        }\n    }\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"packages\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"isDisabled\": false,\n            \"isMandatory\": false,\n            \"picture\": \"String\",\n            \"typeIds\": [\n                \"5fe029f53f0afe5c38a32116\"\n            ]\n        }\n    }\n}"
 					}
 				},
@@ -1683,7 +1683,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editProductMealsPackage($ProductPackagesInput:PackageEditDto!){\n    editProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation editProductMealsPackage($ProductPackagesInput:PackageEditDto!){\n    editProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"packageId\": \"5fe029f53f0afe5c38a32116!\",\n        \"name\": {\n            \"en\": \"en\",\n            \"ar\": \"ar\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"picture\": \"String\",\n        \"typeIds\": [\n            \"String\"\n        ]\n    }\n}"
 					}
 				},
@@ -1714,7 +1714,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteProductMealsPackage($ProductPackagesInput:ProductPackageDeleteInputDto!){\n    deleteProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation deleteProductMealsPackage($ProductPackagesInput:ProductPackageDeleteInputDto!){\n    deleteProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"packageId\": \"String!\"\n    }\n}"
 					}
 				},
@@ -1745,7 +1745,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteProductMealsType($ProductTypesInput:ProductTypeDeleteInputDto!){\n    deleteProductMealsType(ProductTypesInput:$ProductTypesInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
+						"query": "mutation deleteProductMealsType($ProductTypesInput:ProductTypeDeleteInputDto!){\n    deleteProductMealsType(ProductTypesInput:$ProductTypesInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    ownerId\n    storeCode\n    isAvailable\n    categoryIds\n    options{\n        name{en\n        ar}\n    \n    isMandatory\n    minimumValues\n    maximumValues\n    mandatoryValues\n    picture\n    values{\n        _id\n        name{en\n            ar}\n    price{\n        price\n        basePrice\n        vatPrice\n        offerPrice\n        vatPercentage\n    }\n    isDisabled\n    pictures\n    calories{\n        name{\n            en\n            ar \n        }\n    value\n    portion\n    valueUnit\n    portionUnit\n    }\n    } \n    }\n    }\n}",
 						"variables": "{\n    \"ProductTypesInput\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"typeId\": \"5fe02a103f0afe5c38a3211f\"   \n    }\n}"
 					}
 				},
@@ -1776,7 +1776,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation toggleProductOptions($productOptionsToggle:ProductOptionToggleDto!){\n    toggleProductOptions(productOptionsToggle:$productOptionsToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"query": "mutation toggleProductOptions($productOptionsToggle:ProductOptionToggleDto!){\n    toggleProductOptions(productOptionsToggle:$productOptionsToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
 						"variables": "{\n    \"productOptionsToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
@@ -1807,7 +1807,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation toggleProductValues($productValuesToggle:ProductValuesToggleDto!){\n    toggleProductValues(productValuesToggle:$productValuesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"query": "mutation toggleProductValues($productValuesToggle:ProductValuesToggleDto!){\n    toggleProductValues(productValuesToggle:$productValuesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
 						"variables": "{\n    \"productValuesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"optionId\": \"5fe028b33f0afe5c38a320e6\",\n        \"valuesId\": \"5fe029693f0afe5c38a32108\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
@@ -1838,7 +1838,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation toggleProductMeals($productMealsToggle:ProductMealsToggleDto!){\n    toggleProductMeals(productMealsToggle:$productMealsToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"query": "mutation toggleProductMeals($productMealsToggle:ProductMealsToggleDto!){\n    toggleProductMeals(productMealsToggle:$productMealsToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
 						"variables": "{\n    \"productMealsToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"mealsId\": \"5fe06f98ebcf9f138332cb39\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
@@ -1869,7 +1869,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation toggleProductMealTypes($productMealTypesToggle:ProductMealTypesToggleDto!){\n    toggleProductMealTypes(productMealTypesToggle:$productMealTypesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"query": "mutation toggleProductMealTypes($productMealTypesToggle:ProductMealTypesToggleDto!){\n    toggleProductMealTypes(productMealTypesToggle:$productMealTypesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
 						"variables": "{\n    \"productMealTypesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"productMealId\": \"5fe06f98ebcf9f138332cb39\",\n        \"productMealTypesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
@@ -1900,7 +1900,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation toggleProductMealPackages($productMealPackagesToggle:ProductMealPackagesToggleDto!){\n    toggleProductMealPackages(productMealPackagesToggle:$productMealPackagesToggle){\n    status\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"query": "mutation toggleProductMealPackages($productMealPackagesToggle:ProductMealPackagesToggleDto!){\n    toggleProductMealPackages(productMealPackagesToggle:$productMealPackagesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
 						"variables": "{\n    \"productMealPackagesToggle\": {\n        \"productId\": \"5fe028493f0afe5c38a320e1\",\n        \"productMealId\": \"5fe06f98ebcf9f138332cb39\",\n        \"productMealPackagesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
 					}
 				},
@@ -1931,8 +1931,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name\n        arName\n        displayName\n        arDisplayName\n        branchCode\n        countryCode\n        description\n        arDescription\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
-						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"5fe01da3c3fd4a5c90710956\",\n        \"parentStoreId\": \"5fe01da33f0afe5c38a320d0\",\n        \"username\": \"String\",\n        \"email\": \"String@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restuarantNameEn\": \"String\",\n        \"restuarantNameAr\": \"String\",\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
+						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name{en\n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
+						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"{{userId}}\",\n        \"parentStoreId\": \"{{id}}\",\n        \"username\": \"String\",\n        \"email\": \"String@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restaurantName\":{\"en\": \"String\",\n        \"ar\": \"String\"},\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1962,8 +1962,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getBranches($branchFindInputDto: GetBranchesInputDto!) {\n  getBranches(branchFindInputDto: $branchFindInputDto) {\n    pagination{\n        hasPrevPage\n        hasNextPage\n        prevPage\n        nextPage\n        perPage\n        }\n    stores{\n        _id\n        name    \n        arName\n        displayName\n        arDisplayName\n        branchCode\n        countryCode\n        description\n        arDescription\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n            categoryName\n            arCategoryName\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n    }\n}",
-						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"5fe1bf54ebcf9f138332cc39\"\n    }\n}"
+						"query": "query getBranches($branchFindInputDto: GetBranchesInputDto!) {\n  getBranches(branchFindInputDto: $branchFindInputDto) {\n    pagination{\n        hasPrevPage\n        hasNextPage\n        prevPage\n        nextPage\n        perPage\n        }\n    stores{\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n    }\n}",
+						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"{{userId}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1994,7 +1994,38 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation deleteBranchAdminAndStore($deleteBranchInput: DeleteBranchInputDto!) {\n  deleteBranchAdminAndStore(deleteBranchInput: $deleteBranchInput) {\n      success\n      message{\n          en\n          ar\n      }\n    }\n}",
-						"variables": "{\n    \"deleteBranchInput\": {\n        \"restaurantId\": \"5fe1c03febcf9f138332cc42\",\n        \"ownerId\": \"5fe1c03febcf9f138332cc41\"\n    }\n}"
+						"variables": "{\n    \"deleteBranchInput\": {\n        \"restaurantId\": \"{{id}}\",\n        \"ownerId\": \"5fe5b4d5734ad30d7bfd1b5e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoreTags",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreTags($storeTagsUpdateDto: StoreTagsUpdateInputDto!){\n  updateStoreTags(storeTagsUpdateDto:$storeTagsUpdateDto) {\n      success\n      message{\n          en\n          ar\n      }\n  }\n}",
+						"variables": "{\n    \"storeTagsUpdateDto\": {\n        \"storeId\": \"5fe60d781074ec6ede9c6e50\",\n        \"tagIds\": [\"5fe606301074ec6ede9c6e49\"]\n    }\n}"
 					}
 				},
 				"url": {

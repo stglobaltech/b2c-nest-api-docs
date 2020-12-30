@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "65d3ab88-5e27-4db0-a5f3-2645cfb54504",
+		"_postman_id": "5c3f2a34-0c0d-43d2-ac2f-4678acd41fd3",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -367,7 +367,90 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "ReeshaCreateTag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaCreateTag($tagInput: TagCreateInputDto!){\n  reeshaCreateTag(tagInput:$tagInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"aa1\",\n            \"ar\": \"ar1\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReeshaEditTag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaEditTag($tagUpdateInput: TagUpdateInputDto!){\n  reeshaEditTag(tagUpdateInput:$tagUpdateInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagUpdateInput\": {\n        \"tagId\": \"5fe606301074ec6ede9c6e49\",\n        \"name\": {\n            \"en\": \"ab\",\n            \"ar\": \"ar\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reeshaDeleteTag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaDeleteTag($tagId: String!){\n  reeshaDeleteTag(tagId:$tagId) {\n    status\n  }\n}",
+						"variables": "{\n    \"tagId\":\"5fe609d11074ec6ede9c6e4e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reeshaGetTags",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetTags($tagIds: [String!]){\n  reeshaGetTags(tagIds:$tagIds) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagIds\":[\"5fe609d11074ec6ede9c6e4e\"]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
