@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "80b95907-3c9b-40b9-96a3-a2ee3adf1ffa",
+		"_postman_id": "2e450359-e38a-4cb7-ba07-0bf3240fc793",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -370,6 +370,19 @@
 		},
 		{
 			"name": "ReeshaCreateTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -377,7 +390,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation reeshaCreateTag($tagInput: TagCreateInputDto!){\n  reeshaCreateTag(tagInput:$tagInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
-						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"aa1\",\n            \"ar\": \"ar1\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"aa111\",\n            \"ar\": \"ar111\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
 					}
 				},
 				"url": {
@@ -391,6 +404,19 @@
 		},
 		{
 			"name": "ReeshaEditTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -412,6 +438,19 @@
 		},
 		{
 			"name": "reeshaDeleteTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -433,6 +472,19 @@
 		},
 		{
 			"name": "reeshaGetTags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
