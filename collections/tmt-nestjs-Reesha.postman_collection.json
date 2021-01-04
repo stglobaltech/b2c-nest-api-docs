@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5c3f2a34-0c0d-43d2-ac2f-4678acd41fd3",
+		"_postman_id": "80b95907-3c9b-40b9-96a3-a2ee3adf1ffa",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -441,6 +441,69 @@
 					"graphql": {
 						"query": "query reeshaGetTags($tagIds: [String!]){\n  reeshaGetTags(tagIds:$tagIds) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
 						"variables": "{\n    \"tagIds\":[\"5fe609d11074ec6ede9c6e4e\"]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createOrderCancelReason($orderCancelReasonCreateInputDto: OrderCancelReasonCreateInputDto!){\n  createOrderCancelReason(orderCancelReasonCreateInputDto:$orderCancelReasonCreateInputDto) {\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": "{\n    \"orderCancelReasonCreateInputDto\": {\n        \"reason\": {\n            \"en\": \"en1\",\n            \"ar\": \"ar1\"\n        },\n        \"appType\": \"DRIVER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editOrderCancelReason($orderCancelReasonEditInputDto: OrderCancelReasonEditInputDto!){\n  editOrderCancelReason(orderCancelReasonEditInputDto:$orderCancelReasonEditInputDto) {\n    success\n    message{\n        en \n        ar\n    }\n  }\n}\n\n",
+						"variables": "{\n    \"orderCancelReasonEditInputDto\": {\n        \"_id\":\"5ff313608364773d8daf491a\",\n        \"reason\": {\n            \"en\": \"en2\",\n            \"ar\": \"ar2\"\n        },\n        \"appType\": \"USER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteOrderCancelReason($orderCancelReasonId: String!){\n  deleteOrderCancelReason(orderCancelReasonId:$orderCancelReasonId) {\n    success\n    message{\n        en \n        ar\n    }\n  }\n}\n\n",
+						"variables": "{\n    \"orderCancelReasonId\": \n\"5ff313608364773d8daf491a\"\n    \n}"
 					}
 				},
 				"url": {

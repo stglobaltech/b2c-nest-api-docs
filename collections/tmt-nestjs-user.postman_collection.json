@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "02c1e435-bbd2-432a-a3d0-9bb21591a2d1",
+		"_postman_id": "ee980aaa-c3d4-4319-bd2e-7b47d869e98d",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -935,6 +935,37 @@
 					"graphql": {
 						"query": "mutation UpdateCartMessage($messageInput: UpdateCartMessageInput!) {\n    updateCartMessage(messageInput: $messageInput) {\n    status\n  }\n}\n",
 						"variables": "{\n    \"messageInput\": {\n    \"cartId\": \"5fc4bcd564fefb41568814ac\",\n    \"message\": \"msg updated\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserOrderCancelReasons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmYzMTc1NTk5YjViYjNkYTIyN2ZkYzUiLCJzZXNzaW9uSWQiOiI1ZmYzMTc1NTdjNDhjYmJiNmY1MGE1Y2QiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwOTc2Njc0MSwiZXhwIjoxNjA5ODUzMTQxfQ.MEQCIHs-HBBPN18AlP2MLcIjE5OxX_FMzu6K2l7MYaxIti0QAiAM-7XhEAkEk13xMVcFCHobWwt4EKz1pPROm0HPi1Kfng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
