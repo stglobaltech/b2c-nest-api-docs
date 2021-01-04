@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "19dcc335-2e3e-4dd4-9d7e-3bced645ff6d",
+		"_postman_id": "8700c32e-f14c-4bb5-b45b-69ba2f3a18ee",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1233,6 +1233,19 @@
 		},
 		{
 			"name": "Create Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1264,6 +1277,19 @@
 		},
 		{
 			"name": "Get Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1915,6 +1941,19 @@
 		},
 		{
 			"name": "CreateBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1932,7 +1971,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name{en\n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
-						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"{{userId}}\",\n        \"parentStoreId\": \"{{id}}\",\n        \"username\": \"String\",\n        \"email\": \"String@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restaurantName\":{\"en\": \"String\",\n        \"ar\": \"String\"},\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
+						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"{{userId}}\",\n        \"parentStoreId\": \"{{id}}\",\n        \"username\": \"String665\",\n        \"email\": \"Strin555g@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restaurantName\":{\"en\": \"String\",\n        \"ar\": \"String\"},\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1946,6 +1985,19 @@
 		},
 		{
 			"name": "GetBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1963,7 +2015,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query getBranches($branchFindInputDto: GetBranchesInputDto!) {\n  getBranches(branchFindInputDto: $branchFindInputDto) {\n    pagination{\n        hasPrevPage\n        hasNextPage\n        prevPage\n        nextPage\n        perPage\n        }\n    stores{\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n    }\n}",
-						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"{{userId}}\"\n    }\n}"
+						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1977,6 +2029,19 @@
 		},
 		{
 			"name": "DeleteBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -2008,6 +2073,19 @@
 		},
 		{
 			"name": "updateStoreTags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
