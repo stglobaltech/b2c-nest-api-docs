@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66486170-29dc-4574-8568-69efc3d16537",
+		"_postman_id": "02c1e435-bbd2-432a-a3d0-9bb21591a2d1",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -663,7 +663,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entities {\n      name {\n        ar\n        en\n      }\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
+						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
