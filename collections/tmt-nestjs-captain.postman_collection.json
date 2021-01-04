@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6e6b3b9d-8758-4be3-9c04-3d98c6887fe7",
+		"_postman_id": "67bf4954-8a2d-4dc3-a641-411aeeafa18c",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "904fe6fe-3f87-406f-8ab5-a64d7bb9e5f9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -35,7 +34,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ac0f6547-7897-4f67-8f81-d251767f056a",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -69,7 +67,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "712aa635-efc9-4a54-80bf-a0365655675a",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +86,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "c281cb3d-f143-4b22-b5c5-096c92e61fe2",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +126,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "97321582-a28a-468e-90d7-2ef51d96cb15",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -151,7 +146,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ce26fdf2-a7fd-446b-add7-56c3a1e8ea01",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -185,7 +179,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "156f803e-467c-43f9-8d08-d5f180e35da1",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -203,9 +196,6 @@
 					"graphql": {
 						"query": "query ListPlaces($filterPlaces: FilterPlacesInputDto!) {\n  listPlaces(filterPlaces: $filterPlaces) {\n    places {\n      name {\n        ar\n        en\n      }\n    }\n    pagination {\n      hasPrevPage\n      hasNextPage\n      nextPage\n      prevPage\n    }\n  }\n}",
 						"variables": "{\n  \"filterPlaces\": {\n    \"type\": \"CITY\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 20\n    }\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -223,7 +213,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "999bfe87-6dc9-424d-8598-41670433b7db",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -241,9 +230,6 @@
 					"graphql": {
 						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -261,7 +247,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "30f32e0c-f237-4237-9d8e-08d18317240f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -290,9 +275,6 @@
 					"graphql": {
 						"query": "query DriverProfile {\n  getDriverProfile {\n    isOnline\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -310,7 +292,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7e34d595-c4ec-40e9-9893-4d51faff4c63",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -337,10 +318,7 @@
 							"src": [],
 							"disabled": true
 						}
-					],
-					"options": {
-						"formdata": {}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{auth-server}}/driver-auth/document-upload",
@@ -368,7 +346,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "867adf5c-7e9a-44c1-a89f-982e77b8dab0",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -386,9 +363,6 @@
 					"graphql": {
 						"query": "query ListBanks{\n  listBanks {\n    bankId\n    name {\n      ar\n      en\n    }\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -430,7 +404,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getDriverOrderCancelReasons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getDriverOrderCancelReasons{\n  getDriverOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

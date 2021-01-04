@@ -945,6 +945,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "getUserOrderCancelReasons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmYzMTc1NTk5YjViYjNkYTIyN2ZkYzUiLCJzZXNzaW9uSWQiOiI1ZmYzMTc1NTdjNDhjYmJiNmY1MGE1Y2QiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwOTc2Njc0MSwiZXhwIjoxNjA5ODUzMTQxfQ.MEQCIHs-HBBPN18AlP2MLcIjE5OxX_FMzu6K2l7MYaxIti0QAiAM-7XhEAkEk13xMVcFCHobWwt4EKz1pPROm0HPi1Kfng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
