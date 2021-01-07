@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1764b670-d948-47af-a827-e3138644d376",
+		"_postman_id": "42410025-ed27-4a96-be46-2c49323f22ee",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -966,6 +966,27 @@
 					"graphql": {
 						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sub Entities",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fc4ab4b64fefb415688149d\"]\n  }\n}"
 					}
 				},
 				"url": {
