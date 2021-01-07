@@ -663,7 +663,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
+						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n      subEntityIds\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -986,7 +986,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fc4ab4b64fefb415688149d\"]\n  }\n}"
+						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fed6e1abcea7402e12d5b94\"]\n  }\n}"
 					}
 				},
 				"url": {
