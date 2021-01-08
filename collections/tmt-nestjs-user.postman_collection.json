@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "42410025-ed27-4a96-be46-2c49323f22ee",
+		"_postman_id": "13c3f581-0b4b-41d5-91e2-58bd329f7abc",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -987,6 +987,161 @@
 					"graphql": {
 						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
 						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fed6e1abcea7402e12d5b94\"]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlaceOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"{{cartId}}\",   \n      \"userId\":\"{{userId}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cancelOrder($cancelOrderInput:CancelReadyOrderInputDto!) {\n  cancelOrder(cancelOrderInput: $cancelOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"5ff7ec35527d4749ec1658e0\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateOrder($updateOrderInput: UpdateReadyOrderInputDto!) {\n  updateOrder(updateOrderInput: $updateOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"{{orderId}}\",\n      \"cartId\": \"{{cartId}}\",   \n      \"userId\":\"{{userId}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsersOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrders($orderFindInputDto:OrderFindInputDto!) {\n  getUserOrders(orderFindInputDto:$orderFindInputDto) {\n        orders{\n            _id\n        }\n        pagination{\n            page\n        }\n  }\n}\n",
+						"variables": "{\n    \"orderFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 4\n        },\n        \"userId\": \"{{userId}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSingleOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"5ff7eb08527d4749ec1658d6\"\n    }\n}"
 					}
 				},
 				"url": {
