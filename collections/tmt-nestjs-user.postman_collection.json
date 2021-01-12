@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "13c3f581-0b4b-41d5-91e2-58bd329f7abc",
+		"_postman_id": "a3ccfa3d-5a63-477a-92eb-b3746dd606cb",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1017,7 +1017,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"{{cartId}}\",   \n      \"userId\":\"{{userId}}\"\n    }\n}"
+						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"{{cartId}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1048,7 +1048,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation cancelOrder($cancelOrderInput:CancelReadyOrderInputDto!) {\n  cancelOrder(cancelOrderInput: $cancelOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"5ff7ec35527d4749ec1658e0\"\n    }\n}"
+						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"5ffdd39067f2d471d2c40d25\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1079,7 +1079,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation updateOrder($updateOrderInput: UpdateReadyOrderInputDto!) {\n  updateOrder(updateOrderInput: $updateOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"{{orderId}}\",\n      \"cartId\": \"{{cartId}}\",   \n      \"userId\":\"{{userId}}\"\n    }\n}"
+						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"{{orderId}}\",\n      \"cartId\": \"{{cartId}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1110,7 +1110,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query getUserOrders($orderFindInputDto:OrderFindInputDto!) {\n  getUserOrders(orderFindInputDto:$orderFindInputDto) {\n        orders{\n            _id\n        }\n        pagination{\n            page\n        }\n  }\n}\n",
-						"variables": "{\n    \"orderFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 4\n        },\n        \"userId\": \"{{userId}}\"\n    }\n}"
+						"variables": "{\n    \"orderFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 4\n        }\n    }\n}"
 					}
 				},
 				"url": {
