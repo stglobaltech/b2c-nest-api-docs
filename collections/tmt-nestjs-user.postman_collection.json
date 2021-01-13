@@ -1152,6 +1152,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Update Cart Product quantity [GQL]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCartQuantity($input:UpdateProductQuantityInput!) {\n  updateCartProductQuantity(quantityUpdateInput: $input) {\n    totalPrice\n    totalQuotedPrice\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"productId\": \"5ffd87188c7db253cdc2a3f4\",\n    \"quantity\":3\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
