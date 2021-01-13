@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "13c3f581-0b4b-41d5-91e2-58bd329f7abc",
+		"_postman_id": "4ed3af40-9aab-4070-9b8b-75ef107cc5cd",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1142,6 +1142,27 @@
 					"graphql": {
 						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n  }\n}\n",
 						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"5ff7eb08527d4749ec1658d6\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart Product quantity [GQL]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCartQuantity($input:UpdateProductQuantityInput!) {\n  updateCartProductQuantity(quantityUpdateInput: $input) {\n    totalPrice\n    totalQuotedPrice\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"productId\": \"5ffd87188c7db253cdc2a3f4\",\n    \"quantity\":3\n  }\n}"
 					}
 				},
 				"url": {
