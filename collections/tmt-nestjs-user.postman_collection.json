@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a3ccfa3d-5a63-477a-92eb-b3746dd606cb",
+		"_postman_id": "b53e4ff9-fb04-4bae-819e-5b7a84dbb7fa",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1000,6 +1000,19 @@
 		},
 		{
 			"name": "PlaceOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1017,7 +1030,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"{{cartId}}\"\n    }\n}"
+						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1031,6 +1044,19 @@
 		},
 		{
 			"name": "cancelOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1048,7 +1074,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation cancelOrder($cancelOrderInput:CancelReadyOrderInputDto!) {\n  cancelOrder(cancelOrderInput: $cancelOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"5ffdd39067f2d471d2c40d25\"\n    }\n}"
+						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"600145f55e42a17a3ba3313f\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1062,6 +1088,19 @@
 		},
 		{
 			"name": "updateOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1079,7 +1118,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation updateOrder($updateOrderInput: UpdateReadyOrderInputDto!) {\n  updateOrder(updateOrderInput: $updateOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"{{orderId}}\",\n      \"cartId\": \"{{cartId}}\"\n    }\n}"
+						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"5fff4e0f5e42a17a3ba3313a\",\n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1093,6 +1132,19 @@
 		},
 		{
 			"name": "getUsersOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1124,6 +1176,19 @@
 		},
 		{
 			"name": "getSingleOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1140,8 +1205,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n  }\n}\n",
-						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"5ff7eb08527d4749ec1658d6\"\n    }\n}"
+						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n        orderStatus\n        cartId\n        _id\n\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"600145f55e42a17a3ba3313f\"\n    }\n}"
 					}
 				},
 				"url": {
