@@ -483,8 +483,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStoresForUser(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+						"query": "query GetStores($input: StoreFindInputDto!){\n  getStoresForUser(input:$input) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
