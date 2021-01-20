@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b53e4ff9-fb04-4bae-819e-5b7a84dbb7fa",
+		"_postman_id": "0ef351ee-b553-4e45-accd-5496c33c39db",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -483,8 +483,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+						"query": "query GetStores($input: StoreFindInputDto!){\n  getStoresForUser(input:$input) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
@@ -1207,6 +1207,27 @@
 					"graphql": {
 						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n        orderStatus\n        cartId\n        _id\n\n  }\n}\n",
 						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"600145f55e42a17a3ba3313f\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart Product quantity [GQL]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCartQuantity($input:UpdateProductQuantityInput!) {\n  updateCartProductQuantity(quantityUpdateInput: $input) {\n    totalPrice\n    totalQuotedPrice\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"productId\": \"5ffd87188c7db253cdc2a3f4\",\n    \"quantity\":3\n  }\n}"
 					}
 				},
 				"url": {
