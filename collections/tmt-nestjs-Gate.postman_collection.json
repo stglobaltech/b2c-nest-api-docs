@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8700c32e-f14c-4bb5-b45b-69ba2f3a18ee",
+		"_postman_id": "0b0e6668-6e51-46c5-8ac4-5e1d5f90ba8f",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1262,7 +1262,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n  storeId,\n  sun{\n      startHour,startMinute,endHour,endMinute\n  }\n  dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n  }\n}\n}",
+						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n      success\n      storeTiming{\n        storeId,\n        sun{\n        startHour,startMinute,endHour,endMinute\n        }\n        dateRange{\n        startDate\n        endDate\n        shifts {startHour,startMinute,endHour,endMinute}\n        }\n    }\n    }\n}",
 						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"{{id}}\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2020-11-14T00:00:00.000\",\n                \"endDate\": \"2020-11-16T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
 					}
 				},
@@ -1306,7 +1306,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n",
+						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    success,\n    storeTiming{\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n}",
 						"variables": "{\n  \"storeId\": \"{{id}}\"\n}"
 					}
 				},
