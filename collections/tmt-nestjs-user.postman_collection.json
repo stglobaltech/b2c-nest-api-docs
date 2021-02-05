@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9f26b474-f4ac-40d6-8960-ead00c3e29e5",
+		"_postman_id": "ae438006-3d1a-4bfc-8542-96b2e225de66",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1270,6 +1270,37 @@
 					"graphql": {
 						"query": "mutation clearCartById($id:String!) {\n  deleteCartById(cartId: $id) {\n    status\n  }\n}",
 						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear promocode [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearPromocode($cartId: String!) {\n  clearPromoCode(cartId: $cartId) {\n    status\n  }\n}",
+						"variables": "{\n  \"cartId\": \"601be50ad490dc1c1ebb5d73\"\n}"
 					}
 				},
 				"url": {
