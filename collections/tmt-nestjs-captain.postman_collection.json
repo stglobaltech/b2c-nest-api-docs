@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "67bf4954-8a2d-4dc3-a641-411aeeafa18c",
+		"_postman_id": "76cbae78-e94d-4aea-b41b-d9bf861e1a13",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -425,6 +425,68 @@
 					"graphql": {
 						"query": "query getDriverOrderCancelReasons{\n  getDriverOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Driver Proposal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decline Driver Proposal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DeclineDriverProposal($driverProposalDto: DriverProposalDto!) {\n  declineDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
 					}
 				},
 				"url": {
