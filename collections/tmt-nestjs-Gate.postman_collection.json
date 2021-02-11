@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8700c32e-f14c-4bb5-b45b-69ba2f3a18ee",
+		"_postman_id": "23b2218d-cfe4-4302-bdc4-a6300cc21326",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1262,7 +1262,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n  storeId,\n  sun{\n      startHour,startMinute,endHour,endMinute\n  }\n  dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n  }\n}\n}",
+						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n      success\n      storeTiming{\n        storeId,\n        sun{\n        startHour,startMinute,endHour,endMinute\n        }\n        dateRange{\n        startDate\n        endDate\n        shifts {startHour,startMinute,endHour,endMinute}\n        }\n    }\n    }\n}",
 						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"{{id}}\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2020-11-14T00:00:00.000\",\n                \"endDate\": \"2020-11-16T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
 					}
 				},
@@ -1306,7 +1306,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n",
+						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    success,\n    storeTiming{\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n}",
 						"variables": "{\n  \"storeId\": \"{{id}}\"\n}"
 					}
 				},
@@ -2104,6 +2104,161 @@
 					"graphql": {
 						"query": "mutation updateStoreTags($storeTagsUpdateDto: StoreTagsUpdateInputDto!){\n  updateStoreTags(storeTagsUpdateDto:$storeTagsUpdateDto) {\n      success\n      message{\n          en\n          ar\n      }\n  }\n}",
 						"variables": "{\n    \"storeTagsUpdateDto\": {\n        \"storeId\": \"5fe60d781074ec6ede9c6e50\",\n        \"tagIds\": [\"5fe606301074ec6ede9c6e49\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchStoreBranches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchStoreBranches($branchesSearchInputDto:StoreBranchSearchInputDto!) {\n  searchStoreBranches(branchesSearchInputDto: $branchesSearchInputDto) {\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n}",
+						"variables": "{\n    \"branchesSearchInputDto\": {\n        \"parentId\": {{id}},\n        \"searchkey\": \"la\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneMultipleProductsToParticularBranches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneMultipleProductsToParticularBranches($productCloneInput:CloneMultipleProductsToParticularBranchesInputDto!) {\n  cloneMultipleProductsToParticularBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"branchIds\": [\"60099b752147074ed367b92d\"],\n        \"productCodes\":[\"601b883f39c4a40776f828b6\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cloneMultipleProductsToAllBranches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneMultipleProductsToAllBranches($productCloneInput:CloneMultipleProductsToAllBranchesInputDto!) {\n  cloneMultipleProductsToAllBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"productCodes\":[\"601b883f39c4a40776f828b6\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneAllProductsToParticularBranches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneAllProductsToParticularBranches($productCloneInput:CloneAllProductsToParticularBranchesInputDto!) {\n  cloneAllProductsToParticularBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"branchIds\": [\"60099b752147074ed367b92d\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneAllProductsToAllBranches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneAllProductsToAllBranches($productCloneInput:CloneAllProductsToAllBranchesInputDto!) {\n  cloneAllProductsToAllBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n         \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
 					}
 				},
 				"url": {
