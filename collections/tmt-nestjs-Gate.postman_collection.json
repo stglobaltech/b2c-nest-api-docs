@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "50cb2492-6588-4932-b381-088234e2f6f9",
+		"_postman_id": "7fa3ccda-7a09-4da6-aea6-2f412658f0f7",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -512,7 +512,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation GateLogin($gateLoginDto: GateLoginDto!) {\n  gateLogin(gateLoginDto: $gateLoginDto) {\n    success\n    accessToken\n    refreshToken\n    userId\n    }\n}",
-						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"{{emailid}}\",\n    \"password\": \"Samdhiva@12\",\n    \"appType\": \"GATE\",\n    \"deviceType\": \"WEB\"\n  }\n}"
+						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"{{emailid}}\",\n    \"password\": \"Samdhiva@12\",\n    \"deviceType\": \"WEB\"\n  }\n}"
 					}
 				},
 				"url": {
