@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2e450359-e38a-4cb7-ba07-0bf3240fc793",
+		"_postman_id": "8c7a1ec7-bc27-47ec-af80-d5441c09acd3",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -562,6 +562,114 @@
 					"raw": "{{main-server-gql}}",
 					"host": [
 						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rule [Rest Api]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ruleName\": \"Rule\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": true,\n                    \"operandTwo\": true\n                },\n                \"thenValue\": 180\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth-server}}/rule-management/create-rule",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"create-rule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Rule [Rest API]",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ruleName\": \"SendOtpCacheTtlRule\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\":  {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+91\"\n                },\n                    \"operandTwo\": \"+91\"\n                },\n                \"thenValue\": 180\n            },\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+974\"\n                },\n                \"thenValue\": 600\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth-server}}/rule-management/update-rule",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"update-rule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Rules [Rest Api]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/all-rules",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"all-rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Rule [Rest API]",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/rule-name",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"rule-name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Rule [Rest API]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/rule-name",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"rule-name"
 					]
 				}
 			},
