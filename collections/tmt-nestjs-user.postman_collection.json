@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae438006-3d1a-4bfc-8542-96b2e225de66",
+		"_postman_id": "e30a7aa9-4846-4573-868b-8e56ec31a05a",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1307,6 +1307,27 @@
 					"raw": "{{main-server-gql}}",
 					"host": [
 						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserLogout($refreshToken: String!) {\n  userLogout(refreshToken: $refreshToken) {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": "{\n    \"refreshToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI1ZmU2MGQ3ODdjNDhjYmJiNmZkY2I0MWUiLCJzdWIiOiJSQyIsImlhdCI6MTYxNDA3NzU3NiwiZXhwIjoxNjE0MjUwMzc2fQ.MEUCIQDQiB0m0mdeMEIyu4vISZ3Z4mMpT6CB0JAaEPrwXnC8CgIgVUBWvJSCvOiz3gF73KXW5BR-YEk40uRqQ-x0O5gET-o\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
 					]
 				}
 			},
