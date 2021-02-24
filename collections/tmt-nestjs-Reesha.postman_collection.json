@@ -1,10 +1,78 @@
 {
 	"info": {
-		"_postman_id": "8c7a1ec7-bc27-47ec-af80-d5441c09acd3",
+		"_postman_id": "29262940-ae83-4fa9-9dd9-7673b0c154ea",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Reesha GQL [GQL]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReeshaSignup($input: ReeshaSignupInputDto!){\n  reeshaSignup(input:$input) {\n    success\n    message {\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"username\":\"ReeshaUser1\",\n    \"email\":\"user@reesha.com\",\n    \"password\":\"pass\",\n    \"mobile\":\"7807807\",\n    \"countryCode\":\"IND\",\n    \"oneSignalId\":\"12343243242344\",\n    \"osversion\":\"Playground\",\n    \"devicemodel\":\"Web\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reesha Login [GQL]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReeshaLogin($input: ReeshaLoginInputDto!){\n  reeshaLogin(input:$input) {\n    success\n    message {\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"email\":\"user@reesha.com\",\n    \"password\":\"pass\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Reesha Roles [GQL]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AssignReeshaRole($input: ReeshaAssignRolesInputDto!){\n  assignReeshaRoles(input:$input) {\n    success\n    message {\n      ar\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"reeshaId\":\"603622c249e0d13bae24f331\",\n    \"appType\":\"REESHA\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "roles:get",
 			"protocolProfileBehavior": {
