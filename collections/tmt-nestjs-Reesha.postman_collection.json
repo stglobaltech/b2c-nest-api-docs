@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "29262940-ae83-4fa9-9dd9-7673b0c154ea",
+		"_postman_id": "23b5aa30-8c5f-4a4f-8bd1-d3df5cb1c1eb",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -642,7 +642,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"ruleName\": \"Rule\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": true,\n                    \"operandTwo\": true\n                },\n                \"thenValue\": 180\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"raw": "{\n    \"ruleName\": \"rule-one\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": true,\n                    \"operandTwo\": true\n                },\n                \"thenValue\": 180\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -669,7 +669,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"ruleName\": \"SendOtpCacheTtlRule\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\":  {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+91\"\n                },\n                    \"operandTwo\": \"+91\"\n                },\n                \"thenValue\": 180\n            },\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+974\"\n                },\n                \"thenValue\": 600\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"raw": "{\n    \"ruleName\": \"rule-one\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\":  {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+91\"\n                },\n                    \"operandTwo\": \"+91\"\n                },\n                \"thenValue\": 180\n            },\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+974\"\n                },\n                \"thenValue\": 600\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -713,13 +713,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{auth-server}}/rule-management/rule-name",
+					"raw": "{{auth-server}}/rule-management/rule/<your rule name here>",
 					"host": [
 						"{{auth-server}}"
 					],
 					"path": [
 						"rule-management",
-						"rule-name"
+						"rule",
+						"<your rule name here>"
 					]
 				}
 			},
@@ -731,13 +732,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{auth-server}}/rule-management/rule-name",
+					"raw": "{{auth-server}}/rule-management/rule/<your rule name here>",
 					"host": [
 						"{{auth-server}}"
 					],
 					"path": [
 						"rule-management",
-						"rule-name"
+						"rule",
+						"<your rule name here>"
 					]
 				}
 			},
