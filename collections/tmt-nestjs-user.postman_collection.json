@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e30a7aa9-4846-4573-868b-8e56ec31a05a",
+		"_postman_id": "1b6d6bef-9dac-448d-b58f-113f456c20fc",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1315,13 +1315,23 @@
 		{
 			"name": "UserLogout",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserLogout($refreshToken: String!) {\n  userLogout(refreshToken: $refreshToken) {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
-						"variables": "{\n    \"refreshToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI1ZmU2MGQ3ODdjNDhjYmJiNmZkY2I0MWUiLCJzdWIiOiJSQyIsImlhdCI6MTYxNDA3NzU3NiwiZXhwIjoxNjE0MjUwMzc2fQ.MEUCIQDQiB0m0mdeMEIyu4vISZ3Z4mMpT6CB0JAaEPrwXnC8CgIgVUBWvJSCvOiz3gF73KXW5BR-YEk40uRqQ-x0O5gET-o\"\n}"
+						"query": "mutation UserLogout {\n  userLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
