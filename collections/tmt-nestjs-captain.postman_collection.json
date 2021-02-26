@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f3f97826-1127-4bdd-a007-a3f3513c33e5",
+		"_postman_id": "b4d12d3c-6f76-49e5-b7ba-b28ee7d0a74a",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -499,15 +499,25 @@
 			"response": []
 		},
 		{
-			"name": "CaptainLogout",
+			"name": "Captain Logout",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverLogout($refreshToken: String!) {\n  driverLogout(refreshToken: $refreshToken) {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
-						"variables": "{\n    \"refreshToken\":\"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI1ZmU2MGQ3ODdjNDhjYmJiNmZkY2I0MWUiLCJzdWIiOiJSQyIsImlhdCI6MTYxNDA3NzU3NiwiZXhwIjoxNjE0MjUwMzc2fQ.MEUCIQDQiB0m0mdeMEIyu4vISZ3Z4mMpT6CB0JAaEPrwXnC8CgIgVUBWvJSCvOiz3gF73KXW5BR-YEk40uRqQ-x0O5gET-o\"\n}"
+						"query": "mutation DriverLogout {\n  driverLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
