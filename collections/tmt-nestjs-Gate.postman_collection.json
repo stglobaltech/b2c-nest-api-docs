@@ -2300,6 +2300,99 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "CreateStoreMaster",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  createStoreMaster($storeMasterCreateInputDto:StoreMasterCreateInputDto!){\n    createStoreMaster(storeMasterCreateInputDto:$storeMasterCreateInputDto){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterCreateInputDto\": {\n        \"userName\": \"String1\",\n        \"fullName\": \"String1\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"email\": \"String1@st.com\",\n        \"password\": \"String\",\n        \"ownerId\": \"6038e9edcfd3311919326dad\",\n        \"storeCode\": \"6038e9ed3bc26718e8acc8ed\",\n        \"deviceType\": \"ANDROID\",\n        \"appType\": \"STORE_MASTER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditStoreMaster",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editStoreMaster($StoreMasterEditInput:StoreMasterEditInputDto!){\n    editStoreMaster(StoreMasterEditInput:$StoreMasterEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"StoreMasterEditInput\": {\n        \"_id\": \"6038be9035fd841d3cb035a2\",\n        \"userName\": \"String22\",\n        \"fullName\": \"String222\",\n        \"mobileNumber\": \"98989892\",\n        \"countryCode\": \"IND\",\n        \"email\": \"String222@st.com\",\n        \"password\": \"String22\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStoreMaster",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteStoreMaster($storeMasterDeleteDto:StoreMasterDeleteDto!){\n    deleteStoreMaster(storeMasterDeleteDto:$storeMasterDeleteDto){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterDeleteDto\": {\n        \"_id\": \"6038be9035fd841d3cb035a2\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
