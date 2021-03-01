@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1b6d6bef-9dac-448d-b58f-113f456c20fc",
+		"_postman_id": "9667dbfc-70ae-4d1a-b4e4-98cceff9edf2",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,7 +19,7 @@
 							"    console.log(\"Api response = \",json.data.userLogin.success);\r",
 							"    //pm.expect(json.data.userLogin.success).to.be.true;\r",
 							"    if(json.data.userLogin.success == true) {\r",
-							"        pm.environment.set(\"token\",json.data.userLogin.accessToken);\r",
+							"        pm.environment.set(\"access-Token\",json.data.userLogin.accessToken);\r",
 							"        pm.environment.set(\"refreshToken\", json.data.userLogin.refreshToken);\r",
 							"    }\r",
 							"    console.log(\"token = \", pm.environment.get(\"token\"));    \r",
@@ -42,7 +42,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"{{otp}}\"\n  }\n}"
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"{{otp}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -288,7 +288,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n     \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobileNo}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
+						"variables": "{\n  \"userSignupInputDto\": {\n     \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobile}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -333,8 +333,8 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"//pm.variables.set(\"countryCode\",\"IND\");\r",
-							"//pm.variables.set(\"mobileNo\",\"500012350\");"
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));"
 						],
 						"type": "text/javascript"
 					}
@@ -347,7 +347,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"12347890\"\n  }\n}"
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -1220,6 +1220,19 @@
 		},
 		{
 			"name": "Update Cart Product quantity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -1241,6 +1254,19 @@
 		},
 		{
 			"name": "Clear cart by Entity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -1262,6 +1288,19 @@
 		},
 		{
 			"name": "Clear cart by id [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -1283,6 +1322,19 @@
 		},
 		{
 			"name": "Clear promocode [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1314,6 +1366,19 @@
 		},
 		{
 			"name": "UserLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",

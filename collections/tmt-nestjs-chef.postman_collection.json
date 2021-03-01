@@ -1,12 +1,27 @@
 {
 	"info": {
-		"_postman_id": "61cbc552-038e-48c5-8e79-1ee0c4f9a016",
+		"_postman_id": "78df0fe7-dffb-4fd6-8a1c-9c0d4fb6ba45",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "chef Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"    console.log(response.data.chefLogin.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.chefLogin.accessToken);\r",
+							"    const response2 = pm.response.json();\r",
+							"     pm.environment.set(\"refreshToken\", response2.data.chefLogin.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -14,7 +29,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefLogin($chefLoginDto: ChefLoginDto!){\n  chefLogin(chefLoginDto: $chefLoginDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"IND\",\n        \"mobile\": \"7807807\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"1331\"\n    }\n}"
+						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"99887766\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -28,6 +43,19 @@
 		},
 		{
 			"name": "Chef Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
