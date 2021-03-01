@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "61cbc552-038e-48c5-8e79-1ee0c4f9a016",
+		"name": "tmt-nestjs-chef",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "chef Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation chefLogin($chefLoginDto: ChefLoginDto!){\n  chefLogin(chefLoginDto: $chefLoginDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"IND\",\n        \"mobile\": \"7807807\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"1331\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chef Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChefLogout {\n  chefLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
