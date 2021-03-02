@@ -56,6 +56,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetChefProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjY4NmY1N2Y4N2Q4MjBmOGY0MTU4YzUiLCJzZXNzaW9uSWQiOiI1ZjY4NmY1NzMwZTRkZjEyZmIzNDFhMGUiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNDY3Njc2OCwiZXhwIjoxNjE0NzYzMTY4fQ.MEUCIQCFmzGglTToh-kA12B9JbuhSF4xBhpi656bVE2Tz1x5lQIgKF_TQc8WphgeXOrIIHL6t5KiQdy82JF3TH6e-bg9ymI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getChefProfile {\n  getChefProfile {\n    mobileNumber\n    countryCode\n    email\n    userName\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
