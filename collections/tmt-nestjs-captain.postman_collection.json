@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b4d12d3c-6f76-49e5-b7ba-b28ee7d0a74a",
+		"_postman_id": "faf3f483-dfe6-45eb-91d2-e106dea7c0c1",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -24,6 +24,8 @@
 							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
 							"    const response1 = pm.response.json();\r",
 							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"    const response2 = pm.response.json();\r",
+							"     pm.environment.set(\"refreshToken\", response2.data.driverLogin.refreshToken);\r",
 							"});\r",
 							"\r",
 							""
@@ -137,6 +139,7 @@
 							"    const response = pm.response.json();\r",
 							"    console.log(response.data.driverSignup.accessToken);\r",
 							"    pm.environment.set(\"access-Token\", response.data.driverSignup.accessToken);\r",
+							"   \r",
 							"});\r",
 							""
 						],
@@ -161,7 +164,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n    \n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
 					}
 				},
 				"url": {
@@ -376,6 +379,19 @@
 		},
 		{
 			"name": "Captain Online Status Toggle [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -407,6 +423,19 @@
 		},
 		{
 			"name": "getDriverOrderCancelReasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -438,6 +467,19 @@
 		},
 		{
 			"name": "Accept Driver Proposal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -469,6 +511,19 @@
 		},
 		{
 			"name": "Decline Driver Proposal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -500,6 +555,19 @@
 		},
 		{
 			"name": "Captain Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
