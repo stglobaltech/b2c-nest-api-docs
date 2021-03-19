@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3d1d0f66-b670-4234-85a9-fc066f69c337",
+		"_postman_id": "03cbf70a-0c87-44ce-b692-5823ae03b415",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -153,6 +153,37 @@
 					"raw": "{{main-server-gql}}",
 					"host": [
 						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetChefToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setChefPushToken($setChefPushToken: SetPushTokenDto!){\n  setChefPushToken(setChefPushToken: $setChefPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setChefPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
 					]
 				}
 			},
