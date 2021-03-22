@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "faf3f483-dfe6-45eb-91d2-e106dea7c0c1",
+		"_postman_id": "5340f469-d11e-465a-bbfd-c7c8d78af8a1",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -586,6 +586,37 @@
 					"graphql": {
 						"query": "mutation DriverLogout {\n  driverLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetDriverPushToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setDriverPushToken($setDriverPushToken: SetPushTokenDto!){\n  setDriverPushToken(setDriverPushToken: $setDriverPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setDriverPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
 					}
 				},
 				"url": {

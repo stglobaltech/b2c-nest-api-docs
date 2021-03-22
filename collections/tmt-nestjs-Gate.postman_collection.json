@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d83eec0e-ed60-4b48-bbc8-125e5587f4cf",
+		"_postman_id": "3b70650a-732b-43c8-a10e-0b589b4fceb9",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2523,6 +2523,37 @@
 					"graphql": {
 						"query": "mutation sortProduct($productSortData: ProductSortInputDto!) {\n  sortProduct(productSortData: $productSortData) {\n    success\n    message {\n        en\n        ar\n    }\n    product{\n    _id\n          }\n    }\n}",
 						"variables": "{\n  \"productSortData\": {\n    \"productId\": \"{{id}}\",\n    \"parentStoreCode\": \"{{id}}\",\n    \"categoryId\": \"{{catId}}\",\n    \"currentPosition\":1,\n    \"toPosition\":1\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParticularStoreMaster",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetParticularStoreMaster($storeMasterID: String!) {\n  getParticularStoreMaster(storeMasterID: $storeMasterID) {\n    _id\n    userName\n  }\n}\n",
+						"variables": "{\n  \"storeMasterID\": \"{{storeMasterID}}\"\n}"
 					}
 				},
 				"url": {

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9667dbfc-70ae-4d1a-b4e4-98cceff9edf2",
+		"_postman_id": "cb4f5f2b-db2a-47ad-8ab1-1a5696d32379",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1397,6 +1397,37 @@
 					"graphql": {
 						"query": "mutation UserLogout {\n  userLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetUserPushToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setUserPushToken($setUserPushToken: SetPushTokenDto!){\n  setUserPushToken(setUserPushToken: $setUserPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setUserPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
 					}
 				},
 				"url": {
