@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e3bb0454-9983-4964-a2a3-50fd06fc4472",
+		"_postman_id": "41c12333-2a0c-4462-8ad1-ec673e2a7477",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -988,6 +988,99 @@
 					"graphql": {
 						"query": "mutation createQualifyBehaviour(\n  $QualifyBehaviourCreateDto: QualifyBehaviourCreateDto!\n) {\n  createQualifyBehaviour(\n    qualifyBehaviourCreateDto: $QualifyBehaviourCreateDto\n  ){\n    _id\n  }\n}",
 						"variables": "{\n  \"QualifyBehaviourCreateDto\": {\n  \"name\": \"TEST\",\n  \"priority\": 1,\n    \"conditions\": [{\"int\": [{\"attributeCode\": \"RATING\",\"min\": 1,\"max\": 3}],\"condition\": \"AND\"}]\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetOrders($ordersFindInputDto: OrdersFindInputDto!) {\n  reeshaGetOrders(ordersFindInputDto:$ordersFindInputDto) {\n   orders{\n       _id\n       userId\n       cartId\n       orderStatus\n       orderType\n       cancelReason {\n           en\n           ar\n       }\n   }\n  \n  }\n}",
+						"variables": "{\n    \"ordersFindInputDto\":{\n        \"orderStatus\":\"PEN\",\n        \"orderType\":\"readyOrder\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Store Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetStoreAdmin($adminId: String!) {\n  reeshaGetStoreAdmin(adminId:$adminId) {\n      username\n      email\n      mobileNumber\n      countryCode\n      iBan\n      isActivated\n      isDeleted\n      deviceType\n      parentId\n      restaurantIds\n  }\n}",
+						"variables": "{\n    \"adminId\":\"6059cabea506650ac9c93409\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUsers($userFindInputDto: UserFindInputDto!) {\n  getUsers(userFindInputDto:$userFindInputDto) {\n     users {\n         _id \n          name\n          email\n          countryCode\n          status\n          mobile\n         deviceId      \n         otp\n    }\n  }\n}",
+						"variables": "{\n    \"userFindInputDto\":{\n        \"status\":\"ON\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
 					}
 				},
 				"url": {
