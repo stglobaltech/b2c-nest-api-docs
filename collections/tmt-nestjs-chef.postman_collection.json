@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5624b645-ad29-436f-b2e8-f6de89de6aaf",
+		"_postman_id": "4ec2ff7e-1a60-4563-bb60-7d811efa988d",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -240,6 +240,68 @@
 					"graphql": {
 						"query": "mutation chefCancelOrder($chefInputDto: ChefProposalDto!){\n  chefCancelOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
 						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"601a7b5a9e2bad43341bcb79\",\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChefRateDriver [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{main-server-gql}}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChefRateDriver($input: ChefRateDriverInputDto!) {\n  chefRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5,\n      \"driverComment\": \"Good Driver by  chef\"\n    }\n}"
 					}
 				},
 				"url": {
