@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5340f469-d11e-465a-bbfd-c7c8d78af8a1",
+		"_postman_id": "e7442d97-ad52-4295-a608-ca79a942ea55",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -623,6 +623,68 @@
 					"raw": "{{auth-server-gql}}",
 					"host": [
 						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateUser [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateUser($input: DriverRateUserInputDto!) {\n  driverRateUser(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"userRating\": 5,\n      \"userComment\": \"Good User by  Driver\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateChef [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
 					]
 				}
 			},
