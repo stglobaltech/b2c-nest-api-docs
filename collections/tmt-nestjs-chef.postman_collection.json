@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4ec2ff7e-1a60-4563-bb60-7d811efa988d",
+		"_postman_id": "59575aca-374f-41f6-b9e5-cd8b42d6f57e",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -269,7 +269,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"query": "mutation ChefRateDriver($input: ChefRateDriverInputDto!) {\n  chefRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
 						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5,\n      \"driverComment\": \"Good Chef by  User\"\n    }\n}"
 					}
 				},
