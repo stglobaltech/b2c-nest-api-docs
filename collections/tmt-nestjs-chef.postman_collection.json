@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59575aca-374f-41f6-b9e5-cd8b42d6f57e",
+		"_postman_id": "a5651a3b-63bb-4074-9603-bc02b9af683a",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -118,14 +118,41 @@
 		},
 		{
 			"name": "ChefAcceptOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.chefAcceptOrder.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefAcceptOrder($chefProposalDto: ChefProposalDto!){\n  chefAcceptOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"601a7b5a9e2bad43341bcb79\",\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -139,14 +166,41 @@
 		},
 		{
 			"name": "ChefRejectOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.chefRejectOrder.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefRejectOrder($chefProposalDto: ChefProposalDto!){\n  chefRejectOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"601a7b5a9e2bad43341bcb79\",\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -160,6 +214,19 @@
 		},
 		{
 			"name": "SetChefToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -191,6 +258,23 @@
 		},
 		{
 			"name": "ChefReadyOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.chefReadyOrder.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -208,7 +292,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefReadyOrder($chefInputDto: ChefProposalDto!){\n  chefReadyOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"601a7b5a9e2bad43341bcb79\",\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -222,6 +306,23 @@
 		},
 		{
 			"name": "ChefCancelOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.chefCancelOrder.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -239,7 +340,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefCancelOrder($chefInputDto: ChefProposalDto!){\n  chefCancelOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"601a7b5a9e2bad43341bcb79\",\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6064a77510494261e1ba63d2\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -253,6 +354,23 @@
 		},
 		{
 			"name": "ChefRateDriver [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.chefRateDriver.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
