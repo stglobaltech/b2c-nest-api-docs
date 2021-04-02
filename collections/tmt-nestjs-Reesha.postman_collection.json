@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6e39b11a-369f-4909-a952-88b737cd3cd6",
+		"_postman_id": "92c9b08d-6bb7-46bf-9831-d7eb0f4c97a1",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1112,6 +1112,37 @@
 					"graphql": {
 						"query": "query getDriversForReesha($driverFilterInputDto: DriverFilterReeshaInputDto!) {\n  getDriversForReesha(driverFilterInputDto:$driverFilterInputDto) {\n      drivers {\n        _id\n        mobile\n        name\n        email\n        countryCode\n        lang\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
 						"variables": "{\n    \"driverFilterInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get StoreMasters For Reesha [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getStoreMastersForReesha($storeMasterChefFiltersInputDto: StoreMasterChefFiltersReeshaInputDto) {\n  getStoreMastersForReesha(storeMasterChefFiltersInputDto:$storeMasterChefFiltersInputDto) {\n      storeMasters {\n        _id\n        userName\n        fullName\n        mobileNumber\n        countryCode\n        email\n        storeCode\n        ownerId\n        isDeleted\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
+						"variables": "{\n    \"storeMasterChefFiltersInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
 					}
 				},
 				"url": {
