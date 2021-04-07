@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8e35acc5-28f7-454d-bd00-3c5e2de5e213",
+		"_postman_id": "dd4f68a0-aa66-4246-9dfb-eaeb654cf392",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -959,6 +959,37 @@
 					"graphql": {
 						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
 						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverGetOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query driverGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  driverGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
 					}
 				},
 				"url": {

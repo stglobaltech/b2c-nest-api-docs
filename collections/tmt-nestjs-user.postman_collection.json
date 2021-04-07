@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "46f22c7c-bf98-4d5f-b223-b1488bf0f16b",
+		"_postman_id": "9f22b824-f7d7-4205-9129-f7b50e7fed2e",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1537,6 +1537,37 @@
 					"graphql": {
 						"query": "mutation UserRateChef($input: UserRateChefInputDto!) {\n  userRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
 						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserGetOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query userGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  userGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
 					}
 				},
 				"url": {
