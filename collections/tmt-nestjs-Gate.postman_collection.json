@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c7115e49-abbe-49f0-9dd8-ec70fc81d9d3",
+		"_postman_id": "2b0aed79-8286-484a-b816-49b0de0a6802",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -556,7 +556,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n    }\n}",
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       pagination{\n           hasNextPage\n           hasPrevPage\n           prevPage \n           nextPage\n           page \n           perPage \n       }\n    }\n}",
 						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\"\n    }\n}"
 					}
 				},
