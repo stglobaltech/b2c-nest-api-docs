@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9f22b824-f7d7-4205-9129-f7b50e7fed2e",
+		"_postman_id": "d51be4c3-bc24-4473-ac03-7a8c79b0e8e1",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -48,6 +48,141 @@
 								"api",
 								"file-upload",
 								"order-chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query userOrderChatHistory($input: ChatHistoryInputDto!){\n  userOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserSendOrderChatMessageToDriver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation userSendOrderChatMessageToDriver($input: SendChatInputDto!){\n  userSendOrderChatMessageToDriver(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userSendOrderChatMessageToStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation userSendOrderChatMessageToStore($input: SendChatInputDto!){\n  userSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userOrderChatWithDriverSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription userOrderChatWithDriverSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithDriverSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userOrderChatWithStoreSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription userOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
 							]
 						}
 					},
