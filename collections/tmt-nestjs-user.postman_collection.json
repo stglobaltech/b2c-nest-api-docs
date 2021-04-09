@@ -6,6 +6,56 @@
 	},
 	"item": [
 		{
+			"name": "OrderChat",
+			"item": [
+				{
+					"name": "Order Chat file upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/abwbdallhmhmd/Documents/profile.png"
+								},
+								{
+									"key": "orderId",
+									"value": "orderID",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{main-server}}/v1/api/file-upload/order-chat",
+							"host": [
+								"{{main-server}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"file-upload",
+								"order-chat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User Login [GQL]",
 			"event": [
 				{

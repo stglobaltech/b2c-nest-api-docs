@@ -1,435 +1,458 @@
 {
-	"info": {
-		"_postman_id": "fe7782e4-ca0d-4de6-a635-4895860e802f",
-		"name": "tmt-nestjs-chef",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "chef Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const response = pm.response.json();\r",
-							"    console.log(response.data.chefLogin.accessToken);\r",
-							"    pm.environment.set(\"access-Token\", response.data.chefLogin.accessToken);\r",
-							"    const response2 = pm.response.json();\r",
-							"     pm.environment.set(\"refreshToken\", response2.data.chefLogin.refreshToken);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation chefLogin($chefLoginDto: ChefLoginDto!){\n  chefLogin(chefLoginDto: $chefLoginDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"99887766\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Chef Logout",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{refreshToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation ChefLogout {\n  chefLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetChefProfile",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjY4NmY1N2Y4N2Q4MjBmOGY0MTU4YzUiLCJzZXNzaW9uSWQiOiI1ZjY4NmY1NzMwZTRkZjEyZmIzNDFhMGUiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNDY3Njc2OCwiZXhwIjoxNjE0NzYzMTY4fQ.MEUCIQCFmzGglTToh-kA12B9JbuhSF4xBhpi656bVE2Tz1x5lQIgKF_TQc8WphgeXOrIIHL6t5KiQdy82JF3TH6e-bg9ymI",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query getChefProfile {\n  getChefProfile {\n    mobileNumber\n    countryCode\n    email\n    userName\n    }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefAcceptOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Success validaation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.chefAcceptOrder.success).to.eql(true);\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation chefAcceptOrder($chefProposalDto: ChefProposalDto!){\n  chefAcceptOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefRejectOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Success validaation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.chefRejectOrder.success).to.eql(true);\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation chefRejectOrder($chefProposalDto: ChefProposalDto!){\n  chefRejectOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SetChefToken",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation setChefPushToken($setChefPushToken: SetPushTokenDto!){\n  setChefPushToken(setChefPushToken: $setChefPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
-						"variables": "{\n    \"setChefPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefReadyOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Success validaation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.chefReadyOrder.success).to.eql(true);\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation chefReadyOrder($chefInputDto: ChefProposalDto!){\n  chefReadyOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefCancelOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Success validaation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.chefCancelOrder.success).to.eql(true);\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation chefCancelOrder($chefInputDto: ChefProposalDto!){\n  chefCancelOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6064a77510494261e1ba63d2\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefRateDriver [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Success validaation\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.chefRateDriver.success).to.eql(true);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation ChefRateDriver($input: ChefRateDriverInputDto!) {\n  chefRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
-						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5,\n      \"driverComment\": \"Good Chef by  User\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChefGetOrder",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query chefGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  chefGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
-						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "fe7782e4-ca0d-4de6-a635-4895860e802f",
+    "name": "tmt-nestjs-chef",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "OrderChat",
+      "item": [
+        {
+          "name": "Order Chat file upload",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access-token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/Users/abwbdallhmhmd/Documents/profile.png"
+                },
+                {
+                  "key": "orderId",
+                  "value": "1234566",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{main-server}}/v1/api/file-upload/order-chat",
+              "host": ["{{main-server}}"],
+              "path": ["v1", "api", "file-upload", "order-chat"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "chef Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();\r",
+              "    console.log(response.data.chefLogin.accessToken);\r",
+              "    pm.environment.set(\"access-Token\", response.data.chefLogin.accessToken);\r",
+              "    const response2 = pm.response.json();\r",
+              "     pm.environment.set(\"refreshToken\", response2.data.chefLogin.refreshToken);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation chefLogin($chefLoginDto: ChefLoginDto!){\n  chefLogin(chefLoginDto: $chefLoginDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+            "variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"99887766\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{auth-server-gql}}",
+          "host": ["{{auth-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Chef Logout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{refreshToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ChefLogout {\n  chefLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "{{auth-server-gql}}",
+          "host": ["{{auth-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetChefProfile",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjY4NmY1N2Y4N2Q4MjBmOGY0MTU4YzUiLCJzZXNzaW9uSWQiOiI1ZjY4NmY1NzMwZTRkZjEyZmIzNDFhMGUiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNDY3Njc2OCwiZXhwIjoxNjE0NzYzMTY4fQ.MEUCIQCFmzGglTToh-kA12B9JbuhSF4xBhpi656bVE2Tz1x5lQIgKF_TQc8WphgeXOrIIHL6t5KiQdy82JF3TH6e-bg9ymI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query getChefProfile {\n  getChefProfile {\n    mobileNumber\n    countryCode\n    email\n    userName\n    }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefAcceptOrder",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Success validaation\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.chefAcceptOrder.success).to.eql(true);\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation chefAcceptOrder($chefProposalDto: ChefProposalDto!){\n  chefAcceptOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
+            "variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefRejectOrder",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Success validaation\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.chefRejectOrder.success).to.eql(true);\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation chefRejectOrder($chefProposalDto: ChefProposalDto!){\n  chefRejectOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
+            "variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SetChefToken",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation setChefPushToken($setChefPushToken: SetPushTokenDto!){\n  setChefPushToken(setChefPushToken: $setChefPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+            "variables": "{\n    \"setChefPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{auth-server-gql}}",
+          "host": ["{{auth-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefReadyOrder",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Success validaation\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.chefReadyOrder.success).to.eql(true);\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation chefReadyOrder($chefInputDto: ChefProposalDto!){\n  chefReadyOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
+            "variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefCancelOrder",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Success validaation\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.chefCancelOrder.success).to.eql(true);\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation chefCancelOrder($chefInputDto: ChefProposalDto!){\n  chefCancelOrder(chefInputDto: $chefInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
+            "variables": "{\n    \"chefInputDto\": {\n        \"chefId\": \"6064a77510494261e1ba63d2\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefRateDriver [GQL]",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Success validaation\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.chefRateDriver.success).to.eql(true);\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access-Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ChefRateDriver($input: ChefRateDriverInputDto!) {\n  chefRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+            "variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5,\n      \"driverComment\": \"Good Chef by  User\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChefGetOrder",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query chefGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  chefGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+            "variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
+          }
+        },
+        "url": {
+          "raw": "{{main-server-gql}}",
+          "host": ["{{main-server-gql}}"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
