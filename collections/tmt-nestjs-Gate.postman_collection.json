@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c7115e49-abbe-49f0-9dd8-ec70fc81d9d3",
+		"_postman_id": "60c1297e-0aa0-4a65-b651-7a485c0de933",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -321,8 +321,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProductsBasedOnCategory($productFindInput:ProductFindInputDto!) {\n    getProductsBasedOnCategory(productFindInput:$productFindInput) {\n        _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"productFindInput\":{\n    \"categoryId\":\"{{catId}}\",\n    \"storeId\":\"{{id}}\"\n    }\n}"
+						"query": "query GetProductsBasedOnCategory($productFindInput:ProductFindInputDto!) {\n    getProductsBasedOnCategory(productFindInput:$productFindInput) {\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           nextPage\n           prevPage \n           page \n           perPage\n       }\n    }\n}",
+						"variables": "{\n    \"productFindInput\":{\n    \"categoryId\":\"{{catId}}\",\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
 					}
 				},
 				"url": {
@@ -556,8 +556,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\"\n    }\n}"
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           prevPage \n           nextPage\n           page \n           perPage \n       }\n    }\n}",
+						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\",\n        \"paginate\":{\"page\":1,\"perPage\":10}\n    }\n}"
 					}
 				},
 				"url": {

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dd4f68a0-aa66-4246-9dfb-eaeb654cf392",
+		"_postman_id": "20fe76c1-02b4-41f8-9d78-b59c20346819",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -239,6 +239,191 @@
 			]
 		},
 		{
+			"name": "OrderChat",
+			"item": [
+				{
+					"name": "Order Chat file upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/abwbdallhmhmd/Documents/profile.png"
+								},
+								{
+									"key": "orderId",
+									"value": "order-id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{main-server}}/v1/api/file-upload/order-chat",
+							"host": [
+								"{{main-server}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"file-upload",
+								"order-chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query driverOrderChatHistory($input: ChatHistoryInputDto!){\n  driverOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverSendOrderChatMessageToUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation driverSendOrderChatMessageToUser($input: SendChatInputDto!){\n  driverSendOrderChatMessageToUser(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverSendOrderChatMessageToStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation driverSendOrderChatMessageToStore($input: SendChatInputDto!){\n  driverSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverOrderChatWithUserSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription driverOrderChatWithUserSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithUserSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverOrderChatWithStoreSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription driverOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Captain Login [GQL]",
 			"event": [
 				{
@@ -283,8 +468,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}\n",
-						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"{{otp}}\"\n  }\n}"
+						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n    driverId\n  }\n}\n",
+						"variables": "{\n    \"driverLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -396,7 +581,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
+						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    driverId\n  }\n}\n",
 						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n    \n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
 					}
 				},
