@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "56b26fe4-644a-4326-8c45-dddce93dc305",
+		"_postman_id": "8a835cb5-5980-4711-beab-2ffe96557a38",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1172,8 +1172,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getCSUsersForReesha($csUsersForReeshaInputDto: CSUsersForReeshaInputDto) {\n  getCSUsersForReesha(csUsersForReeshaInputDto:$csUsersForReeshaInputDto) {\n      csusers{\n          _id\n          username\n          email\n          mobile\n          osversion\n          devicemodel\n          countryCode\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
-						"variables": "{\n    \"csUsersForReeshaInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+						"query": "query getCSUsersForReesha($csUsersForReeshaInputDto: CSUsersForReeshaInputDto!) {\n  getCSUsersForReesha(csUsersForReeshaInputDto:$csUsersForReeshaInputDto) {\n      csusers{\n          _id\n          username\n          email\n          mobile\n          osversion\n          devicemodel\n          countryCode\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n  }\n}\n",
+						"variables": "{\n    \"csUsersForReeshaInputDto\":{\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
 					}
 				},
 				"url": {
