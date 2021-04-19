@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20fe76c1-02b4-41f8-9d78-b59c20346819",
+		"_postman_id": "1fbf6d29-e353-496d-96df-46ef81f37d5f",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -287,7 +287,7 @@
 					"response": []
 				},
 				{
-					"name": "driverOrderChatHistory",
+					"name": "driverUserOrderChatHistory",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -304,7 +304,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query driverOrderChatHistory($input: ChatHistoryInputDto!){\n  driverOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"query": "query driverUserOrderChatHistory($input: ChatHistoryInputDto!){\n  driverUserOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
 							}
 						},
@@ -410,6 +410,37 @@
 							"graphql": {
 								"query": "subscription driverOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverChefOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query driverChefOrderChatHistory($input: ChatHistoryInputDto!){\n  driverChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
 							}
 						},
 						"url": {

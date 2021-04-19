@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "92c9b08d-6bb7-46bf-9831-d7eb0f4c97a1",
+		"_postman_id": "56b26fe4-644a-4326-8c45-dddce93dc305",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1143,6 +1143,37 @@
 					"graphql": {
 						"query": "query getStoreMastersForReesha($storeMasterChefFiltersInputDto: StoreMasterChefFiltersReeshaInputDto) {\n  getStoreMastersForReesha(storeMasterChefFiltersInputDto:$storeMasterChefFiltersInputDto) {\n      storeMasters {\n        _id\n        userName\n        fullName\n        mobileNumber\n        countryCode\n        email\n        storeCode\n        ownerId\n        isDeleted\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
 						"variables": "{\n    \"storeMasterChefFiltersInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get CSUsers For Reesha",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getCSUsersForReesha($csUsersForReeshaInputDto: CSUsersForReeshaInputDto) {\n  getCSUsersForReesha(csUsersForReeshaInputDto:$csUsersForReeshaInputDto) {\n      csusers{\n          _id\n          username\n          email\n          mobile\n          osversion\n          devicemodel\n          countryCode\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
+						"variables": "{\n    \"csUsersForReeshaInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
 					}
 				},
 				"url": {
