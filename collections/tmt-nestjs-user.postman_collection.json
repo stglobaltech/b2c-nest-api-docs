@@ -1794,6 +1794,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "UserActiveOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlNmYwODBiYjM4MjFkZDJlMDZjOTgiLCJzZXNzaW9uSWQiOiI2MDdlNmYwZWIzMWFjYWQ2NTEwOGU3OTAiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxODkxNzYzNCwiZXhwIjoxNjE5MDA0MDM0fQ.MEYCIQDP288CZUhhOHGdhuivrJTAN58oNU_8lsJ7iS_t7JINKwIhANWhIX8zraffrjJOu-_xRH02PYLFRkKgiVZycOiJ2Zdn",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query userActiveOrders{\n  userActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
