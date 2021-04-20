@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "65d3ab88-5e27-4db0-a5f3-2645cfb54504",
+		"_postman_id": "c226b9a9-61e1-409b-82d4-b4df16431843",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -367,7 +367,192 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Discount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " mutation CreateDiscount($discountCreateInput:DiscountCreateInput!)\n    {\n createDiscount(\ndiscountCreateInput: $discountCreateInput\n){\n    success\n    message\n}\n}",
+						"variables": "{\n    \"discountCreateInput\": {\n        \"name\": \"Discount1\",\n        \"arName\": \"ArabicDiscount1\",\n        \"displayName\": {\n            \"en\": \"engDisplayName\",\n            \"ar\": \"arDisplayName\"\n        },\n        \"startsOn\": \"startdate\",\n        \"endsOn\": \"enddate\",\n        \"category\": \"OFFER\",\n        \"isConditional\": false,\n        \"restaurant\": {\n            \"name\": \"restaurantName\",\n            \"_id\": \"478324\",\n            \"geoHash\": {\n                \"coordinates\": [\n                    3,\n                    3,\n                    3\n                ],\n                \"type\": \"Point\"\n            }\n        },\n        \"discountValue\": \"243\",\n        \"discountIn\": \"Purchase\",\n        \"discountFor\": \"users\",\n        \"discountType\": \"instant\",\n        \"discountToEntities\": {\n            \"users\": {\n                \"maxOrdersCount\": \"32\"\n            }\n        },\n        \"serviceArea\": [\n            \"geoHashes...\"\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Dicounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetDiscounts($paginationInput:PaginationInputDto!)\n    {\n getDiscounts(\npaginationInput: $paginationInput\n){\n    discounts{\n        _id \nname \ndisplayName {\n    en\n    ar\n}\npromocodeSpecificOfferFor \narName \nstartsOn \nendsOn \ncategory \nisConditional \nrestaurant {\n    name\n}\ndiscountValue \ndiscountIn \ntypeOfPay \ndiscountFor \ndiscountType \nisDeleted \n    }\n    pagination{\nhasPrevPage \nhasNextPage \nprevPage \nnextPage \nperPage \npage \n    }\n}\n}",
+						"variables": "{\n\"paginationInput\":{\n    \"page\":1,\n    \"perPage\":10\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Discounts for a particualar user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetDiscountsForUser($userDiscountDetail:UserDetailForDiscount!)\n    {\n getDiscountsForUser(\nuserDiscountDetail: $userDiscountDetail\n){\n    store{\n        name\n    }\n        product{\n        name\n    }    productCategories{\n        name\n    }    users{\n        name\n    }    geography{\n        name\n    }    productSpecial{\n        name\n    }\n}\n}",
+						"variables": "{\n    \"userDiscountDetail\":{\n        \"_id\":\"98\",\n        \"serviceArea\":\"jlkdfldkj\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Discount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " mutation DeleteDiscount($discountID:String!)\n    {\n deleteDiscount(\ndiscountID: $discountID\n){\n \n success\n message\n}}",
+						"variables": "{\n    \"discountID\":\"60534a5a4e27776e63581f1a\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Particular Discounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetParticularDiscounts($getParticularDiscountsInput:AdvancedSearchInputDto!)\n    {\n getParticularDiscounts(\ngetParticularDiscountsInput: $getParticularDiscountsInput\n){\n discounts{\nname\n }\n}\n    }",
+						"variables": "{\n    \"getParticularDiscountsInput\":{\n        \"isConditional\":true,\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advanced Search Discounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetAdvancedSearchDiscounts($advancedSearchInput:AdvancedSearchInputDto!)\n    {\n getAdvancedSearchDiscounts(\nadvancedSearchInput: $advancedSearchInput\n){\n discounts{\nname\n }\n}\n    }",
+						"variables": "{\n    \"advancedSearchInput\":{\n        \"isConditional\":false,\n      \"discountIn\": \"Purchase\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
