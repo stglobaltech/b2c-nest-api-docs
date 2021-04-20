@@ -1,17 +1,232 @@
 {
 	"info": {
-		"_postman_id": "936ea6e1-9993-46a6-96ac-70711cf4d502",
+		"_postman_id": "e7bb71db-793b-4a66-a897-3080abb8ea63",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "OrderChat",
+			"item": [
+				{
+					"name": "Order Chat file upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/abwbdallhmhmd/Documents/profile.png"
+								},
+								{
+									"key": "orderId",
+									"value": "orderID",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{main-server}}/v1/api/file-upload/order-chat",
+							"host": [
+								"{{main-server}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"file-upload",
+								"order-chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserChefOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query userChefOrderChatHistory($input: ChatHistoryInputDto!){\n  userChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserSendOrderChatMessageToDriver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation userSendOrderChatMessageToDriver($input: SendChatInputDto!){\n  userSendOrderChatMessageToDriver(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userSendOrderChatMessageToStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation userSendOrderChatMessageToStore($input: SendChatInputDto!){\n  userSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userOrderChatWithDriverSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription userOrderChatWithDriverSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithDriverSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userOrderChatWithStoreSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription userOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userDriverOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query userDriverOrderChatHistory($input: ChatHistoryInputDto!){\n  userDriverOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "User Login [GQL]",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f37277ad-a528-43cc-8baf-1ee829e2a8b9",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"\r",
@@ -20,7 +235,7 @@
 							"    console.log(\"Api response = \",json.data.userLogin.success);\r",
 							"    //pm.expect(json.data.userLogin.success).to.be.true;\r",
 							"    if(json.data.userLogin.success == true) {\r",
-							"        pm.environment.set(\"token\",json.data.userLogin.accessToken);\r",
+							"        pm.environment.set(\"access-Token\",json.data.userLogin.accessToken);\r",
 							"        pm.environment.set(\"refreshToken\", json.data.userLogin.refreshToken);\r",
 							"    }\r",
 							"    console.log(\"token = \", pm.environment.get(\"token\"));    \r",
@@ -42,8 +257,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"{{otp}}\"\n  }\n}"
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    userId\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"variables": "{\n    \"userLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
 					},
 					"options": {
 						"raw": {
@@ -66,7 +281,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6b8062cf-bd31-4fbf-9fec-bde70583125b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -98,9 +312,6 @@
 					"graphql": {
 						"query": "mutation CreateEntity($entityInput: EntityCreateInputDto!) {\n  createEntity(entityInput: $entityInput) {\n    name {\n      ar\n      en\n    }\n    subEntityIds\n    type\n    adminStoreId\n    entityCategories\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n    dataAPIQuery\n    cityIds\n  }\n}\n",
 						"variables": "{\n  \"entityInput\": {\n     \"name\": { \"ar\": \"مطاعم1\", \"en\": \"RESTAURANTS1\" },\n      \"subEntityIds\": [],\n      \"type\": \"RESTAURANT\",\n      \"adminStoreId\": \"5fa94319bdfe015122f09ffc\",\n      \"entityCategories\": [],\n      \"withoutDelivery\": true,\n      \"iconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d3aab20-2344-11eb-a74a-275df72bee34.png\",\n        \"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0ae5c80-2341-11eb-9b7d-cdb409930e55.png\"},\n      \"fullWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2e28b4a0-2344-11eb-9b7d-cdb409930e55.png\",\"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a1142330-2341-11eb-a74a-275df72bee34.png\"},\n      \"halfWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d98f7c0-2344-11eb-a74a-275df72bee34.png\", \"en\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0eb1760-2341-11eb-9b7d-cdb409930e55.png\" },\n      \"uiType\": 0,\n      \"sortIndex\": 1,\n      \"status\": \"ACTIVE\",\n      \"dataAPIQuery\": \"dataAPIQuery\",\n      \"cityIds\": []\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -118,7 +329,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f3beeb50-5b59-4c7e-80f1-75012854f612",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"New Access Token\",function(){\r",
@@ -210,7 +420,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fdf84919-66ff-47d1-9b29-615b0f07be61",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -261,7 +470,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "77f1953c-b9ae-49d5-aae1-7294444b2736",
 						"exec": [
 							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
 							"pm.variables.set(\"email\",email);"
@@ -272,7 +480,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bcf63f59-7f9f-46a4-864c-d8222fe7e0ac",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Signup\", function(){\r",
@@ -296,8 +503,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n     \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobileNo}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\"\n  }\n}"
+						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}\n",
+						"variables": "{\n  \"userSignupInputDto\": {\n        \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobile}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\",\n        \"status\":\"BUSY\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -320,7 +527,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a6255ced-4c4e-4cbb-898b-4f13ed9d7c22",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -342,10 +548,9 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "df390dbf-92b9-40dd-92d8-ae07a8ae9fea",
 						"exec": [
-							"//pm.variables.set(\"countryCode\",\"IND\");\r",
-							"//pm.variables.set(\"mobileNo\",\"500012350\");"
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));"
 						],
 						"type": "text/javascript"
 					}
@@ -358,7 +563,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
-						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobileNo}}\"\n  }\n}"
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
 					},
 					"options": {
 						"raw": {
@@ -381,7 +586,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "eb352b7f-8364-4f19-84fe-3e74ec635b5f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -409,9 +613,6 @@
 					"graphql": {
 						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
 						"variables": "{\n  \"id\": \"5f62f194fee6c61ea0ee916f\"\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -429,7 +630,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "51288772-e7f9-439f-be24-03f20f860b28",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -457,9 +657,6 @@
 					"graphql": {
 						"query": "query GetAllEntity {\n  getAllEntity {\n    id\n    name {\n      ar\n      en\n    }\n    type\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -477,7 +674,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "636a3913-2ce1-4cb5-b988-811d70181441",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -503,11 +699,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "query GetStores($input: StoreFindInputDto!){\n  getStoresForUser(input:$input) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
@@ -525,7 +718,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8bd704b0-4737-4b8b-9b36-4f4b4dbb4407",
 						"exec": [
 							"/*\r",
 							"pm.test(\"Your test name\", function () {\r",
@@ -576,7 +768,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0bf69a77-7c63-412e-b83f-6043928dafae",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -625,7 +816,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "93b98b36-6705-4904-8212-6cc75789c497",
 						"exec": [
 							"var json = pm.response.json();\r",
 							"pm.test(\"Verify User Profile\",function(){\r",
@@ -670,13 +860,26 @@
 		},
 		{
 			"name": "Home Business Entity Group List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entities {\n      name {\n        ar\n        en\n      }\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
+						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n      subEntityIds\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -691,13 +894,26 @@
 		},
 		{
 			"name": "Store Product Listing [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -707,8 +923,867 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
-						"variables": "{\n  \"userStoreProductsFindInputDto\": {\n    \"storeId\": \"\",\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 10\n    }\n  }\n}"
+						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName{en \n      ar}\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
+						"variables": "{\n  \"userStoreProductsFindInputDto\": {\n    \"storeId\": \"5f588fc268800866e8c4cf4e\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 10\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product to cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
+						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"5fc8cbc9a9eb6412fc0489cf\",\n        \"product\": {\n            \"productId\": \"5fc8cc31a9eb6412fc0489d2\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Finatttl testing\",\n                \"ar\": \"Finalttt testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n         price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
+						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApplyPromoCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"promoid\",jsonData.data.applyPromoCode.id);\r",
+							"    console.log(\"Promocode name\", jsonData.data.applyPromoCode.promoCode);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ApplyPromoCode($promoCodeInput: PromoCodeInput!){\napplyPromoCode(promoCodeInput: $promoCodeInput) { \n    id\n    promoCode\n    expiresAt\n  }\n}\n",
+						"variables": "{\n    \"promoCodeInput\": {\n        \"cartId\": \"5fc4bcd564fefb41568814ac\",\n        \"promoCode\": \"happy friday\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveProductFromCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation \n  RemoveProductFromCart($removeInput:RemoveCartProductInput!) {\n      removeProductFromCart(removeInput:$removeInput){\n        totalPrice\n        totalQuotedPrice\n  }\n}\n",
+						"variables": "{\n    \"removeInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"productId\": \"5fcdfb37215cf75b8151d1ff\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCartMessage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const jsondata = pm.response.json();\r",
+							"console.log(jsondata.data.updateCartMessage.status);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateCartMessage($messageInput: UpdateCartMessageInput!) {\n    updateCartMessage(messageInput: $messageInput) {\n    status\n  }\n}\n",
+						"variables": "{\n    \"messageInput\": {\n    \"cartId\": \"5fc4bcd564fefb41568814ac\",\n    \"message\": \"msg updated\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserOrderCancelReasons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmYzMTc1NTk5YjViYjNkYTIyN2ZkYzUiLCJzZXNzaW9uSWQiOiI1ZmYzMTc1NTdjNDhjYmJiNmY1MGE1Y2QiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwOTc2Njc0MSwiZXhwIjoxNjA5ODUzMTQxfQ.MEQCIHs-HBBPN18AlP2MLcIjE5OxX_FMzu6K2l7MYaxIti0QAiAM-7XhEAkEk13xMVcFCHobWwt4EKz1pPROm0HPi1Kfng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sub Entities",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fed6e1abcea7402e12d5b94\"]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlaceOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cancelOrder($cancelOrderInput:CancelReadyOrderInputDto!) {\n  cancelOrder(cancelOrderInput: $cancelOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"600145f55e42a17a3ba3313f\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateOrder($updateOrderInput: UpdateReadyOrderInputDto!) {\n  updateOrder(updateOrderInput: $updateOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
+						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"5fff4e0f5e42a17a3ba3313a\",\n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsersOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrders($orderFindInputDto:OrderFindInputDto!) {\n  getUserOrders(orderFindInputDto:$orderFindInputDto) {\n        orders{\n            _id\n        }\n        pagination{\n            page\n        }\n  }\n}\n",
+						"variables": "{\n    \"orderFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 4\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSingleOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n        orderStatus\n        cartId\n        _id\n\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"600145f55e42a17a3ba3313f\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart Product quantity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCartQuantity($input:UpdateProductQuantityInput!) {\n  updateCartProductQuantity(quantityUpdateInput: $input) {\n    totalPrice\n    totalQuotedPrice\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"productId\": \"5ffd87188c7db253cdc2a3f4\",\n    \"quantity\":3\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear cart by Entity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearCartByEntity($id:String!) {\n  deleteCartByEntity(entityId: $id) {\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear cart by id [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearCartById($id:String!) {\n  deleteCartById(cartId: $id) {\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear promocode [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearPromocode($cartId: String!) {\n  clearPromoCode(cartId: $cartId) {\n    status\n  }\n}",
+						"variables": "{\n  \"cartId\": \"601be50ad490dc1c1ebb5d73\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserLogout {\n  userLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetUserPushToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setUserPushToken($setUserPushToken: SetPushTokenDto!){\n  setUserPushToken(setUserPushToken: $setUserPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setUserPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserRateDriver [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.userRateDriver.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserRateDriver($input: UserRateDriverInputDto!) {\n  userRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5.0,\n      \"driverComment\": \"Good Driver by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserRateChef [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.userRateChef.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserRateChef($input: UserRateChefInputDto!) {\n  userRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserGetOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query userGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  userGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -725,7 +1800,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "e8f77e31-b4c8-4b5a-a067-076f93496fa7",
 				"type": "text/javascript",
 				"exec": [
 					"pm.variables.set(\"countryCode\",\"IND\");",
@@ -736,13 +1810,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a8f7df7a-c418-4524-849d-a27687efdd22",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "44faff0b-02b5-4264-b493-6712b385b5cf",
+		"_postman_id": "60c1297e-0aa0-4a65-b651-7a485c0de933",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e2877fb7-ae5f-4e0e-92d9-95b15d8a03d4",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -41,8 +40,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        status \n        message\n    }\n}",
-						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"5f7ac2772bf16e5989802e7f\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -60,7 +59,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fd10b3ba-5fb8-4bc9-b764-7aa7d40f6b82",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -91,14 +89,14 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"categoryEditInput\":{\n        \"storeId\": \"{{id}}\",\n        \"_id\":\"{{catId}}\",\n        \"categoryName\":\"dhoni123\",\n        \"arCategoryName\":\"ijinj\"\n    }\n}"
+						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"categoryEditInput\": {\n        \"storeId\": \"{{id}}\",\n        \"_id\": \"{{catId}}\",\n        \"name\": {\n            \"en\": \"dhoni123\",\n            \"ar\": \"ijinj\"\n        }\n    }\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -110,7 +108,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f465c6bf-2eaa-45ac-9437-d8d01a8a080c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -140,7 +137,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            categoryName\n            arCategoryName\n            isEnable\n            _id\n        }\n    }\n}",
+						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            name{\n                en\n                ar\n            }\n            isEnable\n            _id\n        }\n    }\n}",
 						"variables": "{\n    \"categorySearchInput\":{\n        \"storeId\":\"{{id}}\",\n        \"categoryKey\":\"a\"\n    }\n}"
 					}
 				},
@@ -159,7 +156,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a732f82a-6c7d-4859-807b-b2d9abc2bc1f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -189,14 +185,14 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
+						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           name{\n               en\n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
 						"variables": "{\n    \"storeId\":\"{{id}}\"\n}"
 					}
 				},
 				"url": {
-					"raw": "{{gql-main-server}}",
+					"raw": "{{main-server-gql}}",
 					"host": [
-						"{{gql-main-server}}"
+						"{{main-server-gql}}"
 					]
 				}
 			},
@@ -208,7 +204,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bce9f3f0-b848-4270-824d-dccd6986b698",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -242,8 +237,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":\"ed\",\n        \"arProductName\":\"ola\",\n        \"description\":\"asas\",\n        \"arDescription\":\"asas\",\n        \"price\":0,\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryIds\":\"{{catId}}\",\n        \"picture\":\"asas\"\n    }\n}"
+						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":{\"en\":\"ed\",\n        \"ar\":\"ola\"},\n        \"description\":{\"en\":\"asas\",\n        \"ar\":\"asas\"},\n        \"price\":{\"price\":0,\"basePrice\":23,\"vatPrice\":23},\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryId\":\"{{catId}}\",\n        \"picture\":\"asas\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -273,11 +268,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name\n        arName\n       iconUrl\n    }\n}",
+						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name{\n            en\n            ar\n        }\n       iconUrl\n    }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -295,7 +287,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "8405cae5-0eb6-4e6f-99bf-e1e42bbc0bc1",
 						"exec": [
 							""
 						],
@@ -305,7 +296,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0d61260b-4afe-4857-985a-700ddf06a8af",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -331,8 +321,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProductsBasedOnCategory($categoryId:String!) {\n    getProductsBasedOnCategory(categoryId:$categoryId) {\n        _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"categoryId\":\"{{catId}}\"\n}"
+						"query": "query GetProductsBasedOnCategory($productFindInput:ProductFindInputDto!) {\n    getProductsBasedOnCategory(productFindInput:$productFindInput) {\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           nextPage\n           prevPage \n           page \n           perPage\n       }\n    }\n}",
+						"variables": "{\n    \"productFindInput\":{\n    \"categoryId\":\"{{catId}}\",\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
 					}
 				},
 				"url": {
@@ -350,7 +340,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "654a8c66-ed16-44ea-95e3-f60b6f2f6e16",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -377,8 +366,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           categoryName\n           arCategoryName\n           isEnable\n           _id\n       }\n    }\n}",
-						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"isEnable\":true\n    }\n}"
+						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           name{\n               en \n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
+						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"isEnable\":false,\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -396,7 +385,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f9aa198c-61b5-49f7-a03f-914b22113a73",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -429,11 +417,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  status\n  message\n    }\n}",
+						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  success\n  message{\n      en \n      ar\n  }\n    }\n}",
 						"variables": "{\n  \"storeEntityEditInput\": {\n    \"storeId\": \"{{id}}\", \n    \"entityIds\":[\"5f86c4ffb2d623678a366ce0\"]\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -451,7 +436,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "12e5bca2-d63c-413a-9284-96b6342b5511",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -482,8 +466,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation deleteProduct($productId:String!){\n    deleteProduct(productId:$productId){\n        status\n        message\n    }\n}",
-						"variables": "{\n    \"productId\":\"{{Productid}}\"\n}"
+						"query": "mutation deleteProduct($productDeleteInput:ProductDeleteInputDto!){\n    deleteProduct(productDeleteInput:$productDeleteInput){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"productDeleteInput\":{\n    \"productId\":\"{{Productid}}\",\n    \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -501,7 +485,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "558a0867-957a-40c2-9128-daf20427a70e",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"console.log(response.data.gateLogin.accessToken);\r",
@@ -529,10 +512,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation GateLogin($gateLoginDto: GateLoginDto!) {\n  gateLogin(gateLoginDto: $gateLoginDto) {\n    success\n    accessToken\n    refreshToken\n    userId\n    }\n}",
-						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"{{emailid}}\",\n    \"password\": \"Samdhiva@12\",\n    \"appType\": \"GATE\",\n    \"deviceType\": \"WEB\"\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"{{emailid}}\",\n    \"password\": \"Samdhiva@12\",\n    \"deviceType\": \"WEB\"\n  }\n}"
 					}
 				},
 				"url": {
@@ -550,7 +530,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d3a42bbc-46a9-4c52-9e85-e7998c5b5600",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -577,8 +556,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\"\n    }\n}"
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           prevPage \n           nextPage\n           page \n           perPage \n       }\n    }\n}",
+						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"a\",\n        \"paginate\":{\"page\":1,\"perPage\":10}\n    }\n}"
 					}
 				},
 				"url": {
@@ -596,7 +575,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d79ab857-3f11-46d0-b348-78e05c994011",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -614,7 +592,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "af94f95c-92ba-417e-a18e-706444d4581c",
 						"exec": [
 							"let str = '';\r",
 							"const key = 'abcdefgh1234567';\r",
@@ -635,8 +612,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message\n    accessToken\n    refreshToken\n    userId\n  }\n}",
-						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"game04\",\n        \"email\": \"{{emailid}}\",\n        \"password\": \"Samdhiva@12\",\n        \"appType\": \"GATE\",\n        \"countryCode\": \"IND\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"7807807\",\n        \"iBan\": \"1234567\",\n        \"restuarantNameEn\": \"GameRestaurent\"\n    }\n}\n"
+						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message{\n        en\n        ar\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}",
+						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"game04\",\n        \"email\": \"{{emailid}}\",\n        \"password\": \"Samdhiva@12\",\n        \"appType\": \"GATE\",\n        \"countryCode\": \"IND\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"7807807\",\n        \"iBan\": \"1234567\",\n        \"restuarantName\": {\n            \"en\": \"GameRestaurent\",\n            \"ar\": \"GameRestaurent\"\n        }\n    }\n}"
 					},
 					"options": {
 						"raw": {
@@ -697,7 +674,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4ec15b08-23e6-49c4-b38e-c138725ff834",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -731,8 +707,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    status\n    message\n  }\n}\n",
-						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeId\": \"{{id}}\",\n    \"categoryName\": \"Cake123\",\n    \"arCategoryName\": \"ArCategory1\",\n    \"isEnable\": true\n  }\n}"
+						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
+						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeCode\": \"{{id}}\",\n    \"name\": {\"en\":\"Cake123ww\",\n    \"ar\": \"ArCategory1ww\"},\n    \"isEnable\": true\n  }\n}"
 					}
 				},
 				"url": {
@@ -752,7 +728,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -762,8 +738,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n    }\n}",
-						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"5f3bee2d66a6530db2e5a4c3\",\n        \"productKey\":\"a\"\n    }\n}"
+						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName{en\n       ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       storeCodes\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"{{id}}\",\n        \"productKey\":\"\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -781,7 +757,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "640000d1-8d3d-4136-87b4-c11698160315",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
@@ -811,11 +786,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName\n    arProductName\n    description\n    arDescription\n    maxQuantity\n    price\n    payType\n    picture\n    isAvailable\n    }\n}",
-						"variables": "{\n    \"productCreateInput\":{\n        \"productName\":\"Final testing\",\n        \"arProductName\":\"Final Testing\",\n        \"description\":\"will be nice\",\n        \"arDescription\":\"will be nice\",\n        \"price\":20,\n        \"maxQuantity\":23,\n        \"payType\":\"any\",\n        \"picture\":\"asas\",\n        \"isAvailable\":true,\n        \"categoryIds\":\"{{catId}}\",\n        \"storeCode\":\"{{id}}\",\n        \"ownerId\":\"{{userId}}\"\n    }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n    }\n}",
+						"variables": "{\n    \"productCreateInput\": {\n        \"productName\": {\n            \"en\": \"Final testing\",\n            \"ar\": \"Final Testing\"\n        },\n        \"description\": {\n            \"en\": \"will be nice\",\n            \"ar\": \"will be nice\"\n        },\n        \"price\": {\n            \"price\": 20,\n            \"basePrice\":30,\n            \"vatPrice\":23\n        },\n        \"maxQuantity\": 23,\n        \"payType\": \"any\",\n        \"picture\": \"asas\",\n        \"isAvailable\": true,\n        \"categoryId\": \"{{catId}}\",\n        \"parentStoreCode\": \"{{id}}\",\n        \"ownerId\": \"{{userId}}\",\n        \"originStoreCode\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -833,7 +805,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "59c2b473-aedd-41d7-a969-8dfd029616eb",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -861,8 +832,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
-						"variables": "{\n    \"productPriceEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"price\":0\n        \n    }\n}"
+						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n     success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n}\n}",
+						"variables": "{\n    \"productPriceEditInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"price\": {\n            \"price\": 10,\n            \"basePrice\": 10,\n            \"vatPrice\": 34\n        },\n        \"storeId\": \"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -880,7 +851,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "44565456-68a1-475a-8853-e67a9f741fbe",
 						"exec": [
 							""
 						],
@@ -890,7 +860,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "97690de0-cf3d-46ad-81d6-512b457e6837",
 						"exec": [
 							"const response = pm.response.json();\r",
 							"pm.environment.set(\"id\", response.data.getStore._id);\r",
@@ -917,7 +886,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name\n    ownerId\n  }\n}\n",
+						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name{\n        en\n        ar\n    }\n    ownerId\n  }\n}\n",
 						"variables": "{\n  \"ownerId\": \"{{userId}}\"\n}"
 					}
 				},
@@ -936,7 +905,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7f92268f-939e-449a-aee3-ddc3ca7ec4ac",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -963,8 +931,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
-						"variables": "{\n    \"productAvailabilityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"isAvailable\":false\n    }\n}"
+						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName{\n            en\n            ar \n        }\n       description{\n           en \n           ar \n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productAvailabilityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"isAvailable\":false,\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -982,7 +950,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fac629f4-061b-4907-b69f-39afe6fd9102",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1008,7 +975,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n   }\n}",
+						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName{\n           en\n           ar\n       }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n   }\n}",
 						"variables": "{\n    \"productId\":\"{{Productid}}\"\n}"
 					}
 				},
@@ -1039,11 +1006,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName\n     categoryIds\n    }\n}",
-						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":\"nes\",\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName{\n         en \n         ar \n     }\n     categoryIds\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":{\"en\":\"nes\",\"ar\":\"nes\"},\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
 					}
 				},
 				"url": {
@@ -1061,7 +1025,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b58f3bcb-4cce-4b1f-a4ce-af2855d16905",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1088,8 +1051,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n      _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n}\n}",
-						"variables": "{\n    \"productQuantityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"maxQuantity\":12\n    }\n}"
+						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n}\n}",
+						"variables": "{\n    \"productQuantityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"maxQuantity\":12,\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1107,7 +1070,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "91870748-f9cf-4376-9e79-ac1443df3649",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1133,11 +1095,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"recordsPerPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{\n          en\n          ar\n      }\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
@@ -1155,7 +1114,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "279d3203-973e-4be8-86a5-e4ee8f3b3c56",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -1183,9 +1141,6 @@
 					"graphql": {
 						"query": "mutation updateStoreAvailability($storeAvailabilityEditInput: StoreAvailabilityEditInputDto!) {\n  updateStoreAvailability(storeAvailabilityEditInput: $storeAvailabilityEditInput) {\n  _id\n    }\n}",
 						"variables": "{\n    \"storeAvailabilityEditInput\":{\n    \"storeId\": \"{{id}}\",\n    \"isAvailable\": true\n}\n}"
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -1215,11 +1170,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName\n       arProductName\n       description\n       arDescription\n       price\n       payType\n       maxQuantity\n       categoryIds\n       storeCode\n       ownerId\n       isAvailable\n      }\n    }\n}",
-						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"recordsPerPage\":10\n    }\n}\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName{en\n        ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n      }\n    }\n}",
+						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}\n}"
 					}
 				},
 				"url": {
@@ -1237,7 +1189,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6b5d24cd-508b-4d9e-b662-cf11cd98e9d5",
 						"exec": [
 							"pm.test(\"Your test name\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1267,11 +1218,1436 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       status\n       message\n    }\n}",
-						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"3324\",\n        \"contactNumber\":\"9876543226\",\n        \"countryCode\":\"IND\"\n    }\n}"
-					},
-					"options": {
-						"graphql": {}
+						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"23,hajj\",\n        \"contactNumber\":\"9876543226\",\n        \"countryCode\":\"IND\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n      success\n      storeTiming{\n        storeId,\n        sun{\n        startHour,startMinute,endHour,endMinute\n        }\n        dateRange{\n        startDate\n        endDate\n        shifts {startHour,startMinute,endHour,endMinute}\n        }\n    }\n    }\n}",
+						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"{{id}}\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2020-11-14T00:00:00.000\",\n                \"endDate\": \"2020-11-16T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    success,\n    storeTiming{\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n}",
+						"variables": "{\n  \"storeId\": \"{{id}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAvailableStoreIdList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation getAvailableStoreIdList($datePaginate: StoreTimePaginateInputDTo!) {\n  getAvailableStoreIdList(datePaginate: $datePaginate) {\n  availableStoreIds\n}\n}",
+						"variables": "{\n    \"datePaginate\": {\n        \"date\": \"2020-11-15T12:10:00.000\",\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Polygon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query findPolygon($storeId: String!){\n  findPolygon(storeId: $storeId) {\n    polygon {\n      coordinates\n      type\n    }\n    GeoPolygon{\n      features{\n        geometry{\n          coordinates\n          type\n        }\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"storeId\": \"{{id}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateStoreGeohash",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateStoreGeohash($GeoJsonInput: GeoJsonDto!) {\n  updateStoreGeohash(geoJsonInput:$GeoJsonInput) {\n    success\n    message{\n      en\n      ar\n    }\n  }\n}",
+						"variables": "\n{\n  \"GeoJsonInput\": {\n\t\"type\": \"POLYGON\",\n\t\"storeId\": \"{{id}}\",\n\t\"polygon\": {\n\t\t\"type\": \"POLYGON\",\n\t\t\"coordinates\": [\n\t\t\t[\n\t\t\t\t[80.14345328212892, 13.117950800041665],\n\t\t\t\t[80.13683873528791, 13.11766140769328],\n\t\t\t\t[80.1302774911996, 13.116795562699236],\n\t\t\t\t[80.12382242195775, 13.11536024237069],\n\t\t\t\t[80.14345328212892, 13.117950800041665]\n      ]\n    ]\n\t},\n\t\"geohash\": {\n\t\t\"precision\": 7,\n\t\t\"hashMode\": \"intersect\",\n\t\t\"minIntersect\": 0,\n\t\t\"allowDuplicates\": true,\n\t\t\"customWriter\": null\n\t},\n\t\"geoPoint\": \"DELIVERY_POINT\"\n}\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product options",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddProductOptions($productOptionsInput:ProductOptionsInputDto!){\n    addProductOptions(productOptionsInput:$productOptionsInput){\n   success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n           options {\n          _id\n          isMandatory\n          minimumValues\n          maximumValues\n          mandatoryValues\n          isMandatory\n          picture\n          name {\n            en\n            ar\n          }\n          values {\n            _id\n            isDisabled\n            picture\n            name {\n              ar\n              en\n            }\n            price {\n              basePrice\n              price\n              vatPrice\n              vatPercentage\n              offerPrice\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n          }\n        }\n     }\n    }\n}",
+						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"name\": {\n            \"en\": \"lastu\",\n            \"ar\": \"arabic1212\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 0,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit product option",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductOption($productEditOptionInput:ProductEditOptionInputDto!){\n    editProductOption(productEditOptionInput:$productEditOptionInput){\n    success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n      options {\n          _id\n          isMandatory\n          minimumValues\n          maximumValues\n          mandatoryValues\n          isMandatory\n          picture\n          name {\n            en\n            ar\n          }\n          values {\n            _id\n            isDisabled\n            picture\n            name {\n              ar\n              en\n            }\n            price {\n              basePrice\n              price\n              vatPrice\n              vatPercentage\n              offerPrice\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n          }\n        }\n     }\n    }\n}",
+						"variables": "{\n    \"productEditOptionInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"optionId\":\"60407494e5ae337232df073f\",\n        \"name\": {\n            \"en\":\"edited  again\",\n            \"ar\":\"arabic\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"minimumValues\": 0,\n        \"maximumValues\": 10,\n        \"mandatoryValues\": [\n            \"String\"\n        ],\n        \"picture\": \"String\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product option",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductOption($productOptionsInput:ProductOptionsDeleteInputDto!){\n    deleteProductOption(productOptionsInput:$productOptionsInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n          options {\n          _id\n          isMandatory\n          minimumValues\n          maximumValues\n          mandatoryValues\n          isMandatory\n          picture\n          name {\n            en\n            ar\n          }\n          values {\n            _id\n            isDisabled\n            picture\n            name {\n              ar\n              en\n            }\n            price {\n              basePrice\n              price\n              vatPrice\n              vatPercentage\n              offerPrice\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n          }\n        }\n     }\n    }\n}",
+						"variables": "{\n    \"productOptionsInput\": {\n        \"productId\": \"60374882a8dc086e36135f4e\",\n        \"optionId\":\"60374a47a8dc086e36135f68\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product values",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductValues($productValuesInput:ProductValuesInputDto!){\n    addProductValues(productValuesInput:$productValuesInput){\n       success\n      message {\n        en\n        ar\n      }\n      isNewProduct\n      oldStoreCode\n      product {\n        options {\n          _id\n          isMandatory\n          minimumValues\n          maximumValues\n          mandatoryValues\n          isMandatory\n          picture\n          name {\n            en\n            ar\n          }\n          values {\n            _id\n            isDisabled\n            picture\n            name {\n              ar\n              en\n            }\n            price {\n              basePrice\n              price\n              vatPrice\n              vatPercentage\n              offerPrice\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n          }\n        }\n      }\n    }\n}",
+						"variables": "{\n    \"productValuesInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"optionId\": \"60407494e5ae337232df073f\",\n        \"storeId\":\"{{id}}\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"picture\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calories\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit product values",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductValues($productValuesInput:ProductValuesInputDto!){\n    editProductValues(productValuesInput:$productValuesInput){\n     success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n          options {\n          _id\n          isMandatory\n          minimumValues\n          maximumValues\n          mandatoryValues\n          isMandatory\n          picture\n          name {\n            en\n            ar\n          }\n          values {\n            _id\n            isDisabled\n            picture\n            name {\n              ar\n              en\n            }\n            price {\n              basePrice\n              price\n              vatPrice\n              vatPercentage\n              offerPrice\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n          }\n        }\n     }\n    }\n}",
+						"variables": "{\n    \"productValuesInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"optionId\": \"604087f1ee294f0f8f9ae5e9\",\n        \"valuesData\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 1,\n                \"basePrice\": 1,\n                \"vatPrice\": 1,\n                \"offerPrice\": 1,\n                \"vatPercentage\": 1\n            },\n            \"isDisabled\": false,\n            \"picture\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calories\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product Meals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMeals($productMealsInput:ProductMealsInputDto!){\n    addProductMeals(productMealsInput:$productMealsInput){\n    success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n                 meals {\n          types {\n            name {\n              en\n              ar\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n            _id\n            picture\n            price {\n              basePrice\n              vatPrice\n              vatPercentage\n              offerPrice\n              price\n            }\n            isDisabled\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n  \n     }\n    }\n}",
+						"variables": "{\n    \"productMealsInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"isMandatory\": false,\n        \"types\": {\n            \"name\": {\n                \"en\": \"type\",\n                \"ar\": \"ar\"\n            },\n            \"price\": {\n                \"price\": 0,\n                \"basePrice\": 0,\n                \"vatPrice\": 0,\n                \"offerPrice\": 0,\n                \"vatPercentage\": 0\n            },\n            \"isDisabled\": false,\n            \"picture\": \"String\",\n            \"calories\": {\n                \"name\": {\n                    \"en\": \"en\",\n                    \"ar\": \"ar\"\n                },\n                \"value\": 0,\n                \"portion\": 0,\n                \"valueUnit\": \"calories\",\n                \"portionUnit\": \"gm\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product meals type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMealsType($productTypesInput:ProductTypesCreateDto!){\n    addProductMealsType(productTypesInput:$productTypesInput){\n        success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n                 meals {\n          types {\n            name {\n              en\n              ar\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n            _id\n            picture\n            price {\n              basePrice\n              vatPrice\n              vatPercentage\n              offerPrice\n              price\n            }\n            isDisabled\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"productTypesInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"name\": {\n            \"en\": \"type2\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calories\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product Meals Type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductMealsType($productTypesInput:ProductTypeEditDto!){\n    editProductMealsType(productTypesInput:$productTypesInput){\n      success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n               meals {\n          types {\n            name {\n              en\n              ar\n            }\n            calories {\n              name {\n                en\n                ar\n              }\n              portion\n              portionUnit\n              value\n              valueUnit\n            }\n            _id\n            picture\n            price {\n              basePrice\n              vatPrice\n              vatPercentage\n              offerPrice\n              price\n            }\n            isDisabled\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"productTypesInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"typeId\": \"60407569e5ae337232df077a\",\n        \"name\": {\n            \"en\": \"edited type\",\n            \"ar\": \"ar\"\n        },\n        \"price\": {\n            \"price\": 0,\n            \"basePrice\": 0,\n            \"vatPrice\": 0,\n            \"offerPrice\": 0,\n            \"vatPercentage\": 0\n        },\n        \"isDisabled\": false,\n        \"picture\": \"String\",\n        \"calories\": {\n            \"name\": {\n                \"en\": \"en\",\n                \"ar\": \"ar\"\n            },\n            \"value\": 0,\n            \"portion\": 0,\n            \"valueUnit\": \"calories\",\n            \"portionUnit\": \"gm\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addProductMealsPackage($ProductPackagesInput:ProductPackagesInputDto!){\n    addProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n      success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n              meals {\n          packages {\n            name {\n              en\n              ar\n            }\n            typeIds\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"packages\": {\n            \"name\": {\n                \"en\": \"package1\",\n                \"ar\": \"ar\"\n            },\n            \"isDisabled\": false,\n            \"isMandatory\": false,\n            \"picture\": \"String\",\n            \"typeIds\": [\n                \"5fe029f53f0afe5c38a32116\"\n            ]\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editProductMealsPackage($ProductPackagesInput:PackageEditDto!){\n    editProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n             meals {\n          packages {\n            name {\n              en\n              ar\n            }\n            typeIds\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"packageId\": \"604076dc4487f00f5a3ed5d1\",\n        \"name\": {\n            \"en\": \"edited meal package\",\n            \"ar\": \"ar\"\n        },\n        \"isDisabled\": false,\n        \"isMandatory\": false,\n        \"picture\": \"String\",\n        \"typeIds\": [\n            \"String\"\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProductMealsPackage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductMealsPackage($ProductPackagesInput:ProductPackageDeleteInputDto!){\n    deleteProductMealsPackage(ProductPackagesInput:$ProductPackagesInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n               meals {\n          packages {\n            name {\n              en\n              ar\n            }\n            typeIds\n          }\n        }\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"ProductPackagesInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"packageId\": \"60124e33f2522520c1a2e42c\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProductMealsType",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProductMealsType($ProductTypesInput:ProductTypeDeleteInputDto!){\n    deleteProductMealsType(ProductTypesInput:$ProductTypesInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n    }\n}",
+						"variables": "{\n    \"ProductTypesInput\": {\n        \"productId\": \"60374882a8dc086e36135f4e\",\n        \"typeId\": \"5fe02a103f0afe5c38a3211f\",\n        \"storeId\":\"{{id}}\"   \n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductOptions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductOptions($productOptionsToggle:ProductOptionToggleDto!){\n    toggleProductOptions(productOptionsToggle:$productOptionsToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productOptionsToggle\": {\n        \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"optionId\": \"604087f1ee294f0f8f9ae5e9\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductValues",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductValues($productValuesToggle:ProductValuesToggleDto!){\n    toggleProductValues(productValuesToggle:$productValuesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productValuesToggle\": {\n         \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"optionId\": \"604087f1ee294f0f8f9ae5e9\",\n        \"valuesId\": \"6040881fee294f0f8f9ae60e\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMeals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMeals($productMealsToggle:ProductMealsToggleDto!){\n    toggleProductMeals(productMealsToggle:$productMealsToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealsToggle\": {\n         \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"mealsId\": \"60407555e5ae337232df0771\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMealTypes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMealTypes($productMealTypesToggle:ProductMealTypesToggleDto!){\n    toggleProductMealTypes(productMealTypesToggle:$productMealTypesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealTypesToggle\": {\n         \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"productMealId\": \"60407555e5ae337232df0771\",\n        \"productMealTypesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleProductMealPackages",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductMealPackages($productMealPackagesToggle:ProductMealPackagesToggleDto!){\n    toggleProductMealPackages(productMealPackagesToggle:$productMealPackagesToggle){\n    success\n    message{\n        en\n        ar\n    } \n    \n    }\n}",
+						"variables": "{\n    \"productMealPackagesToggle\": {\n         \"storeId\":\"{{id}}\",\n        \"productId\": \"{{Productid}}\",\n        \"productMealId\": \"60407555e5ae337232df0771\",\n        \"productMealPackagesId\": \"5fe06f98ebcf9f138332cb3a\",\n        \"isDisabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name{en\n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
+						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"{{userId}}\",\n        \"parentStoreId\": \"{{id}}\",\n        \"username\": \"String665\",\n        \"email\": \"Strin555g@st.com\",\n        \"password\": \"String\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"7807807\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"String\",\n        \"restaurantName\":{\"en\": \"String\",\n        \"ar\": \"String\"},\n        \"branchCode\": \"String\",\n        \"contactNumber\": \"7807807\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getBranches($branchFindInputDto: GetBranchesInputDto!) {\n  getBranches(branchFindInputDto: $branchFindInputDto) {\n    pagination{\n        hasPrevPage\n        hasNextPage\n        prevPage\n        nextPage\n        perPage\n        }\n    stores{\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n    }\n}",
+						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteBranchAdminAndStore($deleteBranchInput: DeleteBranchInputDto!) {\n  deleteBranchAdminAndStore(deleteBranchInput: $deleteBranchInput) {\n      success\n      message{\n          en\n          ar\n      }\n    }\n}",
+						"variables": "{\n    \"deleteBranchInput\": {\n        \"restaurantId\": \"{{id}}\",\n        \"ownerId\": \"5fe5b4d5734ad30d7bfd1b5e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoreTags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreTags($storeTagsUpdateDto: StoreTagsUpdateInputDto!){\n  updateStoreTags(storeTagsUpdateDto:$storeTagsUpdateDto) {\n      success\n      message{\n          en\n          ar\n      }\n  }\n}",
+						"variables": "{\n    \"storeTagsUpdateDto\": {\n        \"storeId\": \"5fe60d781074ec6ede9c6e50\",\n        \"tagIds\": [\"5fe606301074ec6ede9c6e49\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchStoreBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchStoreBranches($branchesSearchInputDto:StoreBranchSearchInputDto!) {\n  searchStoreBranches(branchesSearchInputDto: $branchesSearchInputDto) {\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n}",
+						"variables": "{\n    \"branchesSearchInputDto\": {\n        \"parentId\": {{id}},\n        \"searchkey\": \"la\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneMultipleProductsToParticularBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneMultipleProductsToParticularBranches($productCloneInput:CloneMultipleProductsToParticularBranchesInputDto!) {\n  cloneMultipleProductsToParticularBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"branchIds\": [\"60099b752147074ed367b92d\"],\n        \"productCodes\":[\"601b883f39c4a40776f828b6\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cloneMultipleProductsToAllBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneMultipleProductsToAllBranches($productCloneInput:CloneMultipleProductsToAllBranchesInputDto!) {\n  cloneMultipleProductsToAllBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"productCodes\":[\"601b883f39c4a40776f828b6\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneAllProductsToParticularBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneAllProductsToParticularBranches($productCloneInput:CloneAllProductsToParticularBranchesInputDto!) {\n  cloneAllProductsToParticularBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n        \"branchIds\": [\"60099b752147074ed367b92d\"],\n        \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CloneAllProductsToAllBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation cloneAllProductsToAllBranches($productCloneInput:CloneAllProductsToAllBranchesInputDto!) {\n  cloneAllProductsToAllBranches(productCloneInput: $productCloneInput) {\n       success\n       message {\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productCloneInput\": {\n        \"storeId\": {{id}},\n         \"categoryIds\":[\"601b881839c4a40776f828b4\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GateLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateLogout{\n  gateLogout{\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const variable = pm.response.json();\r",
+							"pm.environment.set(\"storemasterId\", variable.data.createStoreMaster.storeMasterId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let str = '';\r",
+							"const key = 'abcdefgh1234567';\r",
+							"const domain = '@tmmt.com';\r",
+							"for(let i=0; i<=10; i++){\r",
+							"str += key.charAt(Math.round(key.length*Math.random())); \r",
+							"}\r",
+							"const email = str+=domain;\r",
+							"pm.environment.set(\"masteremailid\", email);\r",
+							"pm.environment.set(\"mastermobile\", Math.random().toString().slice(2,11));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  createStoreMaster($storeMasterCreateInputDto:StoreMasterCreateInputDto!){\n    createStoreMaster(storeMasterCreateInputDto:$storeMasterCreateInputDto){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterCreateInputDto\": {\n        \"userName\": \"Auto+{{$randomInt}}\",\n        \"fullName\": \"String1\",\n        \"mobileNumber\": \"{{mastermobile}}\",\n        \"countryCode\": \"IND\",\n        \"email\": \"{{masteremailid}}\",\n        \"password\": \"String\",\n        \"ownerId\": \"{{userId}}\",\n        \"storeCode\": \"{{id}}\",\n        \"deviceType\": \"ANDROID\",\n        \"appType\": \"STORE_MASTER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editStoreMaster($StoreMasterEditInput:StoreMasterEditInputDto!){\n    editStoreMaster(StoreMasterEditInput:$StoreMasterEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"StoreMasterEditInput\": {\n        \"_id\": \"6038be9035fd841d3cb035a2\",\n        \"userName\": \"String22\",\n        \"fullName\": \"String222\",\n        \"mobileNumber\": \"98989892\",\n        \"countryCode\": \"IND\",\n        \"email\": \"String222@st.com\",\n        \"password\": \"String22\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteStoreMaster($storeMasterDeleteDto:StoreMasterDeleteDto!){\n    deleteStoreMaster(storeMasterDeleteDto:$storeMasterDeleteDto){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterDeleteDto\": {\n        \"_id\": \"6038be9035fd841d3cb035a2\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sort Product Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation sortProductCategories($categorySortInput: ProductCategoriesSortDto!) {\n  sortProductCategories(categorySortInput: $categorySortInput) {\n    success\n    message {\n        en\n        ar\n    }\n    storeDetails{\n        productCategories{\n            name {\n                en\n                ar\n            }\n            _id\n        }\n    }\n    }\n}",
+						"variables": "{\n  \"categorySortInput\": {\n    \"storeId\": \"{{id}}\",\n    \"parentStoreCode\": \"{{id}}\",\n    \"categoryId\": \"{{catId}}\",\n    \"currentPosition\":2,\n    \"toPosition\":0\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sort Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation sortProduct($productSortData: ProductSortInputDto!) {\n  sortProduct(productSortData: $productSortData) {\n    success\n    message {\n        en\n        ar\n    }\n    product{\n    _id\n          }\n    }\n}",
+						"variables": "{\n  \"productSortData\": {\n    \"productId\": \"{{id}}\",\n    \"parentStoreCode\": \"{{id}}\",\n    \"categoryId\": \"{{catId}}\",\n    \"currentPosition\":1,\n    \"toPosition\":1\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParticularStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetParticularStoreMaster($storeMasterID: String!) {\n  getParticularStoreMaster(storeMasterID: $storeMasterID) {\n    _id\n    userName\n  }\n}\n",
+						"variables": "{\n  \"storeMasterID\": \"{{storeMasterID}}\"\n}"
 					}
 				},
 				"url": {
@@ -1283,6 +2659,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

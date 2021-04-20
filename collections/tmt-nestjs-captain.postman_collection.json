@@ -1,17 +1,465 @@
 {
 	"info": {
-		"_postman_id": "346676d2-1f84-41e8-bfad-1425b3afb069",
+		"_postman_id": "1fbf6d29-e353-496d-96df-46ef81f37d5f",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Order Status",
+			"item": [
+				{
+					"name": "Driver Reached Store [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverReachedStore.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverReachedStore($driverStatusDto: DriverStatusUpdateDto!) {\n  driverReachedStore(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"6064410084765559ac13a6e0\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver Collected Order [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverCollectedOrder.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverCollectedOrder($driverStatusDto: DriverStatusUpdateDto!) {\n  driverCollectedOrder(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"6064410084765559ac13a6e0\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver Going To Customer Location [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverGoToCustomerLocation.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverGoingToCustomerLocation($driverStatusDto: DriverStatusUpdateDto!) {\n  driverGoToCustomerLocation(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver End Journey [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverEndJourney.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverEndJourney($driverStatusDto: DriverStatusUpdateDto!) {\n  driverEndJourney(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderChat",
+			"item": [
+				{
+					"name": "Order Chat file upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/abwbdallhmhmd/Documents/profile.png"
+								},
+								{
+									"key": "orderId",
+									"value": "order-id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{main-server}}/v1/api/file-upload/order-chat",
+							"host": [
+								"{{main-server}}"
+							],
+							"path": [
+								"v1",
+								"api",
+								"file-upload",
+								"order-chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverUserOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query driverUserOrderChatHistory($input: ChatHistoryInputDto!){\n  driverUserOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverSendOrderChatMessageToUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation driverSendOrderChatMessageToUser($input: SendChatInputDto!){\n  driverSendOrderChatMessageToUser(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverSendOrderChatMessageToStore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation driverSendOrderChatMessageToStore($input: SendChatInputDto!){\n  driverSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverOrderChatWithUserSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription driverOrderChatWithUserSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithUserSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverOrderChatWithStoreSubscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "subscription driverOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverChefOrderChatHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query driverChefOrderChatHistory($input: ChatHistoryInputDto!){\n  driverChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Captain Login [GQL]",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d7bc5cb2-7279-413f-be61-e7c02ed6ea7d",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -25,6 +473,8 @@
 							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
 							"    const response1 = pm.response.json();\r",
 							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"    const response2 = pm.response.json();\r",
+							"     pm.environment.set(\"refreshToken\", response2.data.driverLogin.refreshToken);\r",
 							"});\r",
 							"\r",
 							""
@@ -35,7 +485,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f993f461-ab74-42e1-9c3d-2bd7f3dde191",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", 11113333);"
@@ -50,8 +499,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}\n",
-						"variables": "{\n  \"driverLoginInputDto\":  {\n\t\t\"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"otp\": \"{{otp}}\"\n  }\n}"
+						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n    driverId\n  }\n}\n",
+						"variables": "{\n    \"driverLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -69,7 +518,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3d59016d-e153-4422-bd70-d8d56ea8ea99",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -89,7 +537,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "38d519aa-414c-4994-a3bb-f968c8dac4f6",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
@@ -130,7 +577,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9751f7c8-3a37-4ff7-88b9-f693650a0ebe",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -142,6 +588,7 @@
 							"    const response = pm.response.json();\r",
 							"    console.log(response.data.driverSignup.accessToken);\r",
 							"    pm.environment.set(\"access-Token\", response.data.driverSignup.accessToken);\r",
+							"   \r",
 							"});\r",
 							""
 						],
@@ -151,7 +598,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d89c76f1-148d-44e2-a8ad-c010f8e75ad6",
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
 							"//pm.environment.set(\"mobile\", mobile);"
@@ -166,8 +612,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n  }\n}\n",
-						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n      \"vehicleSaudiId\": \"String!\",\n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"citcProvinceId\": \"String!\",\n      \"citcProvinceSaudiId\": \"String!\",\n      \"citcCityId\": \"String!\",\n      \"citcCitySaudiId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"cityId\": \"5fa91ddd6e0c0e1e7e062de5\",\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
+						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    driverId\n  }\n}\n",
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n    \n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
 					}
 				},
 				"url": {
@@ -180,12 +626,11 @@
 			"response": []
 		},
 		{
-			"name": "Captain City List [GQL]",
+			"name": "Captain Place List [GQL]",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "36bf9464-4f0b-4446-b8e9-659fda70b027",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -201,11 +646,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ListCities{\n  listCities {\n    cityId\n    name {\n      ar\n      en\n    }\n  }\n}",
-						"variables": ""
-					},
-					"options": {
-						"graphql": {}
+						"query": "query ListPlaces($filterPlaces: FilterPlacesInputDto!) {\n  listPlaces(filterPlaces: $filterPlaces) {\n    places {\n      name {\n        ar\n        en\n      }\n    }\n    pagination {\n      hasPrevPage\n      hasNextPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"filterPlaces\": {\n    \"type\": \"CITY\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 20\n    }\n  }\n}"
 					}
 				},
 				"url": {
@@ -223,7 +665,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "da4af962-319d-4fb5-b57b-3800a8a0445c",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -241,9 +682,6 @@
 					"graphql": {
 						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -261,7 +699,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5f98a9cf-91b9-4448-b176-36dd3f3a3935",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -288,11 +725,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query DriverProfile {\n  getDriverProfile {\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
+						"query": "query DriverProfile {\n  getDriverProfile {\n    isOnline\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
 					}
 				},
 				"url": {
@@ -310,7 +744,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e0a45594-c46c-4a5f-bc87-e726e1ff7009",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
@@ -337,10 +770,7 @@
 							"src": [],
 							"disabled": true
 						}
-					],
-					"options": {
-						"formdata": {}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{auth-server}}/driver-auth/document-upload",
@@ -368,7 +798,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b62a5d9c-dab8-47c1-aafe-b043f64ecb57",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -386,9 +815,397 @@
 					"graphql": {
 						"query": "query ListBanks{\n  listBanks {\n    bankId\n    name {\n      ar\n      en\n    }\n  }\n}",
 						"variables": ""
-					},
-					"options": {
-						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Online Status Toggle [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChangeDriverAvailability($isOnline: Boolean!) {\n  changeDriverAvailabilityFor(isOnline: $isOnline)  {\n      success\n      message {\n        en\n        ar\n      }\n    }\n}\n",
+						"variables": "{\n  \"isOnline\": true\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDriverOrderCancelReasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getDriverOrderCancelReasons{\n  getDriverOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Driver Proposal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decline Driver Proposal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DeclineDriverProposal($driverProposalDto: DriverProposalDto!) {\n  declineDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverLogout {\n  driverLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetDriverPushToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setDriverPushToken($setDriverPushToken: SetPushTokenDto!){\n  setDriverPushToken(setDriverPushToken: $setDriverPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setDriverPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateUser [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverRateUser.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateUser($input: DriverRateUserInputDto!) {\n  driverRateUser(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"userRating\": 5,\n      \"userComment\": \"Good User by  Driver\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateChef [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverRateChef.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverGetOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmU2MGQ3ODZhOTAwNjZmMDJkYzNhNDgiLCJzZXNzaW9uSWQiOiI2MDNlMDE3MDQzZjQ1NDcyNDI0MDdlYjEiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYxNzM1NDA4NCwiZXhwIjoxNjE3NDQwNDg0fQ.MEUCIEpQsns0H6EaCOhtGqf2jeSkFSyoZnuivjGyv9zy9UpGAiEA_WgUSQjLOR-9OBOM-Z_-_tUJlex7pSieQnAGU9J1l-s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query driverGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  driverGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -400,6 +1217,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

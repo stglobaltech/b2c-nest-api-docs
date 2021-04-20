@@ -1,10 +1,166 @@
 {
 	"info": {
-		"_postman_id": "c226b9a9-61e1-409b-82d4-b4df16431843",
+		"_postman_id": "8a835cb5-5980-4711-beab-2ffe96557a38",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Reesha GQL [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let str = '';\r",
+									"const key = 'abcdefgh1234567';\r",
+									"const domain = '@tmmt.com';\r",
+									"for(let i=0; i<=10; i++){\r",
+									"str += key.charAt(Math.round(key.length*Math.random())); \r",
+									"}\r",
+									"const email = str+=domain;\r",
+									"pm.environment.set(\"emailid\", email);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReeshaSignup($input: ReeshaSignupInputDto!){\n  reeshaSignup(input:$input) {\n    success\n    message {\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"username\":\"wer\",\n    \"email\":\"{{emailid}}\",\n    \"password\":\"pass\",\n    \"mobile\":\"7807807\",\n    \"countryCode\":\"IND\",\n    \"oneSignalId\":\"12343243242344\",\n    \"osversion\":\"Playground\",\n    \"devicemodel\":\"Web\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reesha Login [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"    console.log(response.data.reeshaLogin.accessToken);\r",
+									"    pm.environment.set(\"access-Token\", response.data.reeshaLogin.accessToken);\r",
+									"    const response2 = pm.response.json();\r",
+									"     pm.environment.set(\"refreshToken\", response2.data.reeshaLogin.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReeshaLogin($input: ReeshaLoginInputDto!){\n  reeshaLogin(input:$input) {\n    success\n    message {\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"email\":\"{{emailid}}\",\n    \"password\":\"pass\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Reesha Roles [GQL]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AssignReeshaRole($input: ReeshaAssignRolesInputDto!){\n  assignReeshaRoles(input:$input) {\n    success\n    message {\n      ar\n    }\n  }\n}",
+								"variables": "{\n  \"input\": {\n    \"reeshaId\":\"603622c249e0d13bae24f331\",\n    \"appType\":\"REESHA\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReeshaLogout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refreshToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation ReeshaLogout {\n  reeshaLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "roles:get",
 			"protocolProfileBehavior": {
@@ -59,12 +215,7 @@
 							"value": "\"USER\"",
 							"type": "text"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{baseUrl}}roles/create",
@@ -363,6 +514,858 @@
 							"key": "appType",
 							"value": "userApp"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReeshaCreateTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaCreateTag($tagInput: TagCreateInputDto!){\n  reeshaCreateTag(tagInput:$tagInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"aa111\",\n            \"ar\": \"ar111\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReeshaEditTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaEditTag($tagUpdateInput: TagUpdateInputDto!){\n  reeshaEditTag(tagUpdateInput:$tagUpdateInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagUpdateInput\": {\n        \"tagId\": \"5fe606301074ec6ede9c6e49\",\n        \"name\": {\n            \"en\": \"ab\",\n            \"ar\": \"ar\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reeshaDeleteTag",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaDeleteTag($tagId: String!){\n  reeshaDeleteTag(tagId:$tagId) {\n    status\n  }\n}",
+						"variables": "{\n    \"tagId\":\"5fe609d11074ec6ede9c6e4e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reeshaGetTags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetTags($tagIds: [String!]){\n  reeshaGetTags(tagIds:$tagIds) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
+						"variables": "{\n    \"tagIds\":[\"5fe609d11074ec6ede9c6e4e\"]\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createOrderCancelReason($orderCancelReasonCreateInputDto: OrderCancelReasonCreateInputDto!){\n  createOrderCancelReason(orderCancelReasonCreateInputDto:$orderCancelReasonCreateInputDto) {\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": "{\n    \"orderCancelReasonCreateInputDto\": {\n        \"reason\": {\n            \"en\": \"en1\",\n            \"ar\": \"ar1\"\n        },\n        \"appType\": \"DRIVER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editOrderCancelReason($orderCancelReasonEditInputDto: OrderCancelReasonEditInputDto!){\n  editOrderCancelReason(orderCancelReasonEditInputDto:$orderCancelReasonEditInputDto) {\n    success\n    message{\n        en \n        ar\n    }\n  }\n}\n\n",
+						"variables": "{\n    \"orderCancelReasonEditInputDto\": {\n        \"_id\":\"5ff313608364773d8daf491a\",\n        \"reason\": {\n            \"en\": \"en2\",\n            \"ar\": \"ar2\"\n        },\n        \"appType\": \"USER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOrderCancelReason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteOrderCancelReason($orderCancelReasonId: String!){\n  deleteOrderCancelReason(orderCancelReasonId:$orderCancelReasonId) {\n    success\n    message{\n        en \n        ar\n    }\n  }\n}\n\n",
+						"variables": "{\n    \"orderCancelReasonId\": \n\"5ff313608364773d8daf491a\"\n    \n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rule [Rest Api]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ruleName\": \"rule-one\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": true,\n                    \"operandTwo\": true\n                },\n                \"thenValue\": 180\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth-server}}/rule-management/create-rule",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"create-rule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Rule [Rest API]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ruleName\": \"rule-one\",\n    \"ruleObject\": {\n        \"ifElseList\": [\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\":  {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+91\"\n                },\n                    \"operandTwo\": \"+91\"\n                },\n                \"thenValue\": 180\n            },\n            {\n                \"match\": {\n                    \"operator\": \"Equals\",\n                    \"operandOne\": \"__countryCode\",\n                    \"operandTwo\": \"+974\"\n                },\n                \"thenValue\": 600\n            }\n        ]\n    },\n    \"isEnabled\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth-server}}/rule-management/update-rule",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"update-rule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Rules [Rest Api]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/all-rules",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"all-rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Rule [Rest API]",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/rule/<your rule name here>",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"rule",
+						"<your rule name here>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Rule [Rest API]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server}}/rule-management/rule/<your rule name here>",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"rule-management",
+						"rule",
+						"<your rule name here>"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateQualifyRule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation CreateQualifyRule(\n  $QualifyRuleCreateDto: QualifyRuleCreateDto!\n) {\n  createQualifyRule(\n    qualifyRuleCreateDto: $QualifyRuleCreateDto\n  ){\n    success\n  }\n}\n",
+						"variables": "{\n  \"QualifyRuleCreateDto\": {\n  \"name\": \"test\",\n  \"driverCountperSearch\": 4,\n  \"searchingTime\": 30,\n  \"searchCount\": 2,\n  \"priority\": 1,\n  \"behaviours\":[\"6046d2bd4016db44c3e5c13c\"]\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateQualifyRule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateQualifyRule($QualifyRuleUpdateDto: QualifyRuleUpdateDto!) {\n  updateQualifyRule(qualifyRuleUpdateDto:$QualifyRuleUpdateDto) {\n  message{ar}\n  \n  }\n}",
+						"variables": "{\n  \"QualifyRuleUpdateDto\": {\n  \"_id\": \"6046d2bd4016db44c3e5c13c\",\n  \"name\": \"test1\",\n  \"priority\": 1\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchQualifyBehaviours",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query FetchQualifyBehaviours {\n  fetchQualifyBehaviours {conditions {\n      int: condition\n    }\n    _id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateQualifyBehaviour",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateQualifyBehaviour($QualifyBehaviourUpdateDto: QualifyBehaviourUpdateDto!) {\n  updateQualifyBehaviour(qualifyBehaviourUpdateDto:$QualifyBehaviourUpdateDto) {\n  message{ar}\n  \n  }\n}",
+						"variables": "{\n  \"QualifyBehaviourUpdateDto\": {\n  \"_id\": \"6051df4e0ba4371e8bc3f741\",\n  \"name\": \"test1\",\n  \"priority\": 1\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchQualifyRules",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query FetchQualifyRules {\n  fetchQualifyRules {\n    _id\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createQualifyBehaviour",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createQualifyBehaviour(\n  $QualifyBehaviourCreateDto: QualifyBehaviourCreateDto!\n) {\n  createQualifyBehaviour(\n    qualifyBehaviourCreateDto: $QualifyBehaviourCreateDto\n  ){\n    _id\n  }\n}",
+						"variables": "{\n  \"QualifyBehaviourCreateDto\": {\n  \"name\": \"TEST\",\n  \"priority\": 1,\n    \"conditions\": [{\"int\": [{\"attributeCode\": \"RATING\",\"min\": 1,\"max\": 3}],\"condition\": \"AND\"}]\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetOrders($ordersFindInputDto: OrdersFindInputDto!) {\n  reeshaGetOrders(ordersFindInputDto:$ordersFindInputDto) {\n   orders{\n       _id\n       userId\n       cartId\n       orderStatus\n       orderType\n       cancelReason {\n           en\n           ar\n       }\n   }\n  \n  }\n}",
+						"variables": "{\n    \"ordersFindInputDto\":{\n        \"orderStatus\":\"PEN\",\n        \"orderType\":\"readyOrder\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Store Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetStoreAdmin($adminId: String!) {\n  reeshaGetStoreAdmin(adminId:$adminId) {\n      username\n      email\n      mobileNumber\n      countryCode\n      iBan\n      isActivated\n      isDeleted\n      deviceType\n      parentId\n      restaurantIds\n  }\n}",
+						"variables": "{\n    \"adminId\":\"6059cabea506650ac9c93409\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUsers($userFindInputDto: UserFindInputDto!) {\n  getUsers(userFindInputDto:$userFindInputDto) {\n     users {\n         _id \n          name\n          email\n          countryCode\n          status\n          mobile\n         deviceId      \n         otp\n    }\n  }\n}",
+						"variables": "{\n    \"userFindInputDto\":{\n        \"status\":\"ON\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Drivers For Reesha [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getDriversForReesha($driverFilterInputDto: DriverFilterReeshaInputDto!) {\n  getDriversForReesha(driverFilterInputDto:$driverFilterInputDto) {\n      drivers {\n        _id\n        mobile\n        name\n        email\n        countryCode\n        lang\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
+						"variables": "{\n    \"driverFilterInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get StoreMasters For Reesha [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getStoreMastersForReesha($storeMasterChefFiltersInputDto: StoreMasterChefFiltersReeshaInputDto) {\n  getStoreMastersForReesha(storeMasterChefFiltersInputDto:$storeMasterChefFiltersInputDto) {\n      storeMasters {\n        _id\n        userName\n        fullName\n        mobileNumber\n        countryCode\n        email\n        storeCode\n        ownerId\n        isDeleted\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
+						"variables": "{\n    \"storeMasterChefFiltersInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get CSUsers For Reesha",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getCSUsersForReesha($csUsersForReeshaInputDto: CSUsersForReeshaInputDto!) {\n  getCSUsersForReesha(csUsersForReeshaInputDto:$csUsersForReeshaInputDto) {\n      csusers{\n          _id\n          username\n          email\n          mobile\n          osversion\n          devicemodel\n          countryCode\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n  }\n}\n",
+						"variables": "{\n    \"csUsersForReeshaInputDto\":{\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Discount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " mutation CreateDiscount($discountCreateInput:DiscountCreateInput!)\n    {\n createDiscount(\ndiscountCreateInput: $discountCreateInput\n){\n    success\n    message\n}\n}",
+						"variables": "{\n    \"discountCreateInput\": {\n        \"name\": \"Discount1\",\n        \"arName\": \"ArabicDiscount1\",\n        \"displayName\": {\n            \"en\": \"engDisplayName\",\n            \"ar\": \"arDisplayName\"\n        },\n        \"startsOn\": \"startdate\",\n        \"endsOn\": \"enddate\",\n        \"category\": \"OFFER\",\n        \"isConditional\": false,\n        \"restaurant\": {\n            \"name\": \"restaurantName\",\n            \"_id\": \"478324\",\n            \"geoHash\": {\n                \"coordinates\": [\n                    3,\n                    3,\n                    3\n                ],\n                \"type\": \"Point\"\n            }\n        },\n        \"discountValue\": \"243\",\n        \"discountIn\": \"Purchase\",\n        \"discountFor\": \"users\",\n        \"discountType\": \"instant\",\n        \"discountToEntities\": {\n            \"users\": {\n                \"maxOrdersCount\": \"32\"\n            }\n        },\n        \"serviceArea\": [\n            \"geoHashes...\"\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Dicounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetDiscounts($paginationInput:PaginationInputDto!)\n    {\n getDiscounts(\npaginationInput: $paginationInput\n){\n    discounts{\n        _id \nname \ndisplayName {\n    en\n    ar\n}\npromocodeSpecificOfferFor \narName \nstartsOn \nendsOn \ncategory \nisConditional \nrestaurant {\n    name\n}\ndiscountValue \ndiscountIn \ntypeOfPay \ndiscountFor \ndiscountType \nisDeleted \n    }\n    pagination{\nhasPrevPage \nhasNextPage \nprevPage \nnextPage \nperPage \npage \n    }\n}\n}",
+						"variables": "{\n\"paginationInput\":{\n    \"page\":1,\n    \"perPage\":10\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Discounts for a particualar user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetDiscountsForUser($userDiscountDetail:UserDetailForDiscount!)\n    {\n getDiscountsForUser(\nuserDiscountDetail: $userDiscountDetail\n){\n    store{\n        name\n    }\n        product{\n        name\n    }    productCategories{\n        name\n    }    users{\n        name\n    }    geography{\n        name\n    }    productSpecial{\n        name\n    }\n}\n}",
+						"variables": "{\n    \"userDiscountDetail\":{\n        \"_id\":\"98\",\n        \"serviceArea\":\"jlkdfldkj\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Discount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " mutation DeleteDiscount($discountID:String!)\n    {\n deleteDiscount(\ndiscountID: $discountID\n){\n \n success\n message\n}}",
+						"variables": "{\n    \"discountID\":\"60534a5a4e27776e63581f1a\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Particular Discounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetParticularDiscounts($getParticularDiscountsInput:AdvancedSearchInputDto!)\n    {\n getParticularDiscounts(\ngetParticularDiscountsInput: $getParticularDiscountsInput\n){\n discounts{\nname\n }\n}\n    }",
+						"variables": "{\n    \"getParticularDiscountsInput\":{\n        \"isConditional\":true,\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advanced Search Discounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query GetAdvancedSearchDiscounts($advancedSearchInput:AdvancedSearchInputDto!)\n    {\n getAdvancedSearchDiscounts(\nadvancedSearchInput: $advancedSearchInput\n){\n discounts{\nname\n }\n}\n    }",
+						"variables": "{\n    \"advancedSearchInput\":{\n        \"isConditional\":false,\n      \"discountIn\": \"Purchase\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
 					]
 				}
 			},
