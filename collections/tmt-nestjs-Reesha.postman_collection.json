@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8a835cb5-5980-4711-beab-2ffe96557a38",
+		"_postman_id": "507715b5-855a-4e19-a62b-286ace45d868",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -528,7 +528,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"const response = pm.response.json();\r",
+							"     pm.environment.set(\"tagId\", response.data.reeshaCreateTag.id);"
 						],
 						"type": "text/javascript"
 					}
@@ -541,7 +543,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation reeshaCreateTag($tagInput: TagCreateInputDto!){\n  reeshaCreateTag(tagInput:$tagInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
-						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"aa111\",\n            \"ar\": \"ar111\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+						"variables": "{\n    \"tagInput\": {\n        \"name\": {\n            \"en\": \"sdfsdf\",\n            \"ar\": \"sdfsdf\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": false\n    }\n}"
 					}
 				},
 				"url": {
@@ -575,7 +577,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation reeshaEditTag($tagUpdateInput: TagUpdateInputDto!){\n  reeshaEditTag(tagUpdateInput:$tagUpdateInput) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
-						"variables": "{\n    \"tagUpdateInput\": {\n        \"tagId\": \"5fe606301074ec6ede9c6e49\",\n        \"name\": {\n            \"en\": \"ab\",\n            \"ar\": \"ar\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": true\n    }\n}"
+						"variables": "{\n    \"tagUpdateInput\": {\n        \"tagId\": \"{{tagId}}\",\n        \"name\": {\n            \"en\": \"asd\",\n            \"ar\": \"asd\"\n        },\n        \"tagType\": \"STORE\",\n        \"isDeleted\": false\n    }\n}"
 					}
 				},
 				"url": {
@@ -609,7 +611,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation reeshaDeleteTag($tagId: String!){\n  reeshaDeleteTag(tagId:$tagId) {\n    status\n  }\n}",
-						"variables": "{\n    \"tagId\":\"5fe609d11074ec6ede9c6e4e\"\n}"
+						"variables": "{\n    \"tagId\":\"{{tagId}}\"\n}"
 					}
 				},
 				"url": {
@@ -643,7 +645,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query reeshaGetTags($tagIds: [String!]){\n  reeshaGetTags(tagIds:$tagIds) {\n    id\n    name{en\n    ar}\n    tagType\n    isDeleted\n  }\n}",
-						"variables": "{\n    \"tagIds\":[\"5fe609d11074ec6ede9c6e4e\"]\n}"
+						"variables": "{\n    \"tagIds\":[\"{{tagId}}\"]\n}"
 					}
 				},
 				"url": {
@@ -657,6 +659,19 @@
 		},
 		{
 			"name": "createOrderCancelReason",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -678,6 +693,19 @@
 		},
 		{
 			"name": "EditOrderCancelReason",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -699,6 +727,19 @@
 		},
 		{
 			"name": "DeleteOrderCancelReason",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -869,6 +910,19 @@
 		},
 		{
 			"name": "CreateQualifyRule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -956,6 +1010,19 @@
 		},
 		{
 			"name": "FetchQualifyRules",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -980,6 +1047,19 @@
 		},
 		{
 			"name": "createQualifyBehaviour",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -1001,6 +1081,19 @@
 		},
 		{
 			"name": "Reesha Get Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1032,6 +1125,19 @@
 		},
 		{
 			"name": "Reesha Get Store Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1063,6 +1169,19 @@
 		},
 		{
 			"name": "Reesha Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1094,6 +1213,19 @@
 		},
 		{
 			"name": "Get Drivers For Reesha [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1125,6 +1257,19 @@
 		},
 		{
 			"name": "Get StoreMasters For Reesha [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1156,6 +1301,19 @@
 		},
 		{
 			"name": "Get CSUsers For Reesha",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1187,6 +1345,19 @@
 		},
 		{
 			"name": "Create Discount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1218,6 +1389,19 @@
 		},
 		{
 			"name": "Get All Dicounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1249,6 +1433,19 @@
 		},
 		{
 			"name": "Get Discounts for a particualar user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1280,6 +1477,19 @@
 		},
 		{
 			"name": "Delete Discount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1311,6 +1521,19 @@
 		},
 		{
 			"name": "Get Particular Discounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1342,6 +1565,19 @@
 		},
 		{
 			"name": "Get Advanced Search Discounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",

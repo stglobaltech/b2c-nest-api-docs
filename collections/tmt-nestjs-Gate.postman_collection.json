@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "60c1297e-0aa0-4a65-b651-7a485c0de933",
+		"_postman_id": "617e954b-0af9-4e55-95fc-9db54767a6ee",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -213,7 +213,7 @@
 							"});\r",
 							"pm.test(\"Your test name\", function () {\r",
 							"    var response = pm.response.json();\r",
-							"    pm.expect(response.data.editProduct.status).to.eql(true);\r",
+							"    pm.expect(response.data.editProduct.success).to.eql(true);\r",
 							"});\r",
 							"//postman.setNextRequest(\"Update Product Quantity\");"
 						],
@@ -238,7 +238,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
-						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":{\"en\":\"ed\",\n        \"ar\":\"ola\"},\n        \"description\":{\"en\":\"asas\",\n        \"ar\":\"asas\"},\n        \"price\":{\"price\":0,\"basePrice\":23,\"vatPrice\":23},\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryId\":\"{{catId}}\",\n        \"picture\":\"asas\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":{\"en\":\"edge\",\n        \"ar\":\"olae\"},\n        \"description\":{\"en\":\"asgas\",\n        \"ar\":\"asas\"},\n        \"price\":{\"price\":0,\"basePrice\":23,\"vatPrice\":23},\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryId\":\"{{catId}}\",\n        \"picture\":\"asas\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
 					}
 				},
 				"url": {
