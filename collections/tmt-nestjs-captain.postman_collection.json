@@ -1,10 +1,243 @@
 {
 	"info": {
-		"_postman_id": "e7bb71db-793b-4a66-a897-3080abb8ea63",
-		"name": "tmt-nestjs-user",
+		"_postman_id": "1fbf6d29-e353-496d-96df-46ef81f37d5f",
+		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Order Status",
+			"item": [
+				{
+					"name": "Driver Reached Store [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverReachedStore.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverReachedStore($driverStatusDto: DriverStatusUpdateDto!) {\n  driverReachedStore(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"6064410084765559ac13a6e0\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver Collected Order [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverCollectedOrder.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverCollectedOrder($driverStatusDto: DriverStatusUpdateDto!) {\n  driverCollectedOrder(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"6064410084765559ac13a6e0\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver Going To Customer Location [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverGoToCustomerLocation.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverGoingToCustomerLocation($driverStatusDto: DriverStatusUpdateDto!) {\n  driverGoToCustomerLocation(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver End Journey [GQL]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success validaation\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.driverEndJourney.success).to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverEndJourney($driverStatusDto: DriverStatusUpdateDto!) {\n  driverEndJourney(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "OrderChat",
 			"item": [
@@ -33,7 +266,7 @@
 								},
 								{
 									"key": "orderId",
-									"value": "orderID",
+									"value": "order-id",
 									"type": "text"
 								}
 							]
@@ -54,7 +287,7 @@
 					"response": []
 				},
 				{
-					"name": "UserChefOrderChatHistory",
+					"name": "driverUserOrderChatHistory",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -71,7 +304,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query userChefOrderChatHistory($input: ChatHistoryInputDto!){\n  userChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"query": "query driverUserOrderChatHistory($input: ChatHistoryInputDto!){\n  driverUserOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
 							}
 						},
@@ -85,7 +318,7 @@
 					"response": []
 				},
 				{
-					"name": "UserSendOrderChatMessageToDriver",
+					"name": "driverSendOrderChatMessageToUser",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -102,7 +335,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation userSendOrderChatMessageToDriver($input: SendChatInputDto!){\n  userSendOrderChatMessageToDriver(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"query": "mutation driverSendOrderChatMessageToUser($input: SendChatInputDto!){\n  driverSendOrderChatMessageToUser(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
 							}
 						},
@@ -116,7 +349,7 @@
 					"response": []
 				},
 				{
-					"name": "userSendOrderChatMessageToStore",
+					"name": "driverSendOrderChatMessageToStore",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -133,7 +366,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation userSendOrderChatMessageToStore($input: SendChatInputDto!){\n  userSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+								"query": "mutation driverSendOrderChatMessageToStore($input: SendChatInputDto!){\n  driverSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
 							}
 						},
@@ -147,14 +380,14 @@
 					"response": []
 				},
 				{
-					"name": "userOrderChatWithDriverSubscribe",
+					"name": "driverOrderChatWithUserSubscribe",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "subscription userOrderChatWithDriverSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithDriverSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+								"query": "subscription driverOrderChatWithUserSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithUserSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
 							}
 						},
@@ -168,14 +401,14 @@
 					"response": []
 				},
 				{
-					"name": "userOrderChatWithStoreSubscribe",
+					"name": "driverOrderChatWithStoreSubscribe",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "subscription userOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  userOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n    }\n}\n",
+								"query": "subscription driverOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
 							}
 						},
@@ -189,7 +422,7 @@
 					"response": []
 				},
 				{
-					"name": "userDriverOrderChatHistory",
+					"name": "driverChefOrderChatHistory",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -206,7 +439,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query userDriverOrderChatHistory($input: ChatHistoryInputDto!){\n  userDriverOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+								"query": "query driverChefOrderChatHistory($input: ChatHistoryInputDto!){\n  driverChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
 								"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
 							}
 						},
@@ -222,307 +455,7 @@
 			]
 		},
 		{
-			"name": "User Login [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var json = pm.response.json();\r",
-							"\r",
-							"pm.test(\"Verify User Login\",function(){\r",
-							"    pm.expect(pm.response.to.have.status(200));\r",
-							"    console.log(\"Api response = \",json.data.userLogin.success);\r",
-							"    //pm.expect(json.data.userLogin.success).to.be.true;\r",
-							"    if(json.data.userLogin.success == true) {\r",
-							"        pm.environment.set(\"access-Token\",json.data.userLogin.accessToken);\r",
-							"        pm.environment.set(\"refreshToken\", json.data.userLogin.refreshToken);\r",
-							"    }\r",
-							"    console.log(\"token = \", pm.environment.get(\"token\"));    \r",
-							"});\r",
-							"\r",
-							"pm.test(\"isSignupRequired true run Signup\", function(){\r",
-							"    pm.expect(json.data.userLogin.isSignUpRequired).to.be.true\r",
-							"   if((json.data.userLogin.isSignUpRequired) == true)\r",
-							"        postman.setNextRequest(\"User Signup\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    userId\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n    \"userLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
-					},
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Entity [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"const response = pm.response.json();\r",
-							"pm.environment.set(\"Entityid\", response.data.createEntity.id);\r",
-							"console.log(response.data.createEntity.id);\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation CreateEntity($entityInput: EntityCreateInputDto!) {\n  createEntity(entityInput: $entityInput) {\n    name {\n      ar\n      en\n    }\n    subEntityIds\n    type\n    adminStoreId\n    entityCategories\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n    dataAPIQuery\n    cityIds\n  }\n}\n",
-						"variables": "{\n  \"entityInput\": {\n     \"name\": { \"ar\": \"مطاعم1\", \"en\": \"RESTAURANTS1\" },\n      \"subEntityIds\": [],\n      \"type\": \"RESTAURANT\",\n      \"adminStoreId\": \"5fa94319bdfe015122f09ffc\",\n      \"entityCategories\": [],\n      \"withoutDelivery\": true,\n      \"iconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d3aab20-2344-11eb-a74a-275df72bee34.png\",\n        \"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0ae5c80-2341-11eb-9b7d-cdb409930e55.png\"},\n      \"fullWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2e28b4a0-2344-11eb-9b7d-cdb409930e55.png\",\"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a1142330-2341-11eb-a74a-275df72bee34.png\"},\n      \"halfWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d98f7c0-2344-11eb-a74a-275df72bee34.png\", \"en\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0eb1760-2341-11eb-9b7d-cdb409930e55.png\" },\n      \"uiType\": 0,\n      \"sortIndex\": 1,\n      \"status\": \"ACTIVE\",\n      \"dataAPIQuery\": \"dataAPIQuery\",\n      \"cityIds\": []\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{gql-main-server}}",
-					"host": [
-						"{{gql-main-server}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Access token [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var json = pm.response.json();\r",
-							"pm.test(\"New Access Token\",function(){\r",
-							"    pm.expect(pm.response.to.have.status(200));\r",
-							"    console.log(\"Api response = \",json.data.refreshToken.success);\r",
-							"    pm.expect(json.data.refreshToken.success).to.be.true;\r",
-							"    pm.environment.set(\"token\",json.data.refreshToken.accessToken);\r",
-							"    console.log(\"token = \", pm.environment.get(\"token\"));\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{refreshToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation RefreshToken($accessTokenInputDto: BuildAccessTokenInputDto!){\n  refreshToken(accessTokenInputDto:$accessTokenInputDto){\n    accessToken\n  }\n}",
-						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"{{token}}\"\n  }\n}"
-					},
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Access Token [Rest API]",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{refresh-token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"accessToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjY4NmY1N2Y4N2Q4MjBmOGY0MTU4YzUiLCJzZXNzaW9uSWQiOiI1ZjY4NmY1NzMwZTRkZjEyZmIzNDFhMGUiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwMDY3OTc2NywiZXhwIjoxNjAwNjgwNjY3fQ.MEQCIGof84Lkzj6RsORH7f-gsOhz-S9VN2iapFmmGMjaVfcPAiAQqJeEZ4lah-3FlXBhT8OFpC8BGkZB1cvcmLVvAi5Q4Q\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{auth-server}}/tokens/refresh",
-					"host": [
-						"{{auth-server}}"
-					],
-					"path": [
-						"tokens",
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Save Address [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"\r",
-							"    const variable = pm.response.json();\r",
-							"    pm.environment.set(\"addressId\", variable.data.saveAddress.id);\r",
-							"});\r",
-							"pm.test(\"Response time validation\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"name\": \"{{addrName}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [12.96738173,80.15095264],\n      \"type\": \"point\"\n    }\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Signup [GQL]",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
-							"pm.variables.set(\"email\",email);"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var json = pm.response.json();\r",
-							"pm.test(\"Verify User Signup\", function(){\r",
-							"    pm.expect(json.data.userSignup.success).to.be.true;\r",
-							"    var email = pm.variables.get('email');\r",
-							"    console.log(\"User Email, \",email);\r",
-							"    pm.environment.set(\"uEmail\",email);\r",
-							"\r",
-							"    pm.environment.set(\"token\",json.data.userSignup.accessToken);\r",
-							"    pm.environment.set(\"refreshToken\", json.data.userSignup.refreshToken);\r",
-							"    console.log(\"token = \", pm.environment.get(\"token\"));\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}\n",
-						"variables": "{\n  \"userSignupInputDto\": {\n        \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobile}}\",\n\t\t\"email\": \"{{email}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\",\n        \"status\":\"BUSY\"\n  }\n}"
-					},
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{auth-server-gql}}",
-					"host": [
-						"{{auth-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Send Otp [GQL]",
+			"name": "Captain Login [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -533,12 +466,68 @@
 							"});\r",
 							"pm.test(\"Success validation\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.environment.set(\"otp\",jsonData.data.sendOtp.otp);\r",
-							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"    pm.expect(jsonData.data.driverLogin.success).to.eql(true);\r",
 							"\r",
-							"    console.log(\"Otp = \", jsonData.data.sendOtp.otp);\r",
-							"    console.log(\"countryCode = \", pm.variables.get('countryCode'));\r",
-							"    console.log(\"mobileNo = \", pm.variables.get('mobileNo'));\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverLogin.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
+							"    const response1 = pm.response.json();\r",
+							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"    const response2 = pm.response.json();\r",
+							"     pm.environment.set(\"refreshToken\", response2.data.driverLogin.refreshToken);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", 11113333);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n    driverId\n  }\n}\n",
+						"variables": "{\n    \"driverLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Otp [GQL] Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.sendOtp.otp);\r",
+							"    pm.environment.set(\"otp\", response.data.sendOtp.otp);\r",
 							"});\r",
 							""
 						],
@@ -550,7 +539,9 @@
 					"script": {
 						"exec": [
 							"pm.environment.set(\"countryCode\", \"IND\");\r",
-							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));"
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -581,189 +572,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete Entity [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
-						"variables": "{\n  \"id\": \"5f62f194fee6c61ea0ee916f\"\n}"
-					}
-				},
-				"url": {
-					"raw": "{{gql-main-server}}",
-					"host": [
-						"{{gql-main-server}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Entities [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query GetAllEntity {\n  getAllEntity {\n    id\n    name {\n      ar\n      en\n    }\n    type\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{gql-main-server}}",
-					"host": [
-						"{{gql-main-server}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getStores in UserApp",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query GetStores($input: StoreFindInputDto!){\n  getStoresForUser(input:$input) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Address [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"/*\r",
-							"pm.test(\"Your test name\", function () {\r",
-							"    var response = pm.response.json();\r",
-							"    pm.environment.set(\"addressId\", response.data.getAllAddress[0].id);\r",
-							"});\r",
-							"*/\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query GetAllAddress {\n  getAllAddress {\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Address [GQL]",
+			"name": "Captain Signup [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -772,9 +581,59 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Your test name\", function () {\r",
+							"pm.test(\"Success validation\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.deleteAddress.status).to.eql(\"SUCCESS\");\r",
+							"    pm.expect(jsonData.data.driverSignup.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverSignup.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverSignup.accessToken);\r",
+							"   \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", mobile);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    driverId\n  }\n}\n",
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n    \n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Place List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -782,23 +641,13 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation DeleteAddress($input: AddressDeleteInputDto!) {\n  deleteAddress(addressDeleteInput:$input) {\n    status\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"addressId\": \"{{addressId}}\"\n  }\n}"
+						"query": "query ListPlaces($filterPlaces: FilterPlacesInputDto!) {\n  listPlaces(filterPlaces: $filterPlaces) {\n    places {\n      name {\n        ar\n        en\n      }\n    }\n    pagination {\n      hasPrevPage\n      hasNextPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"filterPlaces\": {\n    \"type\": \"CITY\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 20\n    }\n  }\n}"
 					}
 				},
 				"url": {
@@ -811,18 +660,14 @@
 			"response": []
 		},
 		{
-			"name": "User Profile [GQL]",
+			"name": "Captain Car Type List [GQL]",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var json = pm.response.json();\r",
-							"pm.test(\"Verify User Profile\",function(){\r",
-							"    pm.expect(pm.response.to.have.status(200));\r",
-							"    pm.expect(json.data.getUserProfile.mobile).to.eql(pm.variables.get('mobileNo'));\r",
-							"    pm.expect(json.data.getUserProfile.countryCode).to.eql(pm.variables.get('countryCode'));\r",
-							"    //pm.expect(json.data.getUserProfile.email).to.eql(pm.environment.get('uEmail'));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -830,22 +675,12 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetUserProfile{\n  getUserProfile {\n      mobile\n      email\n      name\n    countryCode\n  }\n}",
+						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -859,173 +694,7 @@
 			"response": []
 		},
 		{
-			"name": "Home Business Entity Group List [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n      subEntityIds\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Store Product Listing [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName{en \n      ar}\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
-						"variables": "{\n  \"userStoreProductsFindInputDto\": {\n    \"storeId\": \"5f588fc268800866e8c4cf4e\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 10\n    }\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add product to cart",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
-						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"5fc8cbc9a9eb6412fc0489cf\",\n        \"product\": {\n            \"productId\": \"5fc8cc31a9eb6412fc0489d2\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Finatttl testing\",\n                \"ar\": \"Finalttt testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Cart",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n         price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
-						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ApplyPromoCode",
+			"name": "Captain Profile [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -1034,9 +703,6 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							" var jsonData = pm.response.json();\r",
-							"    pm.environment.set(\"promoid\",jsonData.data.applyPromoCode.id);\r",
-							"    console.log(\"Promocode name\", jsonData.data.applyPromoCode.promoCode);\r",
 							""
 						],
 						"type": "text/javascript"
@@ -1059,128 +725,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation ApplyPromoCode($promoCodeInput: PromoCodeInput!){\napplyPromoCode(promoCodeInput: $promoCodeInput) { \n    id\n    promoCode\n    expiresAt\n  }\n}\n",
-						"variables": "{\n    \"promoCodeInput\": {\n        \"cartId\": \"5fc4bcd564fefb41568814ac\",\n        \"promoCode\": \"happy friday\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "RemoveProductFromCart",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation \n  RemoveProductFromCart($removeInput:RemoveCartProductInput!) {\n      removeProductFromCart(removeInput:$removeInput){\n        totalPrice\n        totalQuotedPrice\n  }\n}\n",
-						"variables": "{\n    \"removeInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"productId\": \"5fcdfb37215cf75b8151d1ff\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateCartMessage",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"const jsondata = pm.response.json();\r",
-							"console.log(jsondata.data.updateCartMessage.status);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation UpdateCartMessage($messageInput: UpdateCartMessageInput!) {\n    updateCartMessage(messageInput: $messageInput) {\n    status\n  }\n}\n",
-						"variables": "{\n    \"messageInput\": {\n    \"cartId\": \"5fc4bcd564fefb41568814ac\",\n    \"message\": \"msg updated\"\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getUserOrderCancelReasons",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmYzMTc1NTk5YjViYjNkYTIyN2ZkYzUiLCJzZXNzaW9uSWQiOiI1ZmYzMTc1NTdjNDhjYmJiNmY1MGE1Y2QiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJJT1MiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYwOTc2Njc0MSwiZXhwIjoxNjA5ODUzMTQxfQ.MEQCIHs-HBBPN18AlP2MLcIjE5OxX_FMzu6K2l7MYaxIti0QAiAM-7XhEAkEk13xMVcFCHobWwt4EKz1pPROm0HPi1Kfng",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"query": "query DriverProfile {\n  getDriverProfile {\n    isOnline\n    driverId\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    vehicleSaudiId\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    citcProvinceId\n    citcProvinceSaudiId\n    citcCityId\n    citcCitySaudiId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    cityId\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -1194,15 +739,82 @@
 			"response": []
 		},
 		{
-			"name": "Get Sub Entities",
+			"name": "Captain Document Upload [REST]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/C:/Users/Muthu Dhiva/Downloads/tmmtlogo.jpg"
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{auth-server}}/driver-auth/document-upload",
+					"host": [
+						"{{auth-server}}"
+					],
+					"path": [
+						"driver-auth",
+						"document-upload"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Bank List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fed6e1abcea7402e12d5b94\"]\n  }\n}"
+						"query": "query ListBanks{\n  listBanks {\n    bankId\n    name {\n      ar\n      en\n    }\n  }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
@@ -1215,7 +827,51 @@
 			"response": []
 		},
 		{
-			"name": "PlaceOrder",
+			"name": "Captain Online Status Toggle [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChangeDriverAvailability($isOnline: Boolean!) {\n  changeDriverAvailabilityFor(isOnline: $isOnline)  {\n      success\n      message {\n        en\n        ar\n      }\n    }\n}\n",
+						"variables": "{\n  \"isOnline\": true\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDriverOrderCancelReasons",
 			"event": [
 				{
 					"listen": "test",
@@ -1245,8 +901,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
+						"query": "query getDriverOrderCancelReasons{\n  getDriverOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
 					}
 				},
 				"url": {
@@ -1259,7 +915,7 @@
 			"response": []
 		},
 		{
-			"name": "cancelOrder",
+			"name": "Accept Driver Proposal",
 			"event": [
 				{
 					"listen": "test",
@@ -1279,7 +935,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-Token}}",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -1289,8 +945,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation cancelOrder($cancelOrderInput:CancelReadyOrderInputDto!) {\n  cancelOrder(cancelOrderInput: $cancelOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"cancelOrderInput\":    {   \n      \"orderId\":\"600145f55e42a17a3ba3313f\"\n    }\n}"
+						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
 					}
 				},
 				"url": {
@@ -1303,7 +959,7 @@
 			"response": []
 		},
 		{
-			"name": "updateOrder",
+			"name": "Decline Driver Proposal",
 			"event": [
 				{
 					"listen": "test",
@@ -1323,7 +979,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-Token}}",
+							"value": "{{access-token}}",
 							"type": "string"
 						}
 					]
@@ -1333,8 +989,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateOrder($updateOrderInput: UpdateReadyOrderInputDto!) {\n  updateOrder(updateOrderInput: $updateOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"updateOrderInput\":    { \n      \"_id\":\"5fff4e0f5e42a17a3ba3313a\",\n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
+						"query": "mutation DeclineDriverProposal($driverProposalDto: DriverProposalDto!) {\n  declineDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
 					}
 				},
 				"url": {
@@ -1347,241 +1003,7 @@
 			"response": []
 		},
 		{
-			"name": "getUsersOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query getUserOrders($orderFindInputDto:OrderFindInputDto!) {\n  getUserOrders(orderFindInputDto:$orderFindInputDto) {\n        orders{\n            _id\n        }\n        pagination{\n            page\n        }\n  }\n}\n",
-						"variables": "{\n    \"orderFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 4\n        }\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getSingleOrder",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query getSingleOrder($singleOrderFindDto:SingleOrderFindDto!) {\n  getSingleOrder(singleOrderFindDto:$singleOrderFindDto) {\n        userId\n        orderType\n        orderStatus\n        cartId\n        _id\n\n  }\n}\n",
-						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"600145f55e42a17a3ba3313f\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Cart Product quantity [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation updateCartQuantity($input:UpdateProductQuantityInput!) {\n  updateCartProductQuantity(quantityUpdateInput: $input) {\n    totalPrice\n    totalQuotedPrice\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"productId\": \"5ffd87188c7db253cdc2a3f4\",\n    \"quantity\":3\n  }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Clear cart by Entity [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation clearCartByEntity($id:String!) {\n  deleteCartByEntity(entityId: $id) {\n    status\n  }\n}",
-						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Clear cart by id [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation clearCartById($id:String!) {\n  deleteCartById(cartId: $id) {\n    status\n  }\n}",
-						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Clear promocode [GQL]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation clearPromocode($cartId: String!) {\n  clearPromoCode(cartId: $cartId) {\n    status\n  }\n}",
-						"variables": "{\n  \"cartId\": \"601be50ad490dc1c1ebb5d73\"\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UserLogout",
+			"name": "Captain Logout",
 			"event": [
 				{
 					"listen": "test",
@@ -1611,7 +1033,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserLogout {\n  userLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"query": "mutation DriverLogout {\n  driverLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
 						"variables": ""
 					}
 				},
@@ -1625,7 +1047,7 @@
 			"response": []
 		},
 		{
-			"name": "SetUserPushToken",
+			"name": "SetDriverPushToken",
 			"event": [
 				{
 					"listen": "test",
@@ -1655,8 +1077,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation setUserPushToken($setUserPushToken: SetPushTokenDto!){\n  setUserPushToken(setUserPushToken: $setUserPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
-						"variables": "{\n    \"setUserPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
+						"query": "mutation setDriverPushToken($setDriverPushToken: SetPushTokenDto!){\n  setDriverPushToken(setDriverPushToken: $setDriverPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setDriverPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1669,7 +1091,7 @@
 			"response": []
 		},
 		{
-			"name": "UserRateDriver [GQL]",
+			"name": "DriverRateUser [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -1680,7 +1102,7 @@
 							"});\r",
 							"pm.test(\"Success validaation\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.userRateDriver.success).to.eql(true);\r",
+							"    pm.expect(jsonData.data.driverRateUser.success).to.eql(true);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1703,8 +1125,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserRateDriver($input: UserRateDriverInputDto!) {\n  userRateDriver(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
-						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"driverRating\": 5.0,\n      \"driverComment\": \"Good Driver by  User\"\n    }\n}"
+						"query": "mutation DriverRateUser($input: DriverRateUserInputDto!) {\n  driverRateUser(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"userRating\": 5,\n      \"userComment\": \"Good User by  Driver\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1717,7 +1139,7 @@
 			"response": []
 		},
 		{
-			"name": "UserRateChef [GQL]",
+			"name": "DriverRateChef [GQL]",
 			"event": [
 				{
 					"listen": "test",
@@ -1728,7 +1150,7 @@
 							"});\r",
 							"pm.test(\"Success validaation\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.data.userRateChef.success).to.eql(true);\r",
+							"    pm.expect(jsonData.data.driverRateChef.success).to.eql(true);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1751,7 +1173,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation UserRateChef($input: UserRateChefInputDto!) {\n  userRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
 						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
 					}
 				},
@@ -1765,7 +1187,7 @@
 			"response": []
 		},
 		{
-			"name": "UserGetOrder",
+			"name": "DriverGetOrder",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -1782,7 +1204,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query userGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  userGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
+						"query": "query driverGetOrder($singleOrderFindDto: SingleOrderFindDto!){\n  driverGetOrder(singleOrderFindDto: $singleOrderFindDto) {\n    userId\n    cartId\n    orderCart{\n      _id\n      entityId\n      storeCode\n      products{\n        productId\n        name{\n          en\n          ar\n        }\n      }\n    }\n  }\n}\n",
 						"variables": "{\n    \"singleOrderFindDto\": {\n        \"orderId\": \"601a7b5a9e2bad43341bcb79\"\n    }\n}"
 					}
 				},
@@ -1796,14 +1218,14 @@
 			"response": []
 		},
 		{
-			"name": "UserActiveOrder",
+			"name": "DriverActiveOrder",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlNmYwODBiYjM4MjFkZDJlMDZjOTgiLCJzZXNzaW9uSWQiOiI2MDdlNmYwZWIzMWFjYWQ2NTEwOGU3OTAiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxODkxNzYzNCwiZXhwIjoxNjE5MDA0MDM0fQ.MEYCIQDP288CZUhhOHGdhuivrJTAN58oNU_8lsJ7iS_t7JINKwIhANWhIX8zraffrjJOu-_xRH02PYLFRkKgiVZycOiJ2Zdn",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlNmY1NzBiYjM4MjFkZDJlMDZjOWIiLCJzZXNzaW9uSWQiOiI2MDdlNmY1N2IzMWFjYWQ2NTEwOGU4ZjUiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IkFORFJPSUQiLCJyb2xlcyI6WyJEUklWRVIiXSwiaWF0IjoxNjE4OTE4MTQ1LCJleHAiOjE2MTkwMDQ1NDV9.MEYCIQDnkOkAMWtpBuo4V5u1SPXGEnNsxTTf-rP2JCa7VLVvogIhAJMcikzY0AVhxlQnAZu_dIrdcdftiXiZEcYI72jIFTiN",
 							"type": "string"
 						}
 					]
@@ -1813,7 +1235,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query userActiveOrders{\n  userActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
+						"query": "query driverActiveOrders{\n  driverActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
 						"variables": ""
 					}
 				},
@@ -1825,27 +1247,6 @@
 				}
 			},
 			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					"pm.variables.set(\"countryCode\",\"IND\");",
-					"pm.variables.set(\"mobileNo\",\"500012350\");"
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }
