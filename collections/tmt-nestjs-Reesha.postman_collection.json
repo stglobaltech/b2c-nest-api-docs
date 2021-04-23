@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8a835cb5-5980-4711-beab-2ffe96557a38",
+		"_postman_id": "0aa7688b-394d-4984-82d1-d4a2cff5ebfa",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1360,6 +1360,68 @@
 					"graphql": {
 						"query": " query GetAdvancedSearchDiscounts($advancedSearchInput:AdvancedSearchInputDto!)\n    {\n getAdvancedSearchDiscounts(\nadvancedSearchInput: $advancedSearchInput\n){\n discounts{\nname\n }\n}\n    }",
 						"variables": "{\n    \"advancedSearchInput\":{\n        \"isConditional\":false,\n      \"discountIn\": \"Purchase\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products For Reesha Based On Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query getProductsBasedOnStoreForReesha($productsFilterReeshaInputDto:ProductsFilterReeshaInputDto!)\n    {\n getProductsBasedOnStoreForReesha(\nproductsFilterReeshaInputDto: $productsFilterReeshaInputDto\n){\n    orders{\n        _id\n        orderStatus\n        orderType\n    }\n    pagination{\n        hasNextPage\n        hasPrevPage\n        nextPage\n        prevPage\n        page\n        perPage\n    }\n}\n}",
+						"variables": "{\n    \"productsFilterReeshaInputDto\":{\n        \"userId\":\"12345\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stores For Reesha Products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query getStoresForReeshaProducts($storesForReeshaProductsDto:StoresForReeshaProductsDto!)\n    {\n getStoresForReeshaProducts(\nstoresForReeshaProductsDto: $storesForReeshaProductsDto\n){\n    stores{\n        _id\n    }\n    pagination{\n        hasNextPage\n        hasPrevPage\n        nextPage\n        prevPage\n        page\n        perPage\n    }\n}\n}",
+						"variables": "{\n    \"storesForReeshaProductsDto\":{\n        \"name\":\"vignesh_tmmt\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
 					}
 				},
 				"url": {
