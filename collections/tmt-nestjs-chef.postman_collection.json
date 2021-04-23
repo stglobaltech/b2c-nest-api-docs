@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0da066ea-1f3d-4923-b62f-dbdeb7fc1a12",
+		"_postman_id": "5500cb4f-579a-4ae1-9716-dd7e67a5473d",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,19 @@
 			"item": [
 				{
 					"name": "Order Chat file upload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -55,6 +68,19 @@
 				},
 				{
 					"name": "chefUserOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -86,6 +112,19 @@
 				},
 				{
 					"name": "chefSendOrderChatMessageToUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -117,6 +156,19 @@
 				},
 				{
 					"name": "chefSendOrderChatMessageToDriver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -148,6 +200,19 @@
 				},
 				{
 					"name": "chefOrderChatWithUserSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -169,6 +234,19 @@
 				},
 				{
 					"name": "chefOrderChatWithStoreSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -190,6 +268,19 @@
 				},
 				{
 					"name": "chefDriverOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -245,7 +336,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefLogin($chefLoginDto: ChefLoginDto!){\n  chefLogin(chefLoginDto: $chefLoginDto) {\n    success\n     message {\n      en\n      ar\n    }\n    chefId\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
-						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"99887766\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
+						"variables": "{\n    \"chefLoginDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"807356399\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"awsToken\": \"\",\n        \"nativeToken\": \"\",\n        \"oneSignalId\": \"\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -368,7 +459,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation chefAcceptOrder($chefProposalDto: ChefProposalDto!){\n  chefAcceptOrder(chefProposalDto: $chefProposalDto) {\n    success\n     message {\n      en\n      ar\n    }\n  }\n}",
-						"variables": "{\n    \"chefProposalDto\": {\n        \"chefId\": \"6065771f10494261e1ba63d9\",\n        \"orderId\": \"606578e1fd44f261d9332f15\"\n    }\n}"
+						"variables": "{\n    \"chefProposalDto\": {\n       \n        \"orderId\": \"60815e36c9b13e33bb23eeb1\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -649,13 +740,26 @@
 		},
 		{
 			"name": "ChefActiveOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlODU3YjBiYjM4MjFkZDJlMDZjOWMiLCJzZXNzaW9uSWQiOiI2MDdlODU5MmIzMWFjYWQ2NTEwOTQxYzMiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MTg5MTgyNTksImV4cCI6MTYxOTAwNDY1OX0.MEYCIQDuL27R5-hmfjvaiXAyJVRuVexvyEkoY51XLwNGeqO8LQIhAK51Fg2o2MaQ0ErbTzLwJUSolde_Asg89xgR_3SmEtgs",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]

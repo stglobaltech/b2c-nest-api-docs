@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1fbf6d29-e353-496d-96df-46ef81f37d5f",
+		"_postman_id": "b602efc1-382f-4313-a51b-815cea508e57",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -243,6 +243,20 @@
 			"item": [
 				{
 					"name": "Order Chat file upload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -288,6 +302,19 @@
 				},
 				{
 					"name": "driverUserOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -319,6 +346,19 @@
 				},
 				{
 					"name": "driverSendOrderChatMessageToUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -350,6 +390,19 @@
 				},
 				{
 					"name": "driverSendOrderChatMessageToStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -381,6 +434,19 @@
 				},
 				{
 					"name": "driverOrderChatWithUserSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -402,6 +468,19 @@
 				},
 				{
 					"name": "driverOrderChatWithStoreSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -423,6 +502,19 @@
 				},
 				{
 					"name": "driverChefOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -935,7 +1027,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
@@ -946,7 +1038,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
-						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"order-id\",\n    \"driverId\": \"driver-id\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"60813f38c9b13e33bb23ee3a\",\n    \"driverId\": \"608154c762a2e133cd6e1f48\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
 					}
 				},
 				"url": {

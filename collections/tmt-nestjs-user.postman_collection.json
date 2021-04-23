@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e7bb71db-793b-4a66-a897-3080abb8ea63",
+		"_postman_id": "dde87015-3247-4de1-a498-1bd2f2130fe4",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,19 @@
 			"item": [
 				{
 					"name": "Order Chat file upload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -55,6 +68,19 @@
 				},
 				{
 					"name": "UserChefOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -86,6 +112,19 @@
 				},
 				{
 					"name": "UserSendOrderChatMessageToDriver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -117,6 +156,19 @@
 				},
 				{
 					"name": "userSendOrderChatMessageToStore",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -148,6 +200,19 @@
 				},
 				{
 					"name": "userOrderChatWithDriverSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -169,6 +234,19 @@
 				},
 				{
 					"name": "userOrderChatWithStoreSubscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -190,6 +268,19 @@
 				},
 				{
 					"name": "userDriverOrderChatHistory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -968,7 +1059,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
-						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"5fc8cbc9a9eb6412fc0489cf\",\n        \"product\": {\n            \"productId\": \"5fc8cc31a9eb6412fc0489d2\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Finatttl testing\",\n                \"ar\": \"Finalttt testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
+						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"{{id}}\",\n        \"product\": {\n            \"productId\": \"{{Productid}}\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"csk testing\",\n                \"ar\": \"csk testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
 					}
 				},
 				"url": {
@@ -989,7 +1080,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"cartId\",jsonData.data.getCart._id);"
 						],
 						"type": "text/javascript"
 					}
@@ -1246,7 +1339,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation placeOrder($createOrderInput: CreateReadyOrderInputDto!) {\n  placeOrder(createOrderInput: $createOrderInput) {\n        success\n        message{\n        en\n        ar\n        }\n        orderId\n  }\n}\n",
-						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"5fff4dd75e42a17a3ba33138\"\n    }\n}"
+						"variables": "{\n  \"createOrderInput\":    { \n      \"cartId\": \"{{cartId}}\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -1797,13 +1890,26 @@
 		},
 		{
 			"name": "UserActiveOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlNmYwODBiYjM4MjFkZDJlMDZjOTgiLCJzZXNzaW9uSWQiOiI2MDdlNmYwZWIzMWFjYWQ2NTEwOGU3OTAiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxODkxNzYzNCwiZXhwIjoxNjE5MDA0MDM0fQ.MEYCIQDP288CZUhhOHGdhuivrJTAN58oNU_8lsJ7iS_t7JINKwIhANWhIX8zraffrjJOu-_xRH02PYLFRkKgiVZycOiJ2Zdn",
+							"value": "{{access-Token}}",
 							"type": "string"
 						}
 					]
