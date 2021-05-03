@@ -1,0 +1,1111 @@
+{
+	"info": {
+		"_postman_id": "6f3153c0-a576-49bd-8959-14e2d60ba6eb",
+		"name": "test user collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send Otp [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"otp\",jsonData.data.sendOtp.otp);\r",
+							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"\r",
+							"    console.log(\"Otp = \", jsonData.data.sendOtp.otp);\r",
+							"    console.log(\"countryCode = \", pm.variables.get('countryCode'));\r",
+							"    console.log(\"mobile = \", pm.variables.get('mobile'));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Signup [GQL]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var email = \"auto+{{$randomInt}}@tmmt.com\"\r",
+							"pm.variables.set(\"uEmail\",email);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"Verify User Signup\", function(){\r",
+							"    pm.expect(json.data.userSignup.success).to.be.true;\r",
+							"    var email = pm.variables.get('uEmail');\r",
+							"    console.log(\"User Email, \",email);\r",
+							"    pm.environment.set(\"uEmail\",email);\r",
+							"\r",
+							"    pm.environment.set(\"token\",json.data.userSignup.accessToken);\r",
+							"    pm.environment.set(\"refreshToken\", json.data.userSignup.refreshToken);\r",
+							"    console.log(\"token = \", pm.environment.get(\"token\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserSignup($userSignupInputDto: UserSignupInputDto!) {\n  userSignup(userSignupInputDto: $userSignupInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n \n  }\n}\n",
+						"variables": "{\n  \"userSignupInputDto\": {\n     \"name\": \"Auto+{{$randomInt}}\",\n\t\t\"countryCode\": \"{{countryCode}}\",\n\t\t\"mobile\": \"{{mobile}}\",\n\t\t\"email\": \"{{uEmail}}\",\n\t\t\"deviceId\": \"12344555\",\n\t\t\"deviceType\": \"IOS\",\n\t\t\"osVersion\": \"1.0.1\",\n\t\t\"deviceModel\": \"String\",\n\t\t\"versionCode\": \"String\",\n\t\t\"otp\": \"{{otp}}\",\n\t\t\"deviceARN\": \"String\",\n\t\t\"oneSignalId\": \"String\",\n        \"status\": \"ON\"       \n        \n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify User Login\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    console.log(\"Api response = \",json.data.userLogin.success);\r",
+							"    //pm.expect(json.data.userLogin.success).to.be.true;\r",
+							"    if(json.data.userLogin.success == true) {\r",
+							"        pm.environment.set(\"access-Token\",json.data.userLogin.accessToken);\r",
+							"        pm.environment.set(\"refreshToken\", json.data.userLogin.refreshToken);\r",
+							"    }\r",
+							"    console.log(\"token = \", pm.environment.get(\"token\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"isSignupRequired true run Signup\", function(){\r",
+							"    //pm.expect(json.data.userLogin.isSignUpRequired).to.be.true\r",
+							"   if((json.data.userLogin.isSignUpRequired) == true)\r",
+							"        //postman.setNextRequest(\"User Signup\");\r",
+							"        console.log(\"User need to signup\");\r",
+							"    else\r",
+							"        console.log(\"User is already exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  UserLogin($userLoginInputDto: UserLoginInputDto!){\n  userLogin(userLoginInputDto: $userLoginInputDto) {\n    success\n     message {\n      en\n      ar\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n  }\n}",
+						"variables": "{\n  \"userLoginInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\",\n    \"deviceType\": \"IOS\",\n    \"otp\": \"{{otp}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Entity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const response = pm.response.json();\r",
+							"pm.environment.set(\"Entityid\", response.data.createEntity.id);\r",
+							"console.log(response.data.createEntity.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name = \"entity+{{$randomInt}}\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation CreateEntity($entityInput: EntityCreateInputDto!) {\n  createEntity(entityInput: $entityInput) {\n      id\n    name {\n      ar\n      en\n    }\n    subEntityIds\n    type\n    adminStoreId\n    entityCategories\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n    dataAPIQuery\n    cityIds\n  }\n}\n",
+						"variables": "{\n  \"entityInput\": {\n     \"name\": { \"ar\": \"entity{{$randomInt}}\",\n      \"en\": \"dada\" },\n      \"subEntityIds\": [],\n      \"type\": \"RESTAURANT\",\n      \"level\": \"FIRST\",\n      \"adminStoreId\": \"5fa94319bdfe015122f09ffc\",\n      \"entityCategories\": [],\n      \"withoutDelivery\": true,\n      \"iconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d3aab20-2344-11eb-a74a-275df72bee34.png\",\n        \"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0ae5c80-2341-11eb-9b7d-cdb409930e55.png\"},\n      \"fullWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2e28b4a0-2344-11eb-9b7d-cdb409930e55.png\",\"en\":\"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a1142330-2341-11eb-a74a-275df72bee34.png\"},\n      \"halfWidthIconUrl\": { \"ar\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/2d98f7c0-2344-11eb-a74a-275df72bee34.png\", \"en\": \"https://tmtcategoriesimages.s3.eu-west-1.amazonaws.com/entities/a0eb1760-2341-11eb-9b7d-cdb409930e55.png\" },\n      \"uiType\": 0,\n      \"sortIndex\": 1,\n      \"status\": \"ACTIVE\",\n      \"dataAPIQuery\": \"dataAPIQuery\",\n      \"cityIds\": []\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteEntity($id: String!){\n  deleteEntity(entityId: $id){\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"{{Entityid}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Entities [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var json = pm.response.json();\r",
+							"pm.environment.set(\"entity-id \", json.data.getAllEntity[1].id);\r",
+							"console.log(json.data.getAllEntity[1].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetAllEntity {\n  getAllEntity {\n    id\n    name {\n      ar\n      en\n    }\n    type\n    withoutDelivery\n    iconUrl {\n      ar\n      en\n    }\n    fullWidthIconUrl {\n      ar\n      en\n    }\n    halfWidthIconUrl {\n      ar\n      en\n    }\n    uiType\n    sortIndex\n    status\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{gql-main-server}}",
+					"host": [
+						"{{gql-main-server}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const variable = pm.response.json();\r",
+							"    pm.environment.set(\"addressId\", variable.data.saveAddress.id);\r",
+							"});\r",
+							"pm.test(\"Response time validation\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name = \"address+{{$randomInt}}\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n \n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"name\": \"address{{$randomInt}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"geoHash\": \"tf2czbs\",\n    \"imageUrl\": \"http://google.com\"\n     \n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.environment.set(\"addressId\", response.data.getAllAddress[0].id);\r",
+							"});\r",
+							"*/\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetAllAddress {\n  getAllAddress {\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n   \n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Address [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.deleteAddress.status).to.eql(\"SUCCESS\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DeleteAddress($input: AddressDeleteInputDto!) {\n  deleteAddress(addressDeleteInput:$input) {\n    status\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"addressId\": \"{{addressId}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"Verify User Profile\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    pm.expect(json.data.getUserProfile.mobile).to.eql(pm.variables.get('mobile'));\r",
+							"    pm.expect(json.data.getUserProfile.countryCode).to.eql(pm.variables.get('countryCode'));\r",
+							"    //pm.expect(json.data.getUserProfile.email).to.eql(pm.environment.get('uEmail'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetUserProfile{\n  getUserProfile {\n      mobile\n      email\n      name\n    countryCode\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home Business Entity Group List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListBusinessGroupEntities  {\n  listBusinessEntityGroups {\n    position\n    viewType\n    height\n    ratio\n    entityList {\n      name {\n        ar\n        en\n      }\n      subEntityIds\n    }\n    textDetails {\n      title {\n        ar\n        en\n      }\n      desc {\n        ar\n        en\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStores in UserApp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStores($input: StoreFindInputDto!){\n  getStoresForUser(input:$input) {\n    stores{\n      name{en \n      ar}\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 5\n    },\n    \"entityId\": \"5fc4ab4b64fefb415688149d\",\n    \"geoHash\": \"tf2fxs4\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store Product Listing [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStoreProductsForUser($userStoreProductsFindInputDto: StoreProductFindInputDto!) {\n  getStoreProductsForUser(userStoreProductsFindInputDto: $userStoreProductsFindInputDto) {\n    products {\n      productName{en \n      ar}\n    }\n    pagination {\n      hasNextPage\n      nextPage\n      \n      hasPrevPage\n      prevPage\n      \n      page\n    }\n  }\n}",
+						"variables": "{\n  \"userStoreProductsFindInputDto\": {\n    \"storeId\": \"{{storeId}}\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 10\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product to cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddProductToCart($addProductInput:AddProductInput!) {\n    addProductToCart(addProductInput:$addProductInput){\n    totalPrice\n    totalQuotedPrice\n    productId\n  }\n}\n",
+						"variables": "{\n    \"addProductInput\": {\n        \"entityId\": \"5fc4ab4b64fefb415688149d\",\n        \"storeCode\": \"{{storeId}}\",\n        \"product\": {\n            \"productId\": \"{{productId}}\",\n            \"quotedPrice\": 200,\n            \"name\": {\n                \"en\": \"Finatttl testing\",\n                \"ar\": \"Finalttt testing\"\n            },\n            \"quantity\": 2,\n            \"price\": 100,\n            \"message\": \"will buy\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const json = pm.response.json();\r",
+							"    pm.environment.set(\"cartId\", json.data.getCart._id);\r",
+							"    console.log(json.data.getCart._id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n         price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
+						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApplyPromoCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							" var jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"promoid\",jsonData.data.applyPromoCode.id);\r",
+							"    console.log(\"Promocode name\", jsonData.data.applyPromoCode.promoCode);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ApplyPromoCode($promoCodeInput: PromoCodeInput!){\napplyPromoCode(promoCodeInput: $promoCodeInput) { \n    id\n    promoCode\n    expiresAt\n  }\n}\n",
+						"variables": "{\n    \"promoCodeInput\": {\n        \"cartId\": \"{{cartId}}\",\n        \"promoCode\": \"happy friday\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCartMessage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const jsondata = pm.response.json();\r",
+							"console.log(jsondata.data.updateCartMessage.status);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateCartMessage($messageInput: UpdateCartMessageInput!) {\n    updateCartMessage(messageInput: $messageInput) {\n    status\n  }\n}\n",
+						"variables": "{\n    \"messageInput\": {\n    \"cartId\": \"{{cartId}}\",\n    \"message\": \"msg updated\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear promocode [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearPromocode($cartId: String!) {\n  clearPromoCode(cartId: $cartId) {\n    status\n  }\n}",
+						"variables": "{\n  \"cartId\": \"{{cartId}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Access token [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.test(\"New Access Token\",function(){\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"    console.log(\"Api response = \",json.data.refreshToken.success);\r",
+							"    pm.environment.set(\"access-Token\",json.data.refreshToken.accessToken);\r",
+							"    console.log(\"accessToken = \", pm.environment.get(\"access-Token\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation RefreshToken($accessTokenInputDto: BuildAccessTokenInputDto!){\n  refreshToken(accessTokenInputDto:$accessTokenInputDto){\n    accessToken\n  }\n}",
+						"variables": "{\n  \"accessTokenInputDto\": {\n    \"accessToken\": \"{{access-Token}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear cart by Entity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation clearCartByEntity($id:String!) {\n  deleteCartByEntity(entityId: $id) {\n    status\n  }\n}",
+						"variables": "{\n  \"id\": \"5fc4ab4b64fefb415688149d\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserOrderCancelReasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserOrderCancelReasons{\n  getUserOrderCancelReasons{\n    _id\n    reason{en\n    ar}\n    appType\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sub Entities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query  GetSubEntities($input: SubEntitiesFilterInputDto!) {\n  getSubEntities(input:$input) {\n    id\n      name {\n        ar\n        en\n      }\n      level\n      subEntityIds\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"subEntityIds\": [\"5fed6e1abcea7402e12d5b94\"]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.userLogout.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UserLogout {\n  userLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.variables.set(\"countryCode\",\"IND\");",
+					"pm.variables.set(\"mobileNo\",\"500012350\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

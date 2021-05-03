@@ -1,0 +1,1820 @@
+{
+	"info": {
+		"_postman_id": "92e1155c-8539-4f98-a52f-67b0c05615ae",
+		"name": "test gate collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gate-Signup [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    console.log(response.data.gateSignup.message);\r",
+							"    pm.expect(response.data.gateSignup.success).to.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let str = '';\r",
+							"const key = 'abcdefgh1234567';\r",
+							"const domain = '@tmmt.com';\r",
+							"for(let i=0; i<=10; i++){\r",
+							"str += key.charAt(Math.round(key.length*Math.random())); \r",
+							"}\r",
+							"const email = str+=domain;\r",
+							"pm.environment.set(\"emailid\", email);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateSignup($gateSignUpDto: GateSignUpDto!){\n  gateSignup(gateSignUpDto:$gateSignUpDto) {\n    success\n    message{\n        en\n        ar\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}",
+						"variables": "{\n    \"gateSignUpDto\": {\n        \"username\": \"tmmtqa\",\n        \"email\": \"{{emailid}}\",\n        \"password\": \"tmmt@123\",\n        \"appType\": \"GATE\",\n        \"countryCode\": \"IND\",\n        \"deviceType\": \"WEB\",\n        \"mobileNumber\": \"800001234\",\n        \"iBan\": \"1234567\",\n        \"restuarantName\": {\n            \"en\": \"GameRestaurent\",\n            \"ar\": \"arGameRestaurent\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gate-Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"console.log(response.data.gateLogin.accessToken);\r",
+							"pm.environment.set(\"access-Token\", response.data.gateLogin.accessToken);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.gateLogin.success).to.eql(true);\r",
+							"});\r",
+							"const ownerId = pm.response.json();\r",
+							"pm.environment.set(\"userId\", ownerId.data.gateLogin.userId);\r",
+							"//postman.setNextRequest(\"Get Store\");\r",
+							"//pm.environment.unset(\"auth-server-gql\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateLogin($gateLoginDto: GateLoginDto!) {\n  gateLogin(gateLoginDto: $gateLoginDto) {\n    success\n    accessToken\n    refreshToken\n    userId\n    }\n}",
+						"variables": "{\n  \"gateLoginDto\": {\n    \"email\": \"{{emailid}}\",\n    \"password\": \"tmmt@123\",\n    \"deviceType\": \"WEB\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store [GQL]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"pm.environment.set(\"id\", response.data.getStore._id);\r",
+							"pm.environment.set(\"parentId\", response.data.getStore.parentId);\r",
+							"console.log(response.data.getStore._id);\r",
+							"\r",
+							"//postman.setNextRequest(\"Create Product Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStore($ownerId: String!) {\n  getStore(ownerId: $ownerId) {\n    _id\n    name{\n        en\n        ar\n    }\n    ownerId\n    parentId\n  }\n}\n",
+						"variables": "{\n  \"ownerId\": \"{{userId}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Store Contact Address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.editStoreContactAddress.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Store contact address updated\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  editStoreContactAddress($storeEditInput:StoreContactAddressEditInputDto!){\n  editStoreContactAddress(storeEditInput:$storeEditInput){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"coordinates\":[12.1212,99.1212],\n        \"address\":\"23,hatgjj\",\n        \"contactNumber\":\"800001234\",\n        \"countryCode\":\"IND\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Store Configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName{\n         en \n         ar \n     }\n     categoryIds\n    }\n}",
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":{\"en\":\"nes\",\"ar\":\"nes\"},\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product Category [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.createCategory.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Category Created Successfully\");\r",
+							"});\r",
+							"//postman.setNextRequest(\"Search Product Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation CreateCategory($categoryCreateInput: CategoryCreateInputDto!) {\n  createCategory(categoryCreateInput: $categoryCreateInput) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
+						"variables": "{\n  \"categoryCreateInput\":  {\n    \"storeCode\": \"{{id}}\",\n    \"name\": {\"en\":\"Cake123ww\",\n    \"ar\": \"ArCategory1ww\"},\n    \"isEnable\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Product Category [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const response = pm.response.json();\r",
+							"pm.environment.set(\"catId\", response.data.searchCategory[0].productCategories[0]._id);\r",
+							"console.log(response.data.searchCategory[0].productCategories[0].id);\r",
+							"//postman.setNextRequest(\"Edit Product Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query SearchCategory($categorySearchInput:CategorySearchInputDto!){\n    searchCategory(categorySearchInput:$categorySearchInput){\n        productCategories {\n            name{\n                en\n                ar\n            }\n            isEnable\n            _id\n        }\n    }\n}",
+						"variables": "{\n    \"categorySearchInput\":{\n        \"storeId\":\"{{id}}\",\n        \"categoryKey\":\"a\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product Category [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.editCategory.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Category Edited Successfully\");\r",
+							"});\r",
+							"//postman.setNextRequest(\"Enable Product category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation EditCategory($categoryEditInput:CategoryEditInputDto!){\n    editCategory(categoryEditInput:$categoryEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"categoryEditInput\": {\n        \"storeId\": \"{{id}}\",\n        \"_id\": \"{{catId}}\",\n        \"name\": {\n            \"en\": \"dhoni123\",\n            \"ar\": \"ijinj\"\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStoreCategories{\n    getStoreCategories{\n         _id\n        name{\n            en\n            ar\n        }\n       iconUrl\n       type\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Categories [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//const response = pm.response.json();\r",
+							"//pm.environment.set(\"catId\", response.data.getCategories[0].productCategories[0]._id);\r",
+							"//console.log(response.data.getCategories[0].productCategories[0].id);\r",
+							"//postman.setNextRequest(\"Edit Product Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getCategories($storeId: String!){\n    getCategories(storeId:$storeId){\n       productCategories{\n           name{\n               en\n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
+						"variables": "{\n    \"storeId\":\"{{id}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enable Product Category [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Create Product\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateCategoryIsEnable($categoryIsEnableEditInput: CategoryIsEnableEditInputDto!){\n    updateCategoryIsEnable(categoryIsEnableEditInput:$categoryIsEnableEditInput){\n       productCategories{\n           name{\n               en \n               ar\n           }\n           isEnable\n           _id\n       }\n    }\n}",
+						"variables": "{\n    \"categoryIsEnableEditInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"isEnable\":true,\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"pm.environment.set(\"Productid\", response.data.createProduct._id);\r",
+							"console.log(response.data.createProduct._id);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Search Product\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  createProduct($productCreateInput:ProductCreateInputDto!){\n    createProduct(productCreateInput:$productCreateInput){\n    _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n    }\n}",
+						"variables": "{\n    \"productCreateInput\": {\n        \"productName\": {\n            \"en\": \"Final testing\",\n            \"ar\": \"Final Testing\"\n        },\n        \"description\": {\n            \"en\": \"will be nice\",\n            \"ar\": \"will be nice\"\n        },\n        \"price\": {\n            \"price\": 20,\n            \"basePrice\":30,\n            \"vatPrice\":23\n        },\n        \"maxQuantity\": 23,\n        \"payType\": \"any\",\n        \"picture\": \"asas\",\n        \"isAvailable\": true,\n        \"categoryId\": \"{{catId}}\",\n        \"parentStoreCode\": \"{{parentid}}\",\n        \"ownerId\": \"{{userId}}\",\n        \"originStoreCode\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product Based on Category [GQL]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetProductsBasedOnCategory($productFindInput:ProductFindInputDto!) {\n    getProductsBasedOnCategory(productFindInput:$productFindInput) {\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           nextPage\n           prevPage \n           page \n           perPage\n       }\n    }\n}",
+						"variables": "{\n    \"productFindInput\":{\n    \"categoryId\":\"{{catId}}\",\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Product [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Product Edited Successfully\");\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.data.editProduct.success).to.eql(true);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Update Product Quantity\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  EditProduct($productEditInput:ProductEditInputDto!){\n    editProduct(productEditInput:$productEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"productEditInput\":{\n        \"_id\":\"{{Productid}}\",\n        \"productName\":{\"en\":\"ed\",\n        \"ar\":\"ola\"},\n        \"description\":{\"en\":\"asas\",\n        \"ar\":\"asas\"},\n        \"price\":{\"price\":0,\"basePrice\":23,\"vatPrice\":23},\n        \"maxQuantity\":1,\n        \"payType\":\"any\",\n        \"categoryId\":\"{{catId}}\",\n        \"picture\":\"asas\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Product [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetProduct($productId: String!) {\n   getProduct(productId:$productId) {\n       productName{\n           en\n           ar\n       }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n   }\n}",
+						"variables": "{\n    \"productId\":\"{{Productid}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Product [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Get Product Based on Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query SearchProduct($productSearchInput:ProductSearchInputDto!){\n    searchProduct(productSearchInput:$productSearchInput){\n       products{\n            _id\n        productName{\n            en\n            ar\n        }\n       description{\n           en\n           ar\n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n       }\n       pagination{\n           hasNextPage\n           hasPrevPage\n           prevPage \n           nextPage\n           page \n           perPage \n       }\n    }\n}",
+						"variables": "{\n    \"productSearchInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"productKey\":\"\",\n        \"paginate\":{\"page\":1,\"perPage\":10}\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Price [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Update Product Availability\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductPrice($productPriceEditInput:ProductPriceEditInputDto!){\nupdateProductPrice(productPriceEditInput:$productPriceEditInput){\n     success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n}\n}",
+						"variables": "{\n    \"productPriceEditInput\": {\n        \"productId\": \"{{Productid}}\",\n        \"price\": {\n            \"price\": 10,\n            \"basePrice\": 10,\n            \"vatPrice\": 34\n        },\n        \"storeId\": \"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Quantity [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Update Product Price\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductQuantity($productQuantityEditInput:ProductQuantityEditInputDto!){\nupdateProductQuantity(productQuantityEditInput:$productQuantityEditInput){\n       success\n     message {\n         en\n         ar\n     }\n     isNewProduct\n     oldStoreCode\n     product {\n         _id\n    productName{en\n    ar}\n    description{en\n    ar}\n    maxQuantity\n    price{price}\n    payType\n    picture\n    isAvailable\n     }\n}\n}",
+						"variables": "{\n    \"productQuantityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"maxQuantity\":12,\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Availablility [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Delete Product\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateProductAvailability($productAvailabilityEditInput:ProductAvailabilityEditInputDto!){\nupdateProductAvailability(productAvailabilityEditInput:$productAvailabilityEditInput){\n      _id\n        productName{\n            en\n            ar \n        }\n       description{\n           en \n           ar \n       }\n       price{\n           price\n       }\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n}\n}",
+						"variables": "{\n    \"productAvailabilityEditInput\":{\n        \"productId\":\"{{Productid}}\",\n        \"isAvailable\":false,\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Products Based On Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchProductBasedOnStore($storeProductSearchInputDto:StoreProductSearchInputDto!){\n    searchProductBasedOnStore(storeProductSearchInputDto:$storeProductSearchInputDto){\n         _id\n        productName{en\n       ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       storeCodes\n       isAvailable\n    }\n}",
+						"variables": "{\n    \"storeProductSearchInputDto\":{\n        \"storeId\":\"{{id}}\",\n        \"productKey\":\"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products Based On Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetProductsBasedOnStore($ storeProductFindInputDto: StoreProductFindInputDto!) {\n    getProductsBasedOnStore( storeProductFindInputDto:$ storeProductFindInputDto) {\n      products{\n            _id\n        productName{en\n        ar}\n       description{en\n       ar}\n       price{price}\n       payType\n       maxQuantity\n       categoryId\n       storeCodes\n       isAvailable\n      }\n    }\n}",
+						"variables": "{\n\"storeProductFindInputDto\":{\n    \"storeId\":\"{{id}}\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update entity key in store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.editStoreEntity.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"entity updated Successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editStoreEntity($storeEntityEditInput:StoreEntityEditInputDto!) {\n  editStoreEntity(storeEntityEditInput: $storeEntityEditInput) {\n  success\n  message{\n      en \n      ar\n  }\n    }\n}",
+						"variables": "{\n  \"storeEntityEditInput\": {\n    \"storeId\": \"{{id}}\", \n    \"entityIds\":[\"5fc4ab4b64fefb415688149d\"]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update store availability",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreAvailability($storeAvailabilityEditInput: StoreAvailabilityEditInputDto!) {\n  updateStoreAvailability(storeAvailabilityEditInput: $storeAvailabilityEditInput) {\n  _id\n    }\n}",
+						"variables": "{\n    \"storeAvailabilityEditInput\":{\n    \"storeId\": \"{{id}}\",\n    \"isAvailable\": true\n}\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createStoreTiming($storeTimingInput: StoreTimingInputDto!) {\n  createStoreTiming(storeTimingInput: $storeTimingInput) {\n      success\n      storeTiming{\n        storeId,\n        sun{\n        startHour,startMinute,endHour,endMinute\n        }\n        dateRange{\n        startDate\n        endDate\n        shifts {startHour,startMinute,endHour,endMinute}\n        }\n    }\n    }\n}",
+						"variables": "{\n    \"storeTimingInput\": {\n        \"storeId\": \"{{id}}\",\n        \"sun\": [\n            {\n                \"startHour\": 10,\n                \"startMinute\": 10,\n                \"endHour\": 22,\n                \"endMinute\": 22\n            }\n        ],\n        \"dateRange\": [\n            {\n                \"startDate\":\"2021-03-29T00:00:00.000\",\n                \"endDate\": \"2021-04-12T00:00:00.000\",\n                \"shifts\": [\n                    {\n                        \"startHour\": 10,\n                        \"startMinute\": 10,\n                        \"endHour\": 15,\n                        \"endMinute\": 22\n                    }\n                ]\n            }\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getStoreTiming($storeId: String!) {\n  getStoreTiming(storeId: $storeId) {\n    success,\n    storeTiming{\n    storeId,\n    sun{\n      startHour,startMinute,endHour,endMinute\n    }\n    dateRange{\n      startDate\n      endDate\n      shifts {startHour,startMinute,endHour,endMinute}\n    }\n  }\n}\n}",
+						"variables": "{\n  \"storeId\": \"{{id}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAvailableStoreIdList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation getAvailableStoreIdList($datePaginate: StoreTimePaginateInputDTo!) {\n  getAvailableStoreIdList(datePaginate: $datePaginate) {\n  availableStoreIds\n}\n}",
+						"variables": "{\n    \"datePaginate\": {\n        \"date\": \"2020-11-15T12:10:00.000\",\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const variable = pm.response.json();\r",
+							"pm.environment.set(\"branchId\", variable.data.createBranchAdminAndStore.storeDetails._id);\r",
+							"pm.environment.set(\"branchownerId\", variable.data.createBranchAdminAndStore.storeDetails.ownerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let str = '';\r",
+							"const key = 'abcdefgh1234567';\r",
+							"const domain = '@tmmt.com';\r",
+							"for(let i=0; i<=10; i++){\r",
+							"str += key.charAt(Math.round(key.length*Math.random())); \r",
+							"}\r",
+							"const email = str+=domain;\r",
+							"pm.environment.set(\"branchemailid\", email);\r",
+							"pm.environment.set(\"mobileNo\", \"812341234\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createBranchAdminAndStore($createBranchInput: BranchAdminAndStoreCreateDto!) {\n  createBranchAdminAndStore(createBranchInput: $createBranchInput) {\n    success\n    message{en,ar}\n    storeDetails{\n        _id\n        name{en\n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        contactNumber\n        }\n    }\n}",
+						"variables": "{\n    \"createBranchInput\": {\n        \"parentAdminId\": \"{{userId}}\",\n        \"parentStoreId\": \"{{id}}\",\n        \"username\": \"Auto+{{$randomInt}}\",\n        \"email\": \"{{branchemailid}}\",\n        \"password\": \"tmmt@123\",\n        \"appType\": \"GATE\",\n        \"deviceType\": \"ANDROID\",\n        \"mobileNumber\": \"{{mobileNo}}\",\n        \"countryCode\": \"IND\",\n        \"iBan\": \"ib1234\",\n        \"restaurantName\":{\"en\": \"Branch1\",\n        \"ar\": \"arBranch1\"},\n        \"branchCode\": \"1234\",\n        \"contactNumber\": \"{{mobileNo}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getBranches($branchFindInputDto: GetBranchesInputDto!) {\n  getBranches(branchFindInputDto: $branchFindInputDto) {\n    pagination{\n        hasPrevPage\n        hasNextPage\n        prevPage\n        nextPage\n        perPage\n        }\n    stores{\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n    }\n}",
+						"variables": "{\n    \"branchFindInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        },\n        \"parentId\": \"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchStoreBranches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query searchStoreBranches($branchesSearchInputDto:StoreBranchSearchInputDto!) {\n  searchStoreBranches(branchesSearchInputDto: $branchesSearchInputDto) {\n        _id\n        name{en \n        ar}\n        displayName{en\n        ar}\n        branchCode\n        countryCode\n        description{\n            en\n            ar\n        }\n        address\n        storeLoc{coordinates,\n                type}\n        picture\n        logo\n        ownerId\n        parentId\n        categoryIds\n        status\n        productCategories{\n          name{en\n          ar}\n            isEnable  \n            _id\n        }\n        isChefOnline\n        isAvailable\n        contactNumber\n    }\n}",
+						"variables": "{\n    \"branchesSearchInputDto\": {\n        \"parentId\": \"{{id}}\",\n        \"searchkey\": \"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stores using different multiple variable in GateApp`",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetStores($storeFindInputDto: StoreFindInputDto!){\n  getStores(storeFindInputDto:$storeFindInputDto) {\n    stores{\n      name{\n          en\n          ar\n      }\n    }\n    pagination{\n      page\n      hasNextPage\n      hasPrevPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"storeFindInputDto\": {\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 2\n    },\n    \"entityId\": \"5f86c404b2d623678a366cdf\",\n    \"geoHash\": \"tf2czbs\",\n    \"isAvailable\": true,\n    \"isChefOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStoreTags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateStoreTags($storeTagsUpdateDto: StoreTagsUpdateInputDto!){\n  updateStoreTags(storeTagsUpdateDto:$storeTagsUpdateDto) {\n      success\n      message{\n          en\n          ar\n      }\n  }\n}",
+						"variables": "{\n    \"storeTagsUpdateDto\": {\n        \"storeId\": \"{{id}}\",\n        \"tagIds\": [\"5fe606301074ec6ede9c6e49\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateStoreMaster",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let str = '';\r",
+							"const key = 'abcdefgh1234567';\r",
+							"const domain = '@tmmt.com';\r",
+							"for(let i=0; i<=10; i++){\r",
+							"str += key.charAt(Math.round(key.length*Math.random())); \r",
+							"}\r",
+							"const email = str+=domain;\r",
+							"pm.environment.set(\"masteremailid\", email);\r",
+							"pm.environment.set(\"mastermobile\", Math.random().toString().slice(2,11));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const variable = pm.response.json();\r",
+							"pm.environment.set(\"storemasterId\", variable.data.createStoreMaster.storeMasterId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation  createStoreMaster($storeMasterCreateInputDto:StoreMasterCreateInputDto!){\n    createStoreMaster(storeMasterCreateInputDto:$storeMasterCreateInputDto){\n       success\n       storeMasterId\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterCreateInputDto\": {\n        \"userName\": \"Auto+{{$randomInt}}\",\n        \"fullName\": \"String1\",\n        \"mobileNumber\": \"{{mastermobile}}\",\n        \"countryCode\": \"IND\",\n        \"email\": \"{{masteremailid}}\",\n        \"password\": \"String\",\n        \"ownerId\": \"{{userId}}\",\n        \"storeCode\": \"{{id}}\",\n        \"deviceType\": \"ANDROID\",\n        \"appType\": \"STORE_MASTER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditStoreMaster",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editStoreMaster($StoreMasterEditInput:StoreMasterEditInputDto!){\n    editStoreMaster(StoreMasterEditInput:$StoreMasterEditInput){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"StoreMasterEditInput\": {\n        \"_id\": \"{{storemasterId}}\",\n        \"userName\": \"String22\",\n        \"fullName\": \"String222\",\n        \"mobileNumber\": \"98989892\",\n        \"countryCode\": \"IND\",\n        \"email\": \"String222@st.com\",\n        \"password\": \"String22\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParticularStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetParticularStoreMaster($storeMasterID: String!) {\n  getParticularStoreMaster(storeMasterID: $storeMasterID) {\n    _id\n    userName\n  }\n}\n",
+						"variables": "{\n  \"storeMasterID\": \"{{storemasterId}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStoreMaster",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteStoreMaster($storeMasterDeleteDto:StoreMasterDeleteDto!){\n    deleteStoreMaster(storeMasterDeleteDto:$storeMasterDeleteDto){\n       success\n       message{\n           en\n           ar\n       }\n    }\n}",
+						"variables": "{\n    \"storeMasterDeleteDto\": {\n        \"_id\": \"{{storemasterId}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product Category [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.deleteCategory.success).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Catgeory Deleted Successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteCategory($categoryDeleteInput: CategoryDeleteInputDto!){\n    deleteCategory(categoryDeleteInput:$categoryDeleteInput){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"categoryDeleteInput\":{\n        \"categoryId\":\"{{catId}}\",\n        \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.data.deleteProduct.success).to.eql(true);\r",
+							"});\r",
+							"//postman.setNextRequest(\"Delete Product Category\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteProduct($productDeleteInput:ProductDeleteInputDto!){\n    deleteProduct(productDeleteInput:$productDeleteInput){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"productDeleteInput\":{\n    \"productId\":\"{{Productid}}\",\n    \"storeId\":\"{{id}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBranchAdminAndStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteBranchAdminAndStore($deleteBranchInput: DeleteBranchInputDto!) {\n  deleteBranchAdminAndStore(deleteBranchInput: $deleteBranchInput) {\n      success\n      message{\n          en\n          ar\n      }\n    }\n}",
+						"variables": "{\n    \"deleteBranchInput\": {\n        \"restaurantId\": \"{{branchId}}\",\n        \"ownerId\": \"{{branchownerId}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GateLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation GateLogout{\n  gateLogout{\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh: for new Access token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation refreshToken($accessTokenInputDto:BuildAccessTokenInputDto!){\n    refreshToken(accessTokenInputDto:$accessTokenInputDto){\n       success\n       message{\n           en\n           ar\n       }\n       accessToken\n    }\n}",
+						"variables": "{\n    \"accessTokenInputDto\": {\n        \"accessToken\": \"{{access-Token}}\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
