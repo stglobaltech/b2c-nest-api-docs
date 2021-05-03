@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dde87015-3247-4de1-a498-1bd2f2130fe4",
+		"_postman_id": "8344abfd-4675-437f-9a69-9cabde2521d0",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -542,8 +542,8 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"name\": \"{{addrName}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [12.96738173,80.15095264],\n      \"type\": \"point\"\n    }\n  }\n}"
+						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    geoHash\n    location {\n      coordinates\n      type\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"name\": \"{{addrName}}\",\n    \"geoHash\": \"tcbm3\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [12.96738173,80.15095264],\n      \"type\": \"point\"\n    }\n  }\n}"
 					}
 				},
 				"url": {
@@ -840,7 +840,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetAllAddress {\n  getAllAddress {\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    location {\n      coordinates\n      type\n    }\n  }\n}",
+						"query": "query GetAllAddress {\n  getAllAddress {\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n    geoHash\n    location {\n      coordinates\n      type\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -1104,7 +1104,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n         price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
+						"query": "query GetCart($entityId: String!) {\n    getCart(entityId: $entityId)   { \n    _id\n    entityId\n    storeCode\n    products{\n        _id\n        productId\n        name{\n            en\n            ar\n        }\n        quantity\n        price\n        quotedPrice\n        message\n    }\n    deliveryCost\n    totalPrice\n    totalQuotedPrice\n    message\n    address {\n        geoHash\n        location {\n          coordinates\n          type\n        }\n    }\n    promoCode{\n        id\n        promoCode\n    }\n  }\n}\n",
 						"variables": "{\n    \"entityId\": \"5fc4ab4b64fefb415688149d\"\n}"
 					}
 				},
