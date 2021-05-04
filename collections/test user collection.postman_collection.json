@@ -358,7 +358,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation saveAddress($input: AddressInputDto!) {\n  saveAddress(addressInput: $input){\n    id\n    name\n    address\n    buildingNo\n    imageUrl\n \n  }\n}",
-						"variables": "{\n  \"input\": {\n    \"name\": \"address{{$randomInt}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"geoHash\": \"tf2czbs\",\n    \"imageUrl\": \"http://google.com\"\n     \n  }\n}"
+						"variables": "{\n  \"input\": {\n    \"name\": \"{{addrName}}\",\n    \"address\": \"first street, chennai\",\n    \"buildingNo\": \"19\",\n    \"geoHash\":\"tf2czbs\",\n    \"imageUrl\": \"http://google.com\",\n    \"location\": {\n      \"coordinates\": [12.96738173,80.15095264],\n      \"type\": \"point\"\n    }\n  }\n}"
 					}
 				},
 				"url": {
