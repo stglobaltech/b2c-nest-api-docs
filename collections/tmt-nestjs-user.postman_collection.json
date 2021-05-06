@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8344abfd-4675-437f-9a69-9cabde2521d0",
+		"_postman_id": "63fb53bb-d974-4c7f-87cd-85063bb5f405",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1921,6 +1921,130 @@
 					"graphql": {
 						"query": "query userActiveOrders{\n  userActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserDetailsForSettings",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlODU3YjBiYjM4MjFkZDJlMDZjOWMiLCJzZXNzaW9uSWQiOiI2MDdlODU5MmIzMWFjYWQ2NTEwOTQxYzMiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MTg5MTgyNTksImV4cCI6MTYxOTAwNDY1OX0.MEYCIQDuL27R5-hmfjvaiXAyJVRuVexvyEkoY51XLwNGeqO8LQIhAK51Fg2o2MaQ0ErbTzLwJUSolde_Asg89xgR_3SmEtgs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getUserDetailsForSettings{\n  getUserDetailsForSettings{\n    countryCode\n    mobile\n    name\n    email\n    smsNotification\n    emailNotification\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserDetails",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlODU3YjBiYjM4MjFkZDJlMDZjOWMiLCJzZXNzaW9uSWQiOiI2MDdlODU5MmIzMWFjYWQ2NTEwOTQxYzMiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MTg5MTgyNTksImV4cCI6MTYxOTAwNDY1OX0.MEYCIQDuL27R5-hmfjvaiXAyJVRuVexvyEkoY51XLwNGeqO8LQIhAK51Fg2o2MaQ0ErbTzLwJUSolde_Asg89xgR_3SmEtgs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateUserDetails($updateUserDetailsDto:UpdateUserDetailsDto!) {\n    updateUserDetails(updateUserDetailsDto:$updateUserDetailsDto){\n    success\n    message{\n      en\n      ar\n    }\n  }\n}\n",
+						"variables": "{\n    \"updateUserDetailsDto\": {\n        \"userId\": \"60937d621832331b3e39329b\",\n        \"name\": \"mohamed1\",\n        \"email\": \"ishackdeen1@tmmmt.sa\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleUserSmsNotification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlODU3YjBiYjM4MjFkZDJlMDZjOWMiLCJzZXNzaW9uSWQiOiI2MDdlODU5MmIzMWFjYWQ2NTEwOTQxYzMiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MTg5MTgyNTksImV4cCI6MTYxOTAwNDY1OX0.MEYCIQDuL27R5-hmfjvaiXAyJVRuVexvyEkoY51XLwNGeqO8LQIhAK51Fg2o2MaQ0ErbTzLwJUSolde_Asg89xgR_3SmEtgs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleUserSmsNotification($togggleUserSmsNotificationDto:ToggleUserSmsNotificationDto!) {\n    toggleUserSmsNotification(togggleUserSmsNotificationDto:$togggleUserSmsNotificationDto){\n    success\n    message{\n      en\n      ar\n    }\n  }\n}\n",
+						"variables": "{\n    \"togggleUserSmsNotificationDto\": {\n    \"userId\":\"60925613a2147523d2118f92\",\n    \"smsNotification\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToggleUserEmailNotification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDdlODU3YjBiYjM4MjFkZDJlMDZjOWMiLCJzZXNzaW9uSWQiOiI2MDdlODU5MmIzMWFjYWQ2NTEwOTQxYzMiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MTg5MTgyNTksImV4cCI6MTYxOTAwNDY1OX0.MEYCIQDuL27R5-hmfjvaiXAyJVRuVexvyEkoY51XLwNGeqO8LQIhAK51Fg2o2MaQ0ErbTzLwJUSolde_Asg89xgR_3SmEtgs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleUserEmailNotification($togggleUserEmailNotificationDto:ToggleUserEmailNotificationDto!) {\n    toggleUserEmailNotification(togggleUserEmailNotificationDto:$togggleUserEmailNotificationDto){\n    success\n    message{\n      en\n      ar\n    }\n  }\n}\n",
+						"variables": "{\n    \"togggleUserEmailNotificationDto\": {\n    \"userId\":\"60925613a2147523d2118f92\",\n    \"emailNotification\":true\n    }\n}"
 					}
 				},
 				"url": {
