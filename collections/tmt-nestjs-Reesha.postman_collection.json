@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f76d0afb-4a7c-41a4-a5f6-91fe2dddd7dd",
+		"_postman_id": "51be43c9-0ce3-4f1a-80c9-42afd5913912",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -83,6 +83,42 @@
 							"graphql": {
 								"query": "mutation ReeshaLogin($input: ReeshaLoginInputDto!){\n  reeshaLogin(input:$input) {\n    success\n    message {\n      ar\n    }\n    accessToken\n    refreshToken\n  }\n}",
 								"variables": "{\n  \"input\": {\n    \"email\":\"{{emailid}}\",\n    \"password\":\"pass\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{auth-server-gql}}",
+							"host": [
+								"{{auth-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reesha DeleteCSUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"    console.log(response.data.reeshaLogin.accessToken);\r",
+									"    pm.environment.set(\"access-Token\", response.data.reeshaLogin.accessToken);\r",
+									"    const response2 = pm.response.json();\r",
+									"     pm.environment.set(\"refreshToken\", response2.data.reeshaLogin.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": " mutation reeshaDeleteCSUser($reeshaCustomerDeleteInputDto:ReeshaCustomerDeleteInputDto!)\n    {\n reeshaDeleteCSUser(\nreeshaCustomerDeleteInputDto: $reeshaCustomerDeleteInputDto\n){\n    standardResponse{\n        success\n        message{\n            ar\n            en\n        }\n    }\n    deletedId\n}\n}",
+								"variables": "{\n    \"reeshaCustomerDeleteInputDto\":{\n        \"id\":\"1234\"\n    }\n}"
 							}
 						},
 						"url": {
@@ -1764,37 +1800,6 @@
 					"graphql": {
 						"query": " query reeshaGetStore($reeshaStoreFindInputDto:ReeshaStoreFindInputDto!)\n    {\n reeshaGetStore(\nreeshaStoreFindInputDto: $reeshaStoreFindInputDto\n){\n    _id\n    name\n    countryCode\n    description\n}\n}",
 						"variables": "{\n    \"reeshaStoreFindInputDto\":{\n        \"_id\":\"1234\",\n        \"ownerId\":\"2345\"\n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{main-server-gql}}",
-					"host": [
-						"{{main-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete CSUser Reesha",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access-Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": " mutation reeshaDeleteCSUser($reeshaCustomerDeleteInputDto:ReeshaCustomerDeleteInputDto!)\n    {\n reeshaDeleteCSUser(\nreeshaCustomerDeleteInputDto: $reeshaCustomerDeleteInputDto\n){\n    standardResponse{\n        success\n        message{\n            ar\n            en\n        }\n    }\n    deletedId\n}\n}",
-						"variables": "{\n    \"reeshaCustomerDeleteInputDto\":{\n        \"id\":\"1234\"\n    }\n}"
 					}
 				},
 				"url": {
