@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "617e954b-0af9-4e55-95fc-9db54767a6ee",
+		"_postman_id": "9cd1e3c1-be44-4774-a3c6-acc497697291",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2648,6 +2648,37 @@
 					"graphql": {
 						"query": "query GetParticularStoreMaster($storeMasterID: String!) {\n  getParticularStoreMaster(storeMasterID: $storeMasterID) {\n    _id\n    userName\n  }\n}\n",
 						"variables": "{\n  \"storeMasterID\": \"{{storeMasterID}}\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStoreMasters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDk1MDViNTFmY2ZlMjFjMjQ2NjJjYzgiLCJzZXNzaW9uSWQiOiI2MDk1MDViNTY5N2U1MzZmM2E3Y2VjYTYiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYyMDM3OTA2MSwiZXhwIjoxNjIwNDY1NDYxfQ.MEQCIBwUhbL1YiIhayihYM-xayvhqPcWIR4eTZM8Y5DOxvtgAiA6_ibJd2ddTiYEREtxCzmjMXJt8z4CdguoelMvLDLDIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getStoreMasters($getAllStoreMasterInputDto:GetAllStoreMasterInputDto!) {\n    getStoreMasters(getAllStoreMasterInputDto:$getAllStoreMasterInputDto){\n    storeMasters{\n        _id\n        userName\n        fullName\n        countryCode\n        mobileNumber\n        email\n        password\n        ownerId\n        storeCode\n        isDeleted\n    }\n    pagination{\n        page\n        perPage\n    }\n  }\n}\n",
+						"variables": "{\n    \"getAllStoreMasterInputDto\": {\n        \"ownerId\": \"609505b51fcfe21c24662cc8\",\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 2\n        }\n    }\n}"
 					}
 				},
 				"url": {
