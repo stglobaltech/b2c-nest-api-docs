@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b602efc1-382f-4313-a51b-815cea508e57",
+		"_postman_id": "8e451215-9b99-4333-8a17-f3134985d873",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1329,6 +1329,37 @@
 					"graphql": {
 						"query": "query driverActiveOrders{\n  driverActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
 						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateDriverLocation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDlhM2UyZDk0ZTc1YTNmOWFkMWY5OGUiLCJzZXNzaW9uSWQiOiI2MDlhM2UyZDZiNTdjYzhmMzVmODVjMWUiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IkFORFJPSUQiLCJyb2xlcyI6WyJEUklWRVIiXSwiaWF0IjoxNjIwNzIxMTk3LCJleHAiOjE2MjA4MDc1OTd9.MEQCIFcSD0XY9Ajtkd0r6abT5-7sr8HJ72Qyy5K00TwmHJHLAiBH3h5PaafekofBUguX8pEsylGbFhaBGFI_xObkPJz4MA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateDriverLocation($geoHash: String!) {\n  updateDriverLocation(geoHash:$geoHash) {\n    success\n    message{\n        en\n        ar\n    }\n    frequency\n  }\n}",
+						"variables": "{\n    \"geoHash\":\"GeoHash\"\n}"
 					}
 				},
 				"url": {
