@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "406528c1-5ae9-4d84-9d0f-4ccc7f6b8a1d",
+		"_postman_id": "282bad99-912f-49a3-a9e8-872dc9337ccb",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1831,6 +1831,37 @@
 					"graphql": {
 						"query": "query reeshaGetOrder($ordersFindInputDto: SingleOrderFindDto!) {\n  reeshaGetOrder(ordersFindInputDto:$ordersFindInputDto) {\n       _id\n       userId\n       cartId\n       orderStatus\n       orderType\n       cancelReason {\n           en\n           ar\n       }\n  }\n}",
 						"variables": "{\n    \"ordersFindInputDto\":{\n        \"orderId\":\"60936ac28a85fd1f5e2de6b5\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Toggle CSUsers isActivated",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleCSUserIsActivatedState($csUsersIsActivatedStateToggleInputDto:CSUsersIsActivatedStateToggleInputDto!) {\n  toggleCSUserIsActivatedState(csUsersIsActivatedStateToggleInputDto:$csUsersIsActivatedStateToggleInputDto) {\n       standardResponse{\n           success\n           message{\n               en\n               ar\n           }\n       }\n       _id\n       isActivated\n  }\n}",
+						"variables": "{\n    \"csUsersIsActivatedStateToggleInputDto\":{\n        \"_id\":\"609901fbf9d83a23545be430\",\n        \"isActivated\":true\n    }\n}"
 					}
 				},
 				"url": {
