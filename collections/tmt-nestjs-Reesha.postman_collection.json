@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "282bad99-912f-49a3-a9e8-872dc9337ccb",
+		"_postman_id": "14f2c067-a8f7-4add-bc1e-12a1ff59fd38",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1862,6 +1862,161 @@
 					"graphql": {
 						"query": "mutation toggleCSUserIsActivatedState($csUsersIsActivatedStateToggleInputDto:CSUsersIsActivatedStateToggleInputDto!) {\n  toggleCSUserIsActivatedState(csUsersIsActivatedStateToggleInputDto:$csUsersIsActivatedStateToggleInputDto) {\n       standardResponse{\n           success\n           message{\n               en\n               ar\n           }\n       }\n       _id\n       isActivated\n  }\n}",
 						"variables": "{\n    \"csUsersIsActivatedStateToggleInputDto\":{\n        \"_id\":\"609901fbf9d83a23545be430\",\n        \"isActivated\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Entities With Pagination",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query($reeshaEntityFindInput: ReeshaEntityFindInputDto!) {\n    reeshaGetAllEntity(reeshaEntityFindInput: $reeshaEntityFindInput) {\n      entities {\n        id\n        name {\n          ar\n          en\n        }\n        type\n        withoutDelivery\n        iconUrl {\n          ar\n          en\n        }\n        fullWidthIconUrl {\n          ar\n          en\n        }\n        halfWidthIconUrl {\n          ar\n          en\n        }\n        uiType\n        sortIndex\n        status\n      }\n      pagination {\n        page\n        hasNextPage\n        hasPrevPage\n        nextPage\n        prevPage\n      }\n    }\n  }\n",
+						"variables": "{\n    \"reeshaEntityFindInput\":{\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": " query($entityId: String!) {\n    reeshaGetEntity(entityId: $entityId) {\n      id\n      name {\n        ar\n        en\n      }\n      type\n      withoutDelivery\n      iconUrl {\n        ar\n        en\n      }\n      fullWidthIconUrl {\n        ar\n        en\n      }\n      halfWidthIconUrl {\n        ar\n        en\n      }\n      uiType\n      sortIndex\n      status\n      level\n      adminStoreId\n    }\n  }",
+						"variables": "{\n    \"entityId\":\"5faf6736d272e703ea9d9f2e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Delete Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "  mutation($entityId: String!) {\n    reeshaDeleteEntity(entityId: $entityId) {\n      status\n    }\n  }",
+						"variables": "{\n    \"entityId\":\"5faf6736d272e703ea9d9f2e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Create Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation($entityInput: EntityCreateInputDto!) {\n    reeshaCreateEntity(entityInput: $entityInput) {\n      id\n      name {\n        ar\n        en\n      }\n      type\n      withoutDelivery\n      iconUrl {\n        ar\n        en\n      }\n      fullWidthIconUrl {\n        ar\n        en\n      }\n      halfWidthIconUrl {\n        ar\n        en\n      }\n      uiType\n      sortIndex\n      status\n    }\n  }",
+						"variables": "{\n    \"entityInput\":{\n    \"name\":{\n        \"en\":\"ashok\",\n        \"ar\":\"virat\"\n    },\n    \"subEntityIds\":[],\n    \"type\":\"RESTAURANT\",\n    \"uiType\":0,\n    \"level\":\"ZEROTH\",\n    \"withoutDelivery\":false,\n    \"iconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"fullWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"halfWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"sortIndex\":2,\n    \"status\":\"ACTIVE\",\n    \"adminStoreId\":\"5faf6736d272e703ea9d9f2e\",\n    \"entityCategories\":[],\n    \"cityIds\":[],\n    \"dataAPIQuery\":\"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Edit Entity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "  mutation($entityInput: ReeshaEntityEditInputDto!) {\n    reeshaUpdateEntity(entityInput: $entityInput) {\n      id\n      name {\n          en\n          ar\n      }\n    }\n  }",
+						"variables": "{\n    \"entityInput\":{\n        \"entityId\":\"60a4deeb3b23003f471f5af3\",\n            \"name\":{\n        \"en\":\"ashok edited\",\n        \"ar\":\"virat\"\n    },\n    \"subEntityIds\":[],\n    \"type\":\"RESTAURANT\",\n    \"uiType\":0,\n    \"level\":\"ZEROTH\",\n    \"withoutDelivery\":false,\n    \"iconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"fullWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"halfWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"sortIndex\":2,\n    \"status\":\"ACTIVE\",\n    \"adminStoreId\":\"5faf6736d272e703ea9d9f2e\",\n    \"entityCategories\":[],\n    \"cityIds\":[],\n    \"dataAPIQuery\":\"\"\n    }\n}"
 					}
 				},
 				"url": {
