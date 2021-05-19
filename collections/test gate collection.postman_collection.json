@@ -223,6 +223,15 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"branchCode\", 16);"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -242,7 +251,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation  editStoreConfiguration($storeEditInput:StoreConfigurationEditInputDto!){\n   editStoreConfiguration(storeEditInput:$storeEditInput){\n     _id\n     branchCode\n     displayName{\n         en \n         ar \n     }\n     categoryIds\n    }\n}",
-						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"16\",\n        \"displayName\":{\"en\":\"nes\",\"ar\":\"nes\"},\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
+						"variables": "{\n    \"storeEditInput\":{\n        \"_id\":\"{{id}}\",\n        \"branchCode\":\"{{branchCode}}\",\n        \"displayName\":{\"en\":\"nes\",\"ar\":\"nes\"},\n        \"storeCategoryIds\":[\"5f5735b5f044f836dac05a58\"]\n    }\n}"
 					}
 				},
 				"url": {
