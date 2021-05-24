@@ -2158,6 +2158,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "{{main-server-gql}}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query findDrivers($behaviourId: String!){\n    findDrivers(behaviourId:$behaviourId){\n    _id\n  }\n}",
+						"variables": "\n{\n  \"behaviourId\": \"60a54394d4269926a78e9569\"\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
