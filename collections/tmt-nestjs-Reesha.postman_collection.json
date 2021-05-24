@@ -1,6 +1,6 @@
 {
 	"info": {
-    "_postman_id": "14f2c067-a8f7-4add-bc1e-12a1ff59fd38",
+		"_postman_id": "8821a7bd-8c62-41cc-aeb3-a0df393e15c1",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2095,6 +2095,59 @@
 					"graphql": {
 						"query": "  mutation($entityInput: ReeshaEntityEditInputDto!) {\n    reeshaUpdateEntity(entityInput: $entityInput) {\n      id\n      name {\n          en\n          ar\n      }\n    }\n  }",
 						"variables": "{\n    \"entityInput\":{\n        \"entityId\":\"60a4deeb3b23003f471f5af3\",\n            \"name\":{\n        \"en\":\"ashok edited\",\n        \"ar\":\"virat\"\n    },\n    \"subEntityIds\":[],\n    \"type\":\"RESTAURANT\",\n    \"uiType\":0,\n    \"level\":\"ZEROTH\",\n    \"withoutDelivery\":false,\n    \"iconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"fullWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"halfWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"sortIndex\":2,\n    \"status\":\"ACTIVE\",\n    \"adminStoreId\":\"5faf6736d272e703ea9d9f2e\",\n    \"entityCategories\":[],\n    \"cityIds\":[],\n    \"dataAPIQuery\":\"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{baseUrl}}v1/api/qualify-behaviour/attributes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}v1/api/qualify-behaviour/attributes",
+					"host": [
+						"{{baseUrl}}v1"
+					],
+					"path": [
+						"api",
+						"qualify-behaviour",
+						"attributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchQualifyRules",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query FindRelatedRules($QualifyRuleRelatedDto: QualifyRuleRelatedDto!){\n    findRelatedRules(qualifyRuleRelatedDto:$QualifyRuleRelatedDto){\n    _id\n  }\n}",
+						"variables": "{\n  \"QualifyRuleRelatedDto\": {\"city\":true}\n}"
 					}
 				},
 				"url": {
