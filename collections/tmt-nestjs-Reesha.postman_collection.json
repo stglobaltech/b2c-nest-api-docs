@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8821a7bd-8c62-41cc-aeb3-a0df393e15c1",
+		"_postman_id": "b94f89e2-2fb2-40dc-aac9-55f3eaadb3d8",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2095,6 +2095,68 @@
 					"graphql": {
 						"query": "  mutation($entityInput: ReeshaEntityEditInputDto!) {\n    reeshaUpdateEntity(entityInput: $entityInput) {\n      id\n      name {\n          en\n          ar\n      }\n    }\n  }",
 						"variables": "{\n    \"entityInput\":{\n        \"entityId\":\"60a4deeb3b23003f471f5af3\",\n            \"name\":{\n        \"en\":\"ashok edited\",\n        \"ar\":\"virat\"\n    },\n    \"subEntityIds\":[],\n    \"type\":\"RESTAURANT\",\n    \"uiType\":0,\n    \"level\":\"ZEROTH\",\n    \"withoutDelivery\":false,\n    \"iconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"fullWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"halfWidthIconUrl\":{\n        \"en\":\"\",\n        \"ar\":\"\"\n    },\n    \"sortIndex\":2,\n    \"status\":\"ACTIVE\",\n    \"adminStoreId\":\"5faf6736d272e703ea9d9f2e\",\n    \"entityCategories\":[],\n    \"cityIds\":[],\n    \"dataAPIQuery\":\"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get All Sms Based On Filters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetAllSmsBasedOnFilters($reeshaGetAllSmsFilter:ReeshaGetAllSmsFilter!){\n    reeshaGetAllSmsBasedOnFilters(reeshaGetAllSmsFilter:$reeshaGetAllSmsFilter){\n        sms{\n            countryCode\n            mobile\n            text\n        }\n        pagination{\n            hasNextPage\n            hasPrevPage\n            nextPage \n            prevPage \n            page\n            perPage  \n        }\n    }\n}",
+						"variables": "{\n    \"reeshaGetAllSmsFilter\":{\n        \"countryCode\":\"KWT\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-gql}}",
+					"host": [
+						"{{auth-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Toggle Product IsActivated",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation toggleProductIsActivatedState($productToggleIsActivatedInputDto:ProductToggleIsActivatedInputDto!){\n    toggleProductIsActivatedState(productToggleIsActivatedInputDto:$productToggleIsActivatedInputDto){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"productToggleIsActivatedInputDto\":{\n        \"productIds\":[\"6038863f3e7be720dc85d5b4\"],\n    \"isActivated\":true\n    }\n}"
 					}
 				},
 				"url": {
