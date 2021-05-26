@@ -781,6 +781,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "updateChefAvailability",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGExZjRlMDkzZmJlMDI1MGRkYTMwMDIiLCJzZXNzaW9uSWQiOiI2MGExZjRmMGYyMDNkMzRkZDMyNTNlOGYiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MjEyMjY3MzYsImV4cCI6MTYyMTMxMzEzNn0.MEUCIQCoGmgdaxTryJTkH3dn9wL5TfB_8Tc6BkWEhQVQPEetPAIgWwHghMstm9-wd5qddF_XJE6rELiniTucV09vbR0gzxE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateChefAvailability($chefAvilabilityInputDto:UpdateChefAvailabilityInputDto!) {\n  updateChefAvailability(chefAvilabilityInputDto: $chefAvilabilityInputDto) {\n    success\n    message{\n      en \n      ar\n  }\n    }\n}",
+						"variables": "{\n  \"chefAvilabilityInputDto\": {\n      \"chefId\": \"60a1f4e093fbe0250dda3002\",\n      \"isOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
