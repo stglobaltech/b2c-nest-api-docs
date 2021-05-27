@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b94f89e2-2fb2-40dc-aac9-55f3eaadb3d8",
+		"_postman_id": "c8a27911-6ac7-4a00-a3ed-2f11cf6122ce",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2157,6 +2157,37 @@
 					"graphql": {
 						"query": "mutation toggleProductIsActivatedState($productToggleIsActivatedInputDto:ProductToggleIsActivatedInputDto!){\n    toggleProductIsActivatedState(productToggleIsActivatedInputDto:$productToggleIsActivatedInputDto){\n        success\n        message{\n            en\n            ar\n        }\n    }\n}",
 						"variables": "{\n    \"productToggleIsActivatedInputDto\":{\n        \"productIds\":[\"6038863f3e7be720dc85d5b4\"],\n    \"isActivated\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Branches Admins",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetBranchesAdmins($branchAdminsForReeshaInputDto:BranchAdminsForReeshaInputDto!){\n    reeshaGetBranchesAdmins(branchAdminsForReeshaInputDto:$branchAdminsForReeshaInputDto){\n        storeAdmins{\n            _id\n            username\n            email\n            mobileNumber\n            countryCode\n        }\n        pagination{\n            page\n            perPage\n            hasNextPage\n            hasPrevPage\n            nextPage \n            prevPage \n        }\n    }\n}",
+						"variables": "{\n    \"branchAdminsForReeshaInputDto\":{\n        \"mainStoreAdminId\":\"603909b66217901f604e9941\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n            \n        }\n    }\n}"
 					}
 				},
 				"url": {
