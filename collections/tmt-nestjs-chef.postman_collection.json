@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5500cb4f-579a-4ae1-9716-dd7e67a5473d",
+		"_postman_id": "145cfae0-3fea-4af2-b33e-fcf4c2be1b03",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -759,7 +759,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-Token}}",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFiNmIwZDIzOTJjMjEzODYzY2Y4OGIiLCJzZXNzaW9uSWQiOiI2MGFiNmIzYzMyNjg5MjYwYzZmNWQ4YTQiLCJhcHBUeXBlIjoiTUFTVEVSIiwiZGV2aWNlVHlwZSI6IkFORFJPSUQiLCJyb2xlcyI6W10sImlhdCI6MTYyMTg0Njg0NCwiZXhwIjoxNjIxOTMzMjQ0fQ.MEUCICGOJ4Bju6CU0yMW_6zsHukWRJW1KVHb2a3bfhVSoHi2AiEAqtksg0Q7yK63SEQBYpCvI6LWnnX0KQtxSNk2k9DxyII",
 							"type": "string"
 						}
 					]
@@ -769,8 +769,39 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query chefActiveOrders{\n  chefActiveOrders {\n       _id\n        userId\n        user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n    }\n}\n",
-						"variables": ""
+						"query": "query chefActiveOrders($input: ChefOrderInputDto!){\n  chefActiveOrders(input: $input) {\n        pagination{\n            page\n            perPage\n        }\n       order{\n           _id\n            userId\n            user{\n            countryCode\n            mobile\n            name\n            geoHash\n            address\n            buildingNo\n            imageUrl\n        }\n        driver{\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t\tname\n\t\t}\n\t\tstore {\n\t\t\tgeoHashes\n\t\t\tstoreId\n\t\t\tname {\n\t\t\t\ten\n\t\t\t\tar\n\t\t\t},\n\t\t\tcountryCode\n\t\t\tmobile\n\t\t}\n        orderCart{\n            entityId\n            storeCode\n            products{\n                _id\n                options{\n                    id\n                }\n                name{\n                    en\n                    ar\n                }\n                productId\n                quantity\n                price\n                quotedPrice\n            }\n            deliveryCost\n            totalPrice\n            totalQuotedPrice\n        }\n\t\torderStatus\n\t\tstoreMasterId\n        }\n    }\n}",
+						"variables": "{\n    \"input\": {\n        \"orderStatus\":\"PEN\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateChefAvailability",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGExZjRlMDkzZmJlMDI1MGRkYTMwMDIiLCJzZXNzaW9uSWQiOiI2MGExZjRmMGYyMDNkMzRkZDMyNTNlOGYiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MjEyMjY3MzYsImV4cCI6MTYyMTMxMzEzNn0.MEUCIQCoGmgdaxTryJTkH3dn9wL5TfB_8Tc6BkWEhQVQPEetPAIgWwHghMstm9-wd5qddF_XJE6rELiniTucV09vbR0gzxE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateChefAvailability($chefAvilabilityInputDto:UpdateChefAvailabilityInputDto!) {\n  updateChefAvailability(chefAvilabilityInputDto: $chefAvilabilityInputDto) {\n    success\n    message{\n      en \n      ar\n  }\n    }\n}",
+						"variables": "{\n  \"chefAvilabilityInputDto\": {\n      \"chefId\": \"60a1f4e093fbe0250dda3002\",\n      \"isOnline\": true\n  }\n}"
 					}
 				},
 				"url": {
