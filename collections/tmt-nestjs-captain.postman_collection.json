@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5395e6d6-4179-488b-abcc-dcb2554d6f5e",
+		"_postman_id": "6b8dc4e3-6848-4566-a854-b4cd41417e96",
 		"name": "tmt-nestjs-captain",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -224,6 +224,37 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation DriverEndJourney($driverStatusDto: DriverStatusUpdateDto!) {\n  driverEndJourney(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{main-server-gql}}",
+							"host": [
+								"{{main-server-gql}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DriverSetFree",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGExZjRlMDkzZmJlMDI1MGRkYTMwMDIiLCJzZXNzaW9uSWQiOiI2MGExZjRmMGYyMDNkMzRkZDMyNTNlOGYiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MjEyMjY3MzYsImV4cCI6MTYyMTMxMzEzNn0.MEUCIQCoGmgdaxTryJTkH3dn9wL5TfB_8Tc6BkWEhQVQPEetPAIgWwHghMstm9-wd5qddF_XJE6rELiniTucV09vbR0gzxE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DriverSetFree($driverStatusDto: DriverStatusUpdateDto!) {\n  driverSetFree(driverStatusDto: $driverStatusDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
 								"variables": "{\n  \"driverStatusDto\": {\n    \"orderId\": \"60643f6484765559ac13a6d8\"\n  }\n}"
 							}
 						},
