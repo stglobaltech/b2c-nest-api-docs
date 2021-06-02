@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c8a27911-6ac7-4a00-a3ed-2f11cf6122ce",
+		"_postman_id": "08b0b999-c407-48d0-bdbb-79e69f508878",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2262,6 +2262,197 @@
 					"graphql": {
 						"query": "query findDrivers($behaviourId: String!){\n    findDrivers(behaviourId:$behaviourId){\n    _id\n  }\n}",
 						"variables": "\n{\n  \"behaviourId\": \"60a54394d4269926a78e9569\"\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Create Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($commissionInputDto: CommissionEndInputDto!){\n  reeshaEndCommission(commissionInputDto:$commissionInputDto){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"commissionInputDto\":{\n    \"createdBy\":\"60a604a348e26c1bce1abd6e\",\n    \"startDate\":\"2021-06-28T21:00:00.000Z\",\n    \"endDate\":\"2021-06-29T21:00:00.000Z\",\n    \"value\":10,\n    \"endedBy\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha End Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($commissionInputDto: CommissionEndInputDto!){\n  reeshaEndCommission(commissionInputDto:$commissionInputDto){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"commissionInputDto\":{\n    \"createdBy\":\"60a604a348e26c1bce1abd6e\",\n    \"startDate\":\"2021-06-28T21:00:00.000Z\",\n    \"endDate\":\"2021-06-29T21:00:00.000Z\",\n    \"value\":10,\n    \"endedBy\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Edit Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($commissionEditInput: CommissionEditInputDto!){\n  reeshaEditCommission(commissionEditInput:$commissionEditInput){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"commissionEditInput\":{\n    \"createdBy\":\"60a604a348e26c1bce1abd6e\",\n    \"startDate\":\"2021-06-28T21:00:00.000Z\",\n    \"endDate\":\"2021-06-29T21:00:00.000Z\",\n    \"value\":10,\n    \"endedBy\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3100/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3100",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Delete Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ($commissionDeleteInput: CommissionDeleteInputDto!){\n  reeshaDeleteCommission(commissionDeleteInput:$commissionDeleteInput){\n       success\n       message{\n           en \n           ar \n       }\n    }\n}",
+						"variables": "{\n    \"commissionDeleteInput\":{\n    \"ownerId\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get All Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($ownerId: String!){\n reeshaGetAllCommission(ownerId:$ownerId){\n    _id\n    }\n}",
+						"variables": "{\n    \"ownerId\":\"60a604a348e26c1bce1abd6e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Get Commission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ($commissionGetInput: CommissionGetInputDto!){\n reeshaGetCommission(commissionGetInput:$commissionGetInput){\n     startDate\n    }\n}",
+						"variables": "{\n    \"commissionGetInput\":{\n    \"ownerId\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
 					}
 				},
 				"url": {
