@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "08b0b999-c407-48d0-bdbb-79e69f508878",
+		"_postman_id": "5e7b9153-363a-499f-8a67-f09d70a0c92a",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1940,6 +1940,94 @@
 					"graphql": {
 						"query": "mutation toggleCSUserIsActivatedState($csUsersIsActivatedStateToggleInputDto:CSUsersIsActivatedStateToggleInputDto!) {\n  toggleCSUserIsActivatedState(csUsersIsActivatedStateToggleInputDto:$csUsersIsActivatedStateToggleInputDto) {\n       standardResponse{\n           success\n           message{\n               en\n               ar\n           }\n       }\n       _id\n       isActivated\n  }\n}",
 						"variables": "{\n    \"csUsersIsActivatedStateToggleInputDto\":{\n        \"_id\":\"609901fbf9d83a23545be430\",\n        \"isActivated\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Toggle Store Admin isActivated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaToggleStoreAdminIsActivated($toggleStoreAdminIsActivatedInputDto:ToggleStoreAdminIsActivatedInputDto!) {\n  reeshaToggleStoreAdminIsActivated(toggleStoreAdminIsActivatedInputDto:$toggleStoreAdminIsActivatedInputDto) {\n       success\n       message{\n           en\n           ar\n       }\n       _id\n       isActivated\n  }\n}",
+						"variables": "{\n    \"toggleStoreAdminIsActivatedInputDto\":{\n        \"_id\":\"5f33a7758b94250224f96ec0\",\n        \"isActivated\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Toggle Driver isActivated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation reeshaToggleDriverIsActivated($driverToggleIsActivatedInputDto:DriverToggleIsActivatedInputDto!) {\n  reeshaToggleDriverIsActivated(driverToggleIsActivatedInputDto:$driverToggleIsActivatedInputDto) {\n       success\n       message{\n           en\n           ar\n       }\n       driverId\n       isActivated\n  }\n}",
+						"variables": "{\n    \"driverToggleIsActivatedInputDto\":{\n        \"driverId\":\"5f75cbe114becf599606243b\",\n        \"isActivated\":true\n    }\n}"
 					}
 				},
 				"url": {
