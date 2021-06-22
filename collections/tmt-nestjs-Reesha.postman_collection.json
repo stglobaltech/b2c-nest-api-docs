@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5e7b9153-363a-499f-8a67-f09d70a0c92a",
+		"_postman_id": "7536fae5-a2e6-4380-9d6c-cb0b3198dacf",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2541,6 +2541,130 @@
 					"graphql": {
 						"query": "query ($commissionGetInput: CommissionGetInputDto!){\n reeshaGetCommission(commissionGetInput:$commissionGetInput){\n     startDate\n    }\n}",
 						"variables": "{\n    \"commissionGetInput\":{\n    \"ownerId\":\"60a604a348e26c1bce1abd6e\",\n    \"commissionId\":\"60a604a348e26c1bce1abd6e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Cancel Order Reasons Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation createOrderCancelReason($orderCancelReasonCreateInputDto:OrderCancelReasonCreateInputDto!){\n    createOrderCancelReason(orderCancelReasonCreateInputDto:$orderCancelReasonCreateInputDto){\n        _id\n        reason{\n            en\n            ar\n        }\n        appType\n    }\n}",
+						"variables": "{\n    \"orderCancelReasonCreateInputDto\":{\n         \"reason\":\"some random reason\",\n    \"appType\":\"USER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Cancel Order Reasons Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation editOrderCancelReason($orderCancelReasonEditInputDto:OrderCancelReasonEditInputDto!){\n    editOrderCancelReason(orderCancelReasonEditInputDto:$orderCancelReasonEditInputDto){\n        success\n        message{\n            en \n            ar\n        }\n        _id\n        reason{\n            en\n            ar\n        }\n        appType\n    }\n}",
+						"variables": "{\n    \"orderCancelReasonEditInputDto\":{\n        \"_id\":\"60bf20aed992423310b7d14e\",\n    \"reason\":\"some random reason\",\n    \"appType\":\"DRIVER\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Cancel Order Reasons Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteOrderCancelReason($orderCancelReasonId:String!){\n    deleteOrderCancelReason(orderCancelReasonId:$orderCancelReasonId){\n        success\n        message{\n            en \n            ar\n        }\n    }\n}",
+						"variables": "{\n    \"orderCancelReasonId'\":\"60bf20aed992423310b7d14e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Cancel Order Reasons Get All",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetAllOrderCancelReasons($reeshaGetAllOrderCancelReasons:ReeshaGetAllOrdersCancelReasonInputDto!){\n    reeshaGetAllOrderCancelReasons(reeshaGetAllOrderCancelReasons:$reeshaGetAllOrderCancelReasons){\n        cancelOrderReasons{\n            _id\n            reason{\n                en \n                ar \n            }\n            appType\n        }\n        pagination{\n            hasNextPage\n            hasPrevPage\n        }\n        }\n    }",
+						"variables": "{\n    \"reeshaGetAllOrderCancelReasons\":{\n        \"appType\":\"DRIVER\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
 					}
 				},
 				"url": {
