@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "145cfae0-3fea-4af2-b33e-fcf4c2be1b03",
+		"_postman_id": "845a5317-f0fd-4bc5-8073-30a36aeae3fc",
 		"name": "tmt-nestjs-chef",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -802,6 +802,37 @@
 					"graphql": {
 						"query": "mutation updateChefAvailability($chefAvilabilityInputDto:UpdateChefAvailabilityInputDto!) {\n  updateChefAvailability(chefAvilabilityInputDto: $chefAvilabilityInputDto) {\n    success\n    message{\n      en \n      ar\n  }\n    }\n}",
 						"variables": "{\n  \"chefAvilabilityInputDto\": {\n      \"chefId\": \"60a1f4e093fbe0250dda3002\",\n      \"isOnline\": true\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product Availability",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGExZjRlMDkzZmJlMDI1MGRkYTMwMDIiLCJzZXNzaW9uSWQiOiI2MGExZjRmMGYyMDNkMzRkZDMyNTNlOGYiLCJhcHBUeXBlIjoiQ0hFRiIsImRldmljZVR5cGUiOiJBTkRST0lEIiwicm9sZXMiOlsiQ0hFRiJdLCJpYXQiOjE2MjEyMjY3MzYsImV4cCI6MTYyMTMxMzEzNn0.MEUCIQCoGmgdaxTryJTkH3dn9wL5TfB_8Tc6BkWEhQVQPEetPAIgWwHghMstm9-wd5qddF_XJE6rELiniTucV09vbR0gzxE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation productToggleIsAvailable($updateProductAvailabilityDto:ProductAvailabilityEditInputDto!) {\n  productToggleIsAvailable(updateProductAvailabilityDto: $updateProductAvailabilityDto) {\n   _id\n   isAvailable\n    }\n}",
+						"variables": "{\n  \"updateProductAvailabilityDto\":{\n      \"productId\":\"\",\n      \"isAvailable\":true,\n      \"storeId\":\"\"\n  }\n}"
 					}
 				},
 				"url": {
