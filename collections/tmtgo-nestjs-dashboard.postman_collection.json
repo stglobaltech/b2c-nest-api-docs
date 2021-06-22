@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "46effd16-49b7-4729-ad93-7f9363c2bca6",
+		"_postman_id": "64a4eeda-a516-477c-b1df-be71c2ced8e8",
 		"name": "tmtgo-dashboard-apis",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -185,27 +185,6 @@
 			"response": []
 		},
 		{
-			"name": "fleetRequeesterStaffLogin",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation fleetRequeesterStaffLogin($input: FleetRequesterStaffLoginDto!) {\n  fleetRequeesterStaffLogin(input: $input) {\n    success\n    accessToken\n    refreshToken \n  }\n}\n",
-						"variables": "{\n    \"input\": {\n        \"emailId\": \"String10@st.com\",\n        \"password\": \"String10\"     \n    }\n}"
-					}
-				},
-				"url": {
-					"raw": "{{tmtGo-server-gql}}",
-					"host": [
-						"{{tmtGo-server-gql}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "fleetRequesterStaffLogout",
 			"request": {
 				"auth": {
@@ -287,6 +266,58 @@
 					"graphql": {
 						"query": "mutation assignRoles($input: AssignRolesInputDto!) {\n  assignRoles(input: $input) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
 						"variables": "{\n    \"input\": {\n        \"id\": \"{{id}}\",\n        \"roles\": \"AGENT\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fleetRequesterStaffLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation fleetRequesterStaffLogin($input: FleetRequesterStaffLoginDto!) {\n  fleetRequeesterStaffLogin(input: $input) {\n    success\n    accessToken\n    refreshToken \n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"emailId\": \"String10@st.com\",\n        \"password\": \"String10\"     \n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateFleetRequester",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateFleetRequester($input: FleetRequesterUpdateInputDto!) {\n  updateFleetRequester(input: $input) {\n    secret\n    name\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"name\": \"fName\",\n        \"fleetRequester\": {\n            \"webhooks\": {\n                \"url\": \"www.localhost.com\",\n                \"method\": \"post\",\n                \"type\": \"driverToUserChat\"\n            }\n        }\n    }\n}"
 					}
 				},
 				"url": {
