@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0f86d2bc-b90f-4061-b076-299c5c0e2d0a",
+		"_postman_id": "d98e1720-8ef2-4cd7-85ae-27fee4140a3a",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2026,7 +2026,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation reeshaToggleUserIsActivated($toggleUserIsActivatedInputDto:ToggleUserIsActivatedResponseDto!) {\n  reeshaToggleUserIsActivated(toggleUserIsActivatedInputDto:$toggleUserIsActivatedInputDto) {\n       success\n       message{\n           en\n           ar\n       }\n       _id\n       isActivated\n  }\n}",
+						"query": "mutation reeshaToggleUserIsActivated($toggleUserIsActivatedInputDto:ToggleUserIsActivatedInputDto!) {\n  reeshaToggleUserIsActivated(toggleUserIsActivatedInputDto:$toggleUserIsActivatedInputDto) {\n       success\n       message{\n           en\n           ar\n       }\n       _id\n       isActivated\n  }\n}",
 						"variables": "{\n    \"toggleUserIsActivatedInputDto\":{\n        \"_id\":\"5f43ee1fba8382750953bec7\",\n        \"isActivated\":true\n    }\n}"
 					}
 				},
