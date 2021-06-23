@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "64a4eeda-a516-477c-b1df-be71c2ced8e8",
+		"name": "tmtgo-dashboard-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "superAdminLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation superAdminLogin($input: SuperAdminLoginDto!) {\n  superAdminLogin(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    userId\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"email\": \"dev@testing.com\",\n        \"password\": \"longPassword\",\n        \"secretKey\": \"longSecretKey\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "superAdminLogout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation superAdminLogout {\n  superAdminLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registerFleetRequester",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation registerFleetRequester($input: FleetRequesterInputDto!) {\n  registerFleetRequester(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n    fleetRequester{\n        name\n        isEnabled\n        webhooks{\n            url\n            method\n            type\n        }\n    }\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"name\": \"test\",\n        \"secret\": \"secretTest\",\n        \"isEnabled\": true,\n        \"signupSecret\": \"secret\",\n        \"assignedDrivers\": {\n            \"driverIds\": [\n                \"111\"\n            ],\n            \"driverType\": \"TT\",\n            \"isEnabled\": true,\n            \"qualifyDistance\": 10,\n            \"qualifyOtherDrivers\": true\n        },\n        \"assignedDriverTypes\":[\"TT\"]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFleetRequester",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation deleteFleetRequester($fleetRequesterName: String!) {\n  deleteFleetRequester(fleetRequesterName: $fleetRequesterName) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n    \"fleetRequesterName\":\"test\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generateFleetRequesterToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation generateFleetRequesterToken($input: FleetRequesterAuthInputDto!) {\n  generateFleetRequesterToken(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"name\": \"test\",\n        \"signupSecret\": \"secret\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fleetRequesterStaffSignup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation fleetRequesterStaffSignup($input: FleetRequesterStaffInputDto!) {\n  fleetRequesterStaffSignup(input: $input) {\n   _id\n   name\n   emailId\n   countryCode\n   mobile \n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"name\": \"String10\",\n        \"emailId\": \"String10@st.com\",\n        \"countryCode\": \"IND\",\n        \"mobile\": \"String10\",\n        \"password\": \"String10\",\n        \"language\": \"en\",\n        \"fleetRequesterName\": \"Strin1\",\n        \"signupSecret\": \"Strin1\",\n        \"deviceType\": \"WEB\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fleetRequesterStaffLogout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation fleetRequesterStaffLogout {\n  fleetRequesterStaffLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activateFleetRequesterStaff",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation activateFleetRequesterStaff($input: FleetRequesterStaffDto!) {\n  activateFleetRequesterStaff(input: $input) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"id\": \"{{id}}\",\n        \"isEnabled\": true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assignRoles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation assignRoles($input: AssignRolesInputDto!) {\n  assignRoles(input: $input) {\n    success\n    message{\n        en\n        ar\n    }\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"id\": \"{{id}}\",\n        \"roles\": \"AGENT\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fleetRequesterStaffLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation fleetRequesterStaffLogin($input: FleetRequesterStaffLoginDto!) {\n  fleetRequeesterStaffLogin(input: $input) {\n    success\n    accessToken\n    refreshToken \n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"emailId\": \"String10@st.com\",\n        \"password\": \"String10\"     \n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateFleetRequester",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGQxZGViZTgyNTZjMjZkYjIyYjlmNGEiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNDM2Njc4MiwiZXhwIjoxNjI0NDUzMTgyfQ.MEQCIF2RquCA-Wx9Naw2Ec1cPsvhal25NIUSE_f-hdqYTPPGAiAYvIL9w7XMq7KH4_uzBNSzLwyxszYFDE2GriDqwIOT2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateFleetRequester($input: FleetRequesterUpdateInputDto!) {\n  updateFleetRequester(input: $input) {\n    secret\n    name\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"name\": \"fName\",\n        \"fleetRequester\": {\n            \"webhooks\": {\n                \"url\": \"www.localhost.com\",\n                \"method\": \"post\",\n                \"type\": \"driverToUserChat\"\n            }\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
