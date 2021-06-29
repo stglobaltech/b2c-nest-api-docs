@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e01e5453-1c2a-49c9-b21e-fc373bc7e77b",
+		"_postman_id": "2f605793-b6af-44ae-9a4a-ae8948737223",
 		"name": "TmmT Go APIs v1.0.0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -33,7 +33,7 @@
 						"auth"
 					]
 				},
-				"description": "Generate Token\n==\n\nThe api generates jwt token for fleet requester\n\nOn Success, \nreturns the `accessToken`\n\nOn Failure, returns the `error message`\n\n---\n\n\nSchema:\n<pre>\n<code>\nsuccess: boolean \nmessage? : object [optional]\naccessToken?: string [optional]\n</pre>\n</code>\n\n---\n\nExample:\n<pre>\n<code>\n{\n   \"success\": \"true\",\n   \"message\" : {\n        \"ar\": \"Message\",\n        \"en\": \"Message in Arabic\"\n    },\n    accessToken: \"long-access-token\"\n}\n</pre>\n</code>"
+				"description": "Generate Token\n==\n\nThe api generates jwt token for fleet requester\n\nOn Success, \nreturns the `accessToken`\n\nOn Failure, returns the localised error message in `message` key\n\n---\n\n\nSchema:\n<pre>\n<code>\nsuccess: boolean \nmessage? : object [optional]\naccessToken?: string [optional]\n</pre>\n</code>\n\n---\n\nExample:\n<pre>\n<code>\n{\n   \"success\": \"true\",\n   \"message\" : {\n        \"ar\": \"Message\",\n        \"en\": \"Message in Arabic\"\n    },\n    accessToken: \"long-access-token\"\n}\n</pre>\n</code>"
 			},
 			"response": []
 		},
@@ -103,7 +103,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/order/chat/user-driver",
+					"raw": "{{baseUrl}}/v1/order/chat/user-driver-chat-history",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -111,7 +111,7 @@
 						"v1",
 						"order",
 						"chat",
-						"user-driver"
+						"user-driver-chat-history"
 					]
 				},
 				"description": "User Driver Chat History\n===\nThis api gets the paginated chat history between `user` and `driver`\n\n---\n\nResponse Schema\n<pre><code>\n</code></pre>\n\nExample Response\n<pre><code>\n</code></pre>"
@@ -143,7 +143,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/order/chat/user-store",
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver-chat-history",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -151,7 +151,7 @@
 						"v1",
 						"order",
 						"chat",
-						"user-store"
+						"store-driver-chat-history"
 					]
 				},
 				"description": "Store Driver Chat History\n===\nThis api gets the paginated chat history between `store` and `driver`\n\n---\n\nResponse Schema\n<pre><code>\n</code></pre>\n\nExample Response\n<pre><code>\n</code></pre>"
@@ -407,6 +407,88 @@
 					]
 				},
 				"description": "Order Track\n==\nThis api is used to get the delivery path."
+			},
+			"response": []
+		},
+		{
+			"name": "SendUserChatToDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver/send",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"store-driver",
+						"send"
+					]
+				},
+				"description": "Send User Chat messages to Driver\n==\n\nThis api is used to send chat messages to driver\n\n---\n`messageType`: can be any of the following type\n* text\n* image\n* audio\n* location\n\nfor non text messages, use the url in message and select respective type in `messageType`\n\nExample\n<pre><code>\n{\n    \"recieverId\":\"r_id\",\n    \"senderId\":\"s_id\",\n    \"orderId\":\"o_id\",\n    \"message\":\"image url\",\n    \"messageType\":\"image\"\n}\n</pre></code>"
+			},
+			"response": []
+		},
+		{
+			"name": "SendStoreChatToDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver/send",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"store-driver",
+						"send"
+					]
+				},
+				"description": "Send Store Chat messages to Driver\n==\n\nThis api is used to send store chat messages to driver\n\n---\n`messageType`: can be any of the following type\n* text\n* image\n* audio\n* location\n\nfor non text messages, use the url in message and select respective type in `messageType`\n\nExample\n<pre><code>\n{\n    \"recieverId\":\"r_id\",\n    \"senderId\":\"s_id\",\n    \"orderId\":\"o_id\",\n    \"message\":\"image url\",\n    \"messageType\":\"image\"\n}\n</pre></code>"
 			},
 			"response": []
 		}
