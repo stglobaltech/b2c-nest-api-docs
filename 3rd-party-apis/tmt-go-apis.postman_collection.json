@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1421e1c3-af49-49d2-833b-7236ffacc84c",
+		"_postman_id": "e01e5453-1c2a-49c9-b21e-fc373bc7e77b",
 		"name": "TmmT Go APIs v1.0.0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -53,7 +53,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/v1/order/deliverycharge?\"name\"=\"tmt\"&\"distance\"=10",
+					"raw": "{{baseUrl}}/v1/order/deliverycharge?\"distance\"=10",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -64,12 +64,13 @@
 					],
 					"query": [
 						{
-							"key": "\"name\"",
-							"value": "\"tmt\""
-						},
-						{
 							"key": "\"distance\"",
 							"value": "10"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
 						}
 					]
 				},
@@ -221,13 +222,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/orders?orderId=\"1233\"",
+					"raw": "{{baseUrl}}/v1/orders/update?orderId=\"1233\"",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"v1",
-						"orders"
+						"orders",
+						"update"
 					],
 					"query": [
 						{
@@ -257,7 +259,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"orderId\": \"60d9b00fa068ef37214042fc\",\n\t\"status\": \"CANCELLED\",\n\t\"reason\": \"test\"\n}",
+					"raw": "{\n    \"orderId\": \"60daafb696951a2c780546fe\",\n\t\"status\": \"PENDING\",\n\t\"reason\": \"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -299,7 +301,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"providerId\": \"1223\",\n\t\"cityId\": \"\",\n\t\"ruleId\": \"\"\n}",
+					"raw": "{\n\t\"providerId\": \"test\",\n\t\"cityId\": \"\",\n\t\"ruleId\": \"\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -307,9 +309,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseurl}}/v1/driver-proposal/driver-availabilty",
+					"raw": "{{baseUrl}}/v1/driver-proposal/driver-availabilty",
 					"host": [
-						"{{baseurl}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"v1",
@@ -344,13 +346,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/api/qualify-behaviour/attributes",
+					"raw": "{{baseUrl}}/v1/qualify-behaviour/attributes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"v1",
-						"api",
 						"qualify-behaviour",
 						"attributes"
 					]
