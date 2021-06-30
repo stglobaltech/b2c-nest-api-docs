@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "78539d48-073b-479f-aa7c-fc541d8731bd",
+		"_postman_id": "d8b09fea-96af-4877-ab06-cf52c735d86f",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1324,6 +1324,50 @@
 					"graphql": {
 						"query": "query getDriversForReesha($driverFilterInputDto: DriverFilterReeshaInputDto!) {\n  getDriversForReesha(driverFilterInputDto:$driverFilterInputDto) {\n      drivers {\n        _id\n        mobile\n        name\n        email\n        countryCode\n        lang\n      }\n      pagination {\n        hasNextPage\n        hasPrevPage\n        page\n        perPage\n      }\n      error\n  }\n}\n",
 						"variables": "{\n    \"driverFilterInputDto\":{\n        \"email\":\"pious@gmail.com\",\n        \"paginate\":{\n            \"page\":1,\n            \"perPage\":10\n        }\n    }\n}\n"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Driver For Reesha",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetDriver($driverId: String!) {\n  reeshaGetDriver(driverId:$driverId) {\n        _id\n        mobile\n        name\n        email\n        countryCode\n        lang\n  }\n}\n",
+						"variables": "{\n    \"driverId\":\"5f75cbe114becf599606243b\"\n}\n"
 					}
 				},
 				"url": {
@@ -2709,6 +2753,130 @@
 					"graphql": {
 						"query": "query reeshaGetAllOrderCancelReasons($reeshaGetAllOrderCancelReasons:ReeshaGetAllOrdersCancelReasonInputDto!){\n    reeshaGetAllOrderCancelReasons(reeshaGetAllOrderCancelReasons:$reeshaGetAllOrderCancelReasons){\n        cancelOrderReasons{\n            _id\n            reason{\n                en \n                ar \n            }\n            appType\n        }\n        pagination{\n            hasNextPage\n            hasPrevPage\n        }\n        }\n    }",
 						"variables": "{\n    \"reeshaGetAllOrderCancelReasons\":{\n        \"appType\":\"DRIVER\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Live Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetLiveOrders($liveOrdersInputDto:LiveOrdersReeshaInputDto!){\n    reeshaGetLiveOrders(liveOrdersInputDto:$liveOrdersInputDto){\n        data{\n            _id\n            user{\n                _id\n            }\n            driver{\n                _id\n            }\n            status\n        }\n        pagination{\n            hasNextPage\n            hasPrevPage\n        }\n        }\n    }",
+						"variables": "{\n    \"liveOrdersInputDto\":{\n        \"countryCode\":\"+965\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Profile Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCsUserProfile($csUserUpdateProfile:CSUserProfileUpdateInputDto!){\n    updateCsUserProfile(csUserUpdateProfile:$csUserUpdateProfile){\n        success\n        message{\n            en\n            ar\n        }\n        }\n    }",
+						"variables": "{\n    \"csUserUpdateProfile\":{\n        \"_id\":\"6065a9ac10494261e1ba63f9\",\n        \"email\":\"vickynsp16@gmail.com\",\n        \"mobile\":\"9444549448\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha CSUser Password Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateCsUserPassword($csUserUpdatePassword:CSUserPasswordUpdateInputDto!){\n    updateCsUserProfile(csUserUpdatePassword:$csUserUpdatePassword){\n        success\n        message{\n            en\n            ar\n        }\n        }\n    }",
+						"variables": "{\n    \"csUserUpdatePassword\":{\n        \"_id\":\"6065a9ac10494261e1ba63f9\",\n        \"oldPassword\":\"vigneshcse15\",\n        \"newPassword\":\"mypasswordchanged\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reesha Order Reports",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query reeshaGetOrderReport($orderReportDto:OrderReportsForReeshaInputDto!){\n    reeshaGetOrderReport(orderReportDto:$orderReportDto){\n        data{\n            _id\n            totalPrice\n            totalDeliveryCost\n            totalOrders\n        }\n    }\n}",
+						"variables": "{\n    \"orderReportDto\":{\n       \"storeId\":\"60d092c9ccdf0011b0d657b2\"\n    }\n}"
 					}
 				},
 				"url": {
