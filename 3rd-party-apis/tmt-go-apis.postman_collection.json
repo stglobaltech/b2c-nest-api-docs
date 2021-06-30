@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "2f605793-b6af-44ae-9a4a-ae8948737223",
+		"name": "TmmT Go APIs v1.0.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GenerateAuthToken",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"name\":\"tmt\",\n    \"signupSecret\":\"signup-secret\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/fleet/auth",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"fleet",
+						"auth"
+					]
+				},
+				"description": "Generate Token\n==\n\nThe api generates jwt token for fleet requester\n\nOn Success, \nreturns the `accessToken`\n\nOn Failure, returns the localised error message in `message` key\n\n---\n\n\nSchema:\n<pre>\n<code>\nsuccess: boolean \nmessage? : object [optional]\naccessToken?: string [optional]\n</pre>\n</code>\n\n---\n\nExample:\n<pre>\n<code>\n{\n   \"success\": \"true\",\n   \"message\" : {\n        \"ar\": \"Message\",\n        \"en\": \"Message in Arabic\"\n    },\n    accessToken: \"long-access-token\"\n}\n</pre>\n</code>"
+			},
+			"response": []
+		},
+		{
+			"name": "Deliverycharge",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/deliverycharge?\"distance\"=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"deliverycharge"
+					],
+					"query": [
+						{
+							"key": "\"distance\"",
+							"value": "10"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Delivery Charge\n==\n\nThe api gets the delivery cost based on distance in meters.\n* needs accessToken as bearer token\n\n---\nOn Success, \nreturns delivery cost\n\n---\n\n\nSchema:\n<pre>\n<code>\nnumber\n</pre>\n</code>\n\n---\n\nExample:\n<pre>\n<code>\n10\n</pre>\n</code>"
+			},
+			"response": []
+		},
+		{
+			"name": "UserDriverChatHistory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\":\"12344\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/user-driver-chat-history",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"user-driver-chat-history"
+					]
+				},
+				"description": "User Driver Chat History\n===\nThis api gets the paginated chat history between `user` and `driver`\n\n---\n\nResponse Schema\n<pre><code>\n</code></pre>\n\nExample Response\n<pre><code>\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "UserStoreChatHistory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\":\"12344\",\n    \"paginate\":{\n        \"page\":1,\n        \"perPage\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver-chat-history",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"store-driver-chat-history"
+					]
+				},
+				"description": "Store Driver Chat History\n===\nThis api gets the paginated chat history between `store` and `driver`\n\n---\n\nResponse Schema\n<pre><code>\n</code></pre>\n\nExample Response\n<pre><code>\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"providerOrderId\": \"1233\",\n\t\"productDescription\": \"test order\",\n\t\"amountToCollect\": 1111,\n\t\"paymentType\": \"cash\",\n\t\"priceBreakup\": {\n\t\"totalProductPrice\": 100,\n\t\"deliveryCost\": 11,\n\t\"discount\": 11,\n\t\"alreadyPaid\": 11,\n\t\"userPreviousBalance\": 200,\n\t\"roundOfCost\": 0\n    },\n\t\"pickUp\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"delivery\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"userDetails\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    },\n\t\"fleetRequesterName\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/orders/place",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"orders",
+						"place"
+					]
+				},
+				"description": "Place Order\n===\nThis api places the order\n\n---\nResponse Schema\n<pre><code>\n{\n   orderId: string,\n   status: string,\n   message:  {\n      ar: string,\n      en: string\n   }\n}\n</code></pre>\n\nExample Response\n<pre><code>\n{\n   \"orderId\": \"OR651651\",\n   \"status\": \"PENDING\",\n   \"message\":  {\n      \"ar\": \"Order Placed successfully\",\n      \"en\": \"Order Placed successfully\"\n   }\n}\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productDescription\": \"testing order\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/orders/update?orderId=\"1233\"",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"orders",
+						"update"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "\"1233\""
+						}
+					]
+				},
+				"description": "Update Order\n===\nThis api is used to update the order\n\n---\nResponse Schema\n<pre><code>\n{\n   orderId: string,\n   message:  {\n      ar: string,\n      en: string\n   }\n}\n</code></pre>\n\nExample Response\n<pre><code>\n{\n   \"orderId\": \"OR651651\",\n   \"message\":  {\n      \"ar\": \"Order updated successfully\",\n      \"en\": \"Order updated successfully\"\n   }\n}\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "CancelOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": \"60daafb696951a2c780546fe\",\n\t\"status\": \"PENDING\",\n\t\"reason\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/orders/cancel-order",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"orders",
+						"cancel-order"
+					]
+				},
+				"description": "Cancel the order\n==\nThis api is used to cancel the order\n\nResponse Schema\n<pre><code>\n{\n   orderId: string,\n   status: string,\n   message:  {\n      ar: string,\n      en: string\n   }\n}\n</code></pre>\n\nExample Response\n<pre><code>\n{\n   \"orderId\": \"OR651651\",\n   \"status\": \"PENDING\",\n   \"message\":  {\n      \"ar\": \"Order Placed successfully\",\n      \"en\": \"Order Placed successfully\"\n   }\n}\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "Driver Availability",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"providerId\": \"test\",\n\t\"cityId\": \"\",\n\t\"ruleId\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/driver-proposal/driver-availabilty",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"driver-proposal",
+						"driver-availabilty"
+					]
+				},
+				"description": "Driver Availability\n==\nThis api is used to check the driver availability\n\n\nResponse Schema\n<pre><code>\n{\n   noOfDrivers: number,\n   status: boolean\n}\n</code></pre>\n\nExample Response\n<pre><code>\n{\n   \"noOfDrivers\": 7,\n   \"status\": \"true\"\n}\n</code></pre>"
+			},
+			"response": []
+		},
+		{
+			"name": "FindAttributes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/qualify-behaviour/attributes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"qualify-behaviour",
+						"attributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderTracking",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orderId",
+							"value": "\"23323334\"",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/track/order?orderId=\"12344454\"",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"track",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "\"12344454\""
+						}
+					]
+				},
+				"description": "Order Track\n==\nThis api is used to get the delivery path."
+			},
+			"response": []
+		},
+		{
+			"name": "SendUserChatToDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver/send",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"store-driver",
+						"send"
+					]
+				},
+				"description": "Send User Chat messages to Driver\n==\n\nThis api is used to send chat messages to driver\n\n---\n`messageType`: can be any of the following type\n* text\n* image\n* audio\n* location\n\nfor non text messages, use the url in message and select respective type in `messageType`\n\nExample\n<pre><code>\n{\n    \"recieverId\":\"r_id\",\n    \"senderId\":\"s_id\",\n    \"orderId\":\"o_id\",\n    \"message\":\"image url\",\n    \"messageType\":\"image\"\n}\n</pre></code>"
+			},
+			"response": []
+		},
+		{
+			"name": "SendStoreChatToDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/order/chat/store-driver/send",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"order",
+						"chat",
+						"store-driver",
+						"send"
+					]
+				},
+				"description": "Send Store Chat messages to Driver\n==\n\nThis api is used to send store chat messages to driver\n\n---\n`messageType`: can be any of the following type\n* text\n* image\n* audio\n* location\n\nfor non text messages, use the url in message and select respective type in `messageType`\n\nExample\n<pre><code>\n{\n    \"recieverId\":\"r_id\",\n    \"senderId\":\"s_id\",\n    \"orderId\":\"o_id\",\n    \"message\":\"image url\",\n    \"messageType\":\"image\"\n}\n</pre></code>"
+			},
+			"response": []
+		}
+	]
+}
