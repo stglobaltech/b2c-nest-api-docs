@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d8b09fea-96af-4877-ab06-cf52c735d86f",
+		"_postman_id": "ec90a255-7f41-45e5-8998-c32a0cdf0bfc",
 		"name": "tmt-nestjs-Reesha",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2721,7 +2721,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation deleteOrderCancelReason($orderCancelReasonId:String!){\n    deleteOrderCancelReason(orderCancelReasonId:$orderCancelReasonId){\n        success\n        message{\n            en \n            ar\n        }\n    }\n}",
-						"variables": "{\n    \"orderCancelReasonId'\":\"60bf20aed992423310b7d14e\"\n}"
+						"variables": "{\n    \"orderCancelReasonId\":\"60bf20aed992423310b7d14e\"\n}"
 					}
 				},
 				"url": {
