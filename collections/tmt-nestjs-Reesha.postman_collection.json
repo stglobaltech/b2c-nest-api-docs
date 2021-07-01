@@ -2844,7 +2844,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation updateCsUserPassword($csUserUpdatePassword:CSUserPasswordUpdateInputDto!){\n    updateCsUserProfile(csUserUpdatePassword:$csUserUpdatePassword){\n        success\n        message{\n            en\n            ar\n        }\n        }\n    }",
+						"query": "mutation updateCsUserPassword($csUserUpdatePassword:CSUserPasswordUpdateInputDto!){\n    updateCsUserPassword(csUserUpdatePassword:$csUserUpdatePassword){\n        success\n        message{\n            en\n            ar\n        }\n        }\n    }",
 						"variables": "{\n    \"csUserUpdatePassword\":{\n        \"_id\":\"6065a9ac10494261e1ba63f9\",\n        \"oldPassword\":\"vigneshcse15\",\n        \"newPassword\":\"mypasswordchanged\"\n    }\n}"
 					}
 				},
