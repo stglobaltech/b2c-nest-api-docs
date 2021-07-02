@@ -361,9 +361,6 @@
 		},
 		{
 			"name": "OrderTracking",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -377,33 +374,16 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "orderId",
-							"value": "\"23323334\"",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/order/track/order?orderId=\"12344454\"",
+					"raw": "{{baseUrl}}/v1/track/order/60db19cd8daf4359ec2e42b7",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"v1",
-						"order",
 						"track",
-						"order"
-					],
-					"query": [
-						{
-							"key": "orderId",
-							"value": "\"12344454\""
-						}
+						"order",
+						"60db19cd8daf4359ec2e42b7"
 					]
 				},
 				"description": "Order Track\n==\nThis api is used to get the delivery path."
