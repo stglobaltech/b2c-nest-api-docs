@@ -91,6 +91,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "UpdateDriverOrderStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\": \"60e531b5b37e92198b74648c\",\n\t\"status\": \"PICKUP\",\n    \"yourOrderId\":\"60e531b5e8f1471993fe8f9b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main-server}}/v1/webhooks/order/update-driver-order-status",
+					"host": [
+						"{{main-server}}"
+					],
+					"path": [
+						"v1",
+						"webhooks",
+						"order",
+						"update-driver-order-status"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
