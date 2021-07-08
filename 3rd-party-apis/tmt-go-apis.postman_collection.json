@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2f605793-b6af-44ae-9a4a-ae8948737223",
+		"_postman_id": "4ba986d3-601c-47f9-b56d-11b1bc383fc2",
 		"name": "TmmT Go APIs v1.0.0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -175,7 +175,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"providerOrderId\": \"1233\",\n\t\"productDescription\": \"test order\",\n\t\"amountToCollect\": 1111,\n\t\"paymentType\": \"cash\",\n\t\"priceBreakup\": {\n\t\"totalProductPrice\": 100,\n\t\"deliveryCost\": 11,\n\t\"discount\": 11,\n\t\"alreadyPaid\": 11,\n\t\"userPreviousBalance\": 200,\n\t\"roundOfCost\": 0\n    },\n\t\"pickUp\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"delivery\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"userDetails\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    },\n\t\"fleetRequesterName\":\"\"\n}",
+					"raw": "{\n\t\"providerOrderId\": \"1233\",\n\t\"productDescription\": \"test order\",\n\t\"amountToCollect\": 1111,\n\t\"paymentType\": \"cash\",\n\t\"priceBreakup\": {\n\t\"totalProductPrice\": 100,\n\t\"deliveryCost\": 11,\n\t\"discount\": 11,\n\t\"alreadyPaid\": 11,\n\t\"userPreviousBalance\": 200,\n\t\"roundOfCost\": 0\n    },\n\t\"pickUp\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"delivery\": {\n\t\"locationName\": \"\",\n\t\"address\": \"\",\n\t\"lat\": 100,\n\t\"lng\": 200,\n\t\"buildingImgUrl\": \"\",\n\t\"contactInfo\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n    },\n\t\"userDetails\": {\n    \"name\": \"string\",\n\t\"nameAR\": \"\",\n\t\"mobile\": \"\",\n\t\"countryCode\": \"\",\n\t\"imageURL\": \"\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -361,9 +361,6 @@
 		},
 		{
 			"name": "OrderTracking",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -377,33 +374,16 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "orderId",
-							"value": "\"23323334\"",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
 				"url": {
-					"raw": "{{baseUrl}}/v1/order/track/order?orderId=\"12344454\"",
+					"raw": "{{baseUrl}}/v1/track/order/60db19cd8daf4359ec2e42b7",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"v1",
-						"order",
 						"track",
-						"order"
-					],
-					"query": [
-						{
-							"key": "orderId",
-							"value": "\"12344454\""
-						}
+						"order",
+						"60db19cd8daf4359ec2e42b7"
 					]
 				},
 				"description": "Order Track\n==\nThis api is used to get the delivery path."

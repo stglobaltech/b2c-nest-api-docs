@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63fb53bb-d974-4c7f-87cd-85063bb5f405",
+		"_postman_id": "fd9f67ad-f210-47c9-ae9d-3ed66e6046e8",
 		"name": "tmt-nestjs-user",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2045,6 +2045,27 @@
 					"graphql": {
 						"query": "mutation toggleUserEmailNotification($togggleUserEmailNotificationDto:ToggleUserEmailNotificationDto!) {\n    toggleUserEmailNotification(togggleUserEmailNotificationDto:$togggleUserEmailNotificationDto){\n    success\n    message{\n      en\n      ar\n    }\n  }\n}\n",
 						"variables": "{\n    \"togggleUserEmailNotificationDto\": {\n    \"userId\":\"60925613a2147523d2118f92\",\n    \"emailNotification\":true\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrack",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTrack($input: TrackingHistoryInputDto!){\n  getTrack(input:$input) {\n    driverId\n    orderId\n    location{\n        type\n        coordinates\n    }\n  }\n}",
+						"variables": "{\n    \"input\":{\n        \"orderId\":\"60b86c3bab1787526b60004e\"\n    }\n}"
 					}
 				},
 				"url": {

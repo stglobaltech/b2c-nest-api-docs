@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "b1c72877-9994-4029-8a1d-2340e2c7fb00",
+		"name": "WebhookHadlingApis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DriverSendMessageToUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main-server}}/v1/webhooks/chat/to-user",
+					"host": [
+						"{{main-server}}"
+					],
+					"path": [
+						"v1",
+						"webhooks",
+						"chat",
+						"to-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderTrackingToUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\":{\n        \"type\":\"point\",\n        \"coordinates\":[120,140]\n    },\n    \"driverId\":\"60b86c3bab1787526b600041\",\n    \"orderId\":\"60b86c3bab1787526b60004e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main-server}}/v1/webhooks/track/to-user",
+					"host": [
+						"{{main-server}}"
+					],
+					"path": [
+						"v1",
+						"webhooks",
+						"track",
+						"to-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DriverSendMessageToStore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recieverId\":\"rid1\",\n    \"senderId\":\"sid1\",\n    \"orderId\":\"60d35998c0f8d253b1658246\",\n    \"message\":\"hi\",\n    \"messageType\":\"text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main-server}}/v1/webhooks/chat/to-store",
+					"host": [
+						"{{main-server}}"
+					],
+					"path": [
+						"v1",
+						"webhooks",
+						"chat",
+						"to-store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateDriverOrderStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\": \"60e531b5b37e92198b74648c\",\n\t\"status\": \"PICKUP\",\n    \"yourOrderId\":\"60e531b5e8f1471993fe8f9b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{main-server}}/v1/webhooks/order/update-driver-order-status",
+					"host": [
+						"{{main-server}}"
+					],
+					"path": [
+						"v1",
+						"webhooks",
+						"order",
+						"update-driver-order-status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
