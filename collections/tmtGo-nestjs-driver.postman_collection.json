@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "077925c4-90e8-454b-b103-910e7bca51fd",
+		"_postman_id": "cb324a9c-a9b9-4670-a5b2-22de2b2e3af4",
 		"name": "tmtGo-nestJs-Driver",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -48,11 +48,6 @@
 					"graphql": {
 						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
 						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
-					},
-					"options": {
-						"raw": {
-							"language": "json"
-						}
 					}
 				},
 				"url": {
@@ -973,6 +968,27 @@
 					"graphql": {
 						"query": "subscription orderTracking($orderId: String!){\n  orderTracking(orderId: $orderId) {\n       location{\n           type\n           coordinates\n       }\n        driverId\n        orderId\n    }\n}\n",
 						"variables": "{\n    \"orderId\":\"60702fcec34eba33775c637e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Driver Proposal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"60813f38c9b13e33bb23ee3a\",\n    \"driverId\": \"608154c762a2e133cd6e1f48\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
 					}
 				},
 				"url": {
