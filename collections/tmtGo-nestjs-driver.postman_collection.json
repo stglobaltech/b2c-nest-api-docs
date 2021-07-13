@@ -999,6 +999,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "MoveStatus",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGVkNzIwMmIyZDhiYjZkMzY5ZjhjOWIiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNjE3Mzk1NCwiZXhwIjoxNjI2MjYwMzU0fQ.MEUCIQDSmpeiEHTpLfPqh-Xq_hxHHc2Nqr2hp8_1NW-tUpjpYwIgP0TziBra3sl-T9cQzl0gk4zlg3XvyyUrWCagutgn-30",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query moveStatus($driverOrderUpdateStatusDto: DriverOrderUpdateStatusDto!) {\n  moveStatus(driverOrderUpdateStatusDto:$driverOrderUpdateStatusDto) {\n      _id\n    status\n  }\n}",
+						"variables": "{\n  \"driverOrderUpdateStatusDto\":  {\n    \"orderId\": \"60813f38c9b13e33bb23ee3a\",\n    \"status\": \"PICKUP\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
