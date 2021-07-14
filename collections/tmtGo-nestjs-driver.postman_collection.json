@@ -55,7 +55,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "SendOtp\n==\n\nIn production environment, this api generates and sends four digit otp to users mobile, as an sms. Other than production environments, it sends otp to slack channel smscode"
 			},
 			"response": []
 		},
@@ -109,7 +110,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Caption Signup\n==\nThis mutation is used to register captain"
 			},
 			"response": []
 		},
@@ -167,7 +169,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain Login\n==\nThis mutation is used to login the captain"
 			},
 			"response": []
 		},
@@ -201,7 +204,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain Places\n==\nThis query is used to list the places"
 			},
 			"response": []
 		},
@@ -235,7 +239,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain CarTypeList\n==\nThis query is used to list the car type"
 			},
 			"response": []
 		},
@@ -280,7 +285,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain Profile\n==\nThis query is used get the profile of captain"
 			},
 			"response": []
 		},
@@ -314,7 +320,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "ListBank\n==\nThis query is used to list the Bank"
 			},
 			"response": []
 		},
@@ -358,7 +365,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain Online Status toggle\n==\nThis mutation is used to toggle the captain online status"
 			},
 			"response": []
 		},
@@ -402,7 +410,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Captain LogOut\n==\nThis mutation is used to logout the captain"
 			},
 			"response": []
 		},
@@ -446,7 +455,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "SetDriverPushToken\n==\nThis mutaion is used to save push token for captain"
 			},
 			"response": []
 		},
@@ -494,7 +504,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverRateUser\n==\nThis mutaion is used to rate the user"
 			},
 			"response": []
 		},
@@ -542,7 +553,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "Driver Rate Chef\n==\nThis mutation is used to rate the chef"
 			},
 			"response": []
 		},
@@ -586,7 +598,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "UpdateDriverLocation\n==\nThis mutaion is used to update the driver location"
 			},
 			"response": []
 		},
@@ -645,7 +658,8 @@
 						"file-upload",
 						"order-chat"
 					]
-				}
+				},
+				"description": "Order Chat file upload\n==\nThis api is used to upload chat file"
 			},
 			"response": []
 		},
@@ -689,7 +703,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverUserOrderChatHistory\n==\nthis mutation is used to get chat history between user and driver"
 			},
 			"response": []
 		},
@@ -733,7 +748,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverSendOrderChatMessageToUser\n==\nthis mutation is used to driver send message to user"
 			},
 			"response": []
 		},
@@ -777,7 +793,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverSendOrderChatMessageToStore\n==\nThis mutation is used to driver sends message to store"
 			},
 			"response": []
 		},
@@ -811,7 +828,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverOrderChatWithUserSubscribe\n==\nthis subscription is used to driver subscribe with user"
 			},
 			"response": []
 		},
@@ -845,7 +863,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverOrderChatWithStoreSubscribe\n==\nthis subscription is used to driver subscribe with store"
 			},
 			"response": []
 		},
@@ -889,7 +908,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "DriverChefOrderChatHistory\n==\nthis query is used to get chat history between driver and user"
 			},
 			"response": []
 		},
@@ -920,7 +940,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "UpdateDriverCoordinates\n==\nthis api is used to update the lat,long of driver"
 			},
 			"response": []
 		},
@@ -951,7 +972,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "GetTrack\n==\nThis query is used to get tracking of driver"
 			},
 			"response": []
 		},
@@ -975,7 +997,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "OrderTracking\n==\nThis subscription is used to subscribe the order tracking"
 			},
 			"response": []
 		},
@@ -996,7 +1019,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "AcceptDriverProposal\n==\nThis mutation is used to accept the driver proposal"
 			},
 			"response": []
 		},
@@ -1027,7 +1051,8 @@
 					"host": [
 						"{{tmtGo-server-gql}}"
 					]
-				}
+				},
+				"description": "UpdateOrderStatus\n==\nThis query is used the update the driver order status"
 			},
 			"response": []
 		}
