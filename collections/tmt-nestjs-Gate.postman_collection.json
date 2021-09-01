@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9cd1e3c1-be44-4774-a3c6-acc497697291",
+		"_postman_id": "111412dd-3d93-430c-8fc9-2df2aa122a23",
 		"name": "tmt-nestjs-Gate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2661,6 +2661,37 @@
 		},
 		{
 			"name": "GetStoreMasters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDk1MDViNTFmY2ZlMjFjMjQ2NjJjYzgiLCJzZXNzaW9uSWQiOiI2MDk1MDViNTY5N2U1MzZmM2E3Y2VjYTYiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIl0sImlhdCI6MTYyMDM3OTA2MSwiZXhwIjoxNjIwNDY1NDYxfQ.MEQCIBwUhbL1YiIhayihYM-xayvhqPcWIR4eTZM8Y5DOxvtgAiA6_ibJd2ddTiYEREtxCzmjMXJt8z4CdguoelMvLDLDIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getAllTransactions($getTransactionsInputDto:GetTransactionsInputDto!) {\n    getAllTransactions(getTransactionsInputDto:$getTransactionsInputDto){\n    transactions{\n        _id\n        userId\n        orderId\n        operation\n        purpose\n        amount\n        userType\n        orderDate\n        previousBalance\n    }\n    pagination{\n        page\n        perPage\n    }\n  }\n}\n",
+						"variables": "{\n    \"getTransactionsInputDto\": {\n        \"paginate\": {\n            \"page\": 1,\n            \"perPage\": 10\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{main-server-gql}}",
+					"host": [
+						"{{main-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Transactions",
 			"request": {
 				"auth": {
 					"type": "bearer",
