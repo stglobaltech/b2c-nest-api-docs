@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cb324a9c-a9b9-4670-a5b2-22de2b2e3af4",
+		"_postman_id": "cd90dc50-4f1d-4e11-ab46-6396538b31bb",
 		"name": "tmtGo-nestJs-Driver",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1053,6 +1053,37 @@
 					]
 				},
 				"description": "UpdateOrderStatus\n==\nThis query is used the update the driver order status"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Driver Order History [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetDriverOrderHistory($input: DriverOrderHistoryInputDto!){\n  getDriverOrderHistory(\n    input:$input\n  ) {\n    orders {\n      _id\n      providerId\n      providerOrderId\n      productDescription\n      amountToCollect\n      paymentType\n      status\n      priceBreakup {\n        totalProductPrice\n        deliveryCost\n        discount\n        alreadyPaid\n        userPreviousBalance\n        roundOfCost\n      }\n      pickUp {\n        address\n        buildingImgUrl\n      }\n      createdAt\n      updatedAt\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\":  {\n      \"driverId\": \"60efb56aa53ec97e0718a5bf\",\n      \"paginate\": { \"page\": 1, \"perPage\": 20 }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
 			},
 			"response": []
 		}
