@@ -1,0 +1,1142 @@
+{
+	"info": {
+		"_postman_id": "59f7a0d1-72c8-4e75-b5d4-cbb7111fc18a",
+		"name": "tmtGo-nestJs-Driver",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send Otp [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.sendOtp.success).to.eql(true);\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.sendOtp.otp);\r",
+							"    pm.environment.set(\"otp\", response.data.sendOtp.otp);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"pm.environment.set(\"mobile\", Math.random().toString().slice(2,11));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query SendOtp($sendOtpInputDto: SendOtpInputDto!){\n  sendOtp(sendOtpInputDto:$sendOtpInputDto) {\n    success\n    message {\n      en\n      ar\n    }\n    otp\n  }\n}",
+						"variables": "{\n  \"sendOtpInputDto\": {\n    \"countryCode\": \"{{countryCode}}\",\n    \"mobile\": \"{{mobile}}\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "SendOtp\n==\n\nIn production environment, this api generates and sends four digit otp to users mobile, as an sms. Other than production environments, it sends otp to slack channel smscode"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Signup [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverSignup.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverSignup.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverSignup.accessToken);\r",
+							"   \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", mobile);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverSignup($driverSignupInputDto: DriverSignupInputDto!) {\n  driverSignup(driverSignupInputDto: $driverSignupInputDto) {\n    success\n     message{\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    driverId\n  }\n}\n",
+						"variables": "{\n   \"driverSignupInputDto\": {\n      \"deviceType\": \"IOS\",\n      \"otp\": \"{{otp}}\",\n      \"countryCode\": \"{{countryCode}}\",\n      \"mobile\": \"{{mobile}}\", \n      \"name\": \"Pious\",\n      \"iban\": \"String!\",\n      \"govId\": \"String!\",\n      \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n      \"vehiclePlateNo\": \"String!\",\n    \n      \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n      \"saudi\": true,\n      \"nationalityId\": \"String!\",\n      \"email\": \"pious@good.com\",\n      \"versionCode\": \"String!\",\n      \"osVersion\": \"String!\",\n      \"deviceModel\": \"String!\",\n      \"placeId\": 3000,\n      \"bankId\": \"5fa91f026e0c0e1e7e062e12\",\n    \t\"carTypeId\":\"5fa91ea66e0c0e1e7e062e07\",\n      \"lang\": \"ar\",\n      \"referredBy\": \"String\",\n      \"docIds\": [\n         \"String!\"\n      ]\n   }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Caption Signup\n==\nThis mutation is used to register captain"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Login [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverLogin.success).to.eql(true);\r",
+							"\r",
+							"    const response = pm.response.json();\r",
+							"    console.log(response.data.driverLogin.accessToken);\r",
+							"    pm.environment.set(\"access-Token\", response.data.driverLogin.accessToken);\r",
+							"    const response1 = pm.response.json();\r",
+							"    console.log(response1.data.driverLogin.isSignUpRequired)\r",
+							"    const response2 = pm.response.json();\r",
+							"     pm.environment.set(\"refreshToken\", response2.data.driverLogin.refreshToken);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"countryCode\", \"IND\");\r",
+							"//pm.environment.set(\"mobile\", 11113333);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverLogin($driverLoginInputDto: DriverLoginInputDto!) {\n  driverLogin(driverLoginInputDto: $driverLoginInputDto) {\n    success\n    message {\n      ar\n      en\n    }\n    accessToken\n    refreshToken\n    isSignUpRequired\n    driverId\n  }\n}\n",
+						"variables": "{\n    \"driverLoginInputDto\": {\n        \"countryCode\": \"{{countryCode}}\",\n        \"mobile\": \"{{mobile}}\",\n        \"deviceType\": \"IOS\",\n        \"otp\": \"{{otp}}\",\n        \"oneSignalId\": \"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain Login\n==\nThis mutation is used to login the captain"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Place List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListPlaces($filterPlaces: FilterPlacesInputDto!) {\n  listPlaces(filterPlaces: $filterPlaces) {\n    places {\n      name {\n        ar\n        en\n      }\n    }\n    pagination {\n      hasPrevPage\n      hasNextPage\n      nextPage\n      prevPage\n    }\n  }\n}",
+						"variables": "{\n  \"filterPlaces\": {\n    \"type\": \"CITY\",\n    \"paginate\": {\n      \"page\": 1,\n      \"perPage\": 20\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain Places\n==\nThis query is used to list the places"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Car Type List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListCarTypes{\n  listCarTypes {\n    carTypeId\n    name {\n      en\n      ar\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain CarTypeList\n==\nThis query is used to list the car type"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Profile [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query DriverProfile {\n  getDriverProfile {\n    countryCode\n    lang\n    deviceType\n    mobile\n    name\n    iban\n    govId\n    dateOfBirth\n    vehiclePlateNo\n    govtIdExpiryDate\n    saudi\n    nationalityId\n    email\n    deviceId\n    versionCode\n    osVersion\n    appType\n    deviceModel\n    bankId\n    docIds\n    oneSignalId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain Profile\n==\nThis query is used get the profile of captain"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Bank List [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ListBanks{\n  listBanks {\n    bankId\n    name {\n      ar\n      en\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "ListBank\n==\nThis query is used to list the Bank"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Online Status Toggle [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQxODgwY2FlOTA3MDIxNmY4ZDdhZmQiLCJzZXNzaW9uSWQiOiI2MGQxODgyMDA0NWIwMDc3MTI5YWRjNWUiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IklPUyIsInJvbGVzIjpbIkRSSVZFUiJdLCJpYXQiOjE2MjQzNDQ2MDgsImV4cCI6MTYyNDQzMTAwOH0.MEYCIQCCv0kWRwjIEMa5dXfiFogtuP286cXJ62igJWxv1y_5GAIhANDSCMnUU0CpKrgPTEPL7S6KXfwVEXT_2W8WIA1ugJGO",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ChangeDriverAvailability($input: UpdateDriverAvailabilityInputDto!) {\n  changeDriverAvailabilityFor(input: $input)  {\n      success\n      message {\n        en\n        ar\n      }\n    }\n}\n",
+						"variables": "{\n  \"input\":{\n      \"status\":\"ON\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain Online Status toggle\n==\nThis mutation is used to toggle the captain online status"
+			},
+			"response": []
+		},
+		{
+			"name": "Captain Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{refreshToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverLogout {\n  driverLogout {\n    success\n    message{\n        en\n        ar\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Captain LogOut\n==\nThis mutation is used to logout the captain"
+			},
+			"response": []
+		},
+		{
+			"name": "SetDriverPushToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQxODk2MmFlOTA3MDIxNmY4ZDdhZmUiLCJzZXNzaW9uSWQiOiI2MGQxODk2NjA0NWIwMDc3MTI5YWUxMWYiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IklPUyIsInJvbGVzIjpbIkRSSVZFUiJdLCJpYXQiOjE2MjQzNDQ5MzQsImV4cCI6MTYyNDQzMTMzNH0.MEYCIQDMr9ID0wQMMIbBQ91cTsrhki5UIoW-nsXfXespku4IOgIhANd-SV1jNr0wFM_wBlWWkIUyNTjxh4IryKqwK0GhvTLd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setDriverPushToken($setDriverPushToken: SetPushTokenDto!){\n  setDriverPushToken(setDriverPushToken: $setDriverPushToken) {\n    success\n     message {\n      en\n      ar\n    }\n    sessionId\n  }\n}",
+						"variables": "{\n    \"setDriverPushToken\": {\n        \"oneSignalId\":\"8dffa801-ea43-48dc-aff0-b38e79317e3b\",\n        \"fcmToken\":\"\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "SetDriverPushToken\n==\nThis mutaion is used to save push token for captain"
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateUser [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverRateUser.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateUser($input: DriverRateUserInputDto!) {\n  driverRateUser(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"userRating\": 5,\n      \"userComment\": \"Good User by  Driver\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverRateUser\n==\nThis mutaion is used to rate the user"
+			},
+			"response": []
+		},
+		{
+			"name": "DriverRateChef [GQL]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Success validaation\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.driverRateChef.success).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DriverRateChef($input: DriverRateChefInputDto!) {\n  driverRateChef(input: $input) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\": {\n      \"orderId\": \"6061780b1c6af20f81f036bc\",\n      \"storeRating\": 5,\n      \"storeComment\": \"Good Chef by  User\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "Driver Rate Chef\n==\nThis mutation is used to rate the chef"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateDriverLocation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateDriverLocation($geoHash: String!) {\n  updateDriverLocation(geoHash:$geoHash) {\n    success\n    frequency\n    message{\n        en\n        ar\n    }\n    frequency\n  }\n}",
+						"variables": "{\n    \"geoHash\":\"tf2czbs\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "UpdateDriverLocation\n==\nThis mutaion is used to update the driver location"
+			},
+			"response": []
+		},
+		{
+			"name": "Order Chat file upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/abwbdallhmhmd/Documents/profile.png"
+						},
+						{
+							"key": "orderId",
+							"value": "order-id",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{tmtGo-server}}/v1/api/file-upload/order-chat",
+					"host": [
+						"{{tmtGo-server}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"file-upload",
+						"order-chat"
+					]
+				},
+				"description": "Order Chat file upload\n==\nThis api is used to upload chat file"
+			},
+			"response": []
+		},
+		{
+			"name": "driverUserOrderChatHistory",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query driverUserOrderChatHistory($input: ChatHistoryInputDto!){\n  driverUserOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverUserOrderChatHistory\n==\nthis mutation is used to get chat history between user and driver"
+			},
+			"response": []
+		},
+		{
+			"name": "driverSendOrderChatMessageToUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation driverSendOrderChatMessageToUser($input: SendChatInputDto!){\n  driverSendOrderChatMessageToUser(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverSendOrderChatMessageToUser\n==\nthis mutation is used to driver send message to user"
+			},
+			"response": []
+		},
+		{
+			"name": "driverSendOrderChatMessageToStore",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation driverSendOrderChatMessageToStore($input: SendChatInputDto!){\n  driverSendOrderChatMessageToStore(input: $input) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"message\": \"hdhhd\",\n        \"messageType\": \"text\",\n        \"recieverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverSendOrderChatMessageToStore\n==\nThis mutation is used to driver sends message to store"
+			},
+			"response": []
+		},
+		{
+			"name": "driverOrderChatWithUserSubscribe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "subscription driverOrderChatWithUserSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithUserSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverOrderChatWithUserSubscribe\n==\nthis subscription is used to driver subscribe with user"
+			},
+			"response": []
+		},
+		{
+			"name": "driverOrderChatWithStoreSubscribe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "subscription driverOrderChatWithStoreSubscribe($input: OrderChatSubscriptionInputDto!){\n  driverOrderChatWithStoreSubscribe(input: $input) {\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            createdAt\n            updatedAt\n       \n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverOrderChatWithStoreSubscribe\n==\nthis subscription is used to driver subscribe with store"
+			},
+			"response": []
+		},
+		{
+			"name": "driverChefOrderChatHistory",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDcwNGFiMWEzYmQwYzQyNjUwZjQzN2QiLCJzZXNzaW9uSWQiOiI2MDcwNGFiMTc4NTJiYjFiMmRiYTUyMGQiLCJhcHBUeXBlIjoiVVNFUiIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTYxNzk3MTg4OSwiZXhwIjoxNjE4MDU4Mjg5fQ.MEUCIQDe7UIU0-J0dKbrnN7XcItv5GXENA0kqv5-wplZFH73nwIgDU4He7gwlylmJ0IZAea2soDyd6z2UpwpY3LOkM_yTCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query driverChefOrderChatHistory($input: ChatHistoryInputDto!){\n  driverChefOrderChatHistory(input: $input) {\n       chats{\n           _id\n            senderId\n            recieverId\n            orderId\n            messageType\n            message\n            chatBetween\n            createdAt\n            updatedAt\n       }\n    }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"paginate\": {\n            \"perPage\": 2,\n            \"page\": 1\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "DriverChefOrderChatHistory\n==\nthis query is used to get chat history between driver and user"
+			},
+			"response": []
+		},
+		{
+			"name": "updateDriverCoordinates",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQxODk2MmFlOTA3MDIxNmY4ZDdhZmUiLCJzZXNzaW9uSWQiOiI2MGQxODk2NjA0NWIwMDc3MTI5YWUxMWYiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IklPUyIsInJvbGVzIjpbIkRSSVZFUiJdLCJpYXQiOjE2MjQzNDQ5MzQsImV4cCI6MTYyNDQzMTMzNH0.MEYCIQDMr9ID0wQMMIbBQ91cTsrhki5UIoW-nsXfXespku4IOgIhANd-SV1jNr0wFM_wBlWWkIUyNTjxh4IryKqwK0GhvTLd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation updateDriverCoordinates($locationUpdateInput: LocationUpdateInputDto!){\n  updateDriverCoordinates(locationUpdateInput: $locationUpdateInput) {\n       success\n        message{\n        en\n        ar\n        }\n    }\n}\n",
+						"variables": "{\n    \"locationUpdateInput\": {\n        \"driverId\": \"60702ee980b3fc33797e09a3\",\n        \"orderId\": \"60702fcec34eba33775c637e\",\n        \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                233,\n                233\n            ]\n        }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "UpdateDriverCoordinates\n==\nthis api is used to update the lat,long of driver"
+			},
+			"response": []
+		},
+		{
+			"name": "getTrack",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGQxODk2MmFlOTA3MDIxNmY4ZDdhZmUiLCJzZXNzaW9uSWQiOiI2MGQxODk2NjA0NWIwMDc3MTI5YWUxMWYiLCJhcHBUeXBlIjoiRFJJVkVSIiwiZGV2aWNlVHlwZSI6IklPUyIsInJvbGVzIjpbIkRSSVZFUiJdLCJpYXQiOjE2MjQzNDQ5MzQsImV4cCI6MTYyNDQzMTMzNH0.MEYCIQDMr9ID0wQMMIbBQ91cTsrhki5UIoW-nsXfXespku4IOgIhANd-SV1jNr0wFM_wBlWWkIUyNTjxh4IryKqwK0GhvTLd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTrack($orderId: String!){\n  getTrack(orderId: $orderId) {\n       location{\n           type\n           coordinates\n       }\n        driverId\n        orderId\n    }\n}\n",
+						"variables": "{\n    \"orderId\":\"60702fcec34eba33775c637e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "GetTrack\n==\nThis query is used to get tracking of driver"
+			},
+			"response": []
+		},
+		{
+			"name": "orderTracking",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "subscription orderTracking($orderId: String!){\n  orderTracking(orderId: $orderId) {\n       location{\n           type\n           coordinates\n       }\n        driverId\n        orderId\n    }\n}\n",
+						"variables": "{\n    \"orderId\":\"60702fcec34eba33775c637e\"\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "OrderTracking\n==\nThis subscription is used to subscribe the order tracking"
+			},
+			"response": []
+		},
+		{
+			"name": "Accept Driver Proposal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AcceptDriverProposal($driverProposalDto: DriverProposalDto!) {\n  acceptDriverProposal(driverProposalDto:$driverProposalDto) {\n    success\n    message {\n      ar\n      en\n    }\n  }\n}",
+						"variables": "{\n  \"driverProposalDto\":  {\n    \"orderId\": \"60813f38c9b13e33bb23ee3a\",\n    \"driverId\": \"608154c762a2e133cd6e1f48\",\n    \"status\": \"ACCEPTED\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "AcceptDriverProposal\n==\nThis mutation is used to accept the driver proposal"
+			},
+			"response": []
+		},
+		{
+			"name": "MoveStatus",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGI4NTM0OWFlNjViZTAxNTYxOWJlMDIiLCJzZXNzaW9uSWQiOiI2MGVkNzIwMmIyZDhiYjZkMzY5ZjhjOWIiLCJhcHBUeXBlIjoiREFTSEJPQVJEIiwiZGV2aWNlVHlwZSI6IldFQiIsInJvbGVzIjpbIlNVUEVSX0FETUlOIl0sImlhdCI6MTYyNjE3Mzk1NCwiZXhwIjoxNjI2MjYwMzU0fQ.MEUCIQDSmpeiEHTpLfPqh-Xq_hxHHc2Nqr2hp8_1NW-tUpjpYwIgP0TziBra3sl-T9cQzl0gk4zlg3XvyyUrWCagutgn-30",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query moveStatus($driverOrderUpdateStatusDto: DriverOrderUpdateStatusDto!) {\n  moveStatus(driverOrderUpdateStatusDto:$driverOrderUpdateStatusDto) {\n      _id\n    status\n  }\n}",
+						"variables": "{\n  \"driverOrderUpdateStatusDto\":  {\n    \"orderId\": \"60813f38c9b13e33bb23ee3a\",\n    \"status\": \"PICKUP\"\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				},
+				"description": "UpdateOrderStatus\n==\nThis query is used the update the driver order status"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Driver Order History [GQL]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetDriverOrderHistory($input: DriverOrderHistoryInputDto!){\n  getDriverOrderHistory(\n    input:$input\n  ) {\n    orders {\n      _id\n      providerId\n      providerOrderId\n      productDescription\n      amountToCollect\n      paymentType\n      status\n      priceBreakup {\n        totalProductPrice\n        deliveryCost\n        discount\n        alreadyPaid\n        userPreviousBalance\n        roundOfCost\n      }\n      pickUp {\n        address\n        buildingImgUrl\n      }\n      createdAt\n      updatedAt\n    }\n  }\n}\n",
+						"variables": "{\n  \"input\":  {\n      \"driverId\": \"60efb56aa53ec97e0718a5bf\",\n      \"paginate\": { \"page\": 1, \"perPage\": 20 }\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateDriverProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access-Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation UpdateDriverProfile($input: UpdateDriverProfileInputDto!) {\n  updateDriverProfile(input: $input) {\n    success\n     message{\n      ar\n      en\n    }\n  }\n}\n",
+						"variables": "{\n    \"input\": {\n        \"govId\": \"String!\",\n        \"dateOfBirth\": \"2020-09-30T13:20:06.864Z\",\n        \"vehiclePlateNo\": \"String!\",\n        \"govtIdExpiryDate\": \"2020-09-30T13:20:06.864Z\",\n        \"saudi\": true,\n        \"nationalityId\": \"String!\",\n        \"placeId\": 3000,\n        \"carTypeId\": \"5fa91ea66e0c0e1e7e062e07\",\n        \"docIds\": [\n            \"String!\"\n        ]\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{tmtGo-server-gql}}",
+					"host": [
+						"{{tmtGo-server-gql}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
