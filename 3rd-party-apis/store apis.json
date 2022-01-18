@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "ca05eb8a-dbc1-4b73-bc86-9f370eb950a4",
+		"name": "Store API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"email-id\",\n    \"password\":\"your store password\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://auth-dev-nest.stglobaltech.in/gate-auth/login",
+					"protocol": "https",
+					"host": [
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
+					],
+					"path": [
+						"gate-auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get store timings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"storeId\":\"storeId\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://auth-dev-nest.stglobaltech.in/user/get-time",
+					"protocol": "https",
+					"host": [
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
+					],
+					"path": [
+						"user",
+						"get-time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-Store",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ownerId\":\"ownerId\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://auth-dev-nest.stglobaltech.in/get-store",
+					"protocol": "https",
+					"host": [
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
+					],
+					"path": [
+						"get-store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"storeId\":\"storeId\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://auth-dev-nest.stglobaltech.in/user/categories",
+					"protocol": "https",
+					"host": [
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
+					],
+					"path": [
+						"user",
+						"categories"
+					]
+				},
+				"description": "getCategoriesForUser"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"storeId\": \"storeId\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://auth-dev-nest.stglobaltech.in/user/products",
+					"protocol": "https",
+					"host": [
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
+					],
+					"path": [
+						"user",
+						"products"
+					]
+				},
+				"description": "{\n    \"storeId\": \"Optional String\",\n    \"paginate\": {\n        \"page\": Optional Number,\n        \"perPage\": Optional Number\n    },\n    \"isAvailable\": Optional Boolean,\n    \"isActivated\": Optional Boolean,\n    \"origin\": \"Optional String\"\n}"
+			},
+			"response": []
+		}
+	]
+}
