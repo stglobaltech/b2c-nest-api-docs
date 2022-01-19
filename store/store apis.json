@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"email-id\",\n    \"password\":\"your store password\"\n\n}",
+					"raw": "{\n    \"email\":\"zebronicsmain@gmail.com\",\n    \"password\":\"zebronicsmain\",\n    \"deviceType\":\"WEB\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,7 +86,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/get-store",
+					"raw": "https://auth-dev-nest.stglobaltech.in/v1/api/store/get-store",
 					"protocol": "https",
 					"host": [
 						"auth-dev-nest",
@@ -94,6 +94,9 @@
 						"in"
 					],
 					"path": [
+						"v1",
+						"api",
+						"store",
 						"get-store"
 					]
 				}
@@ -106,11 +109,21 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWM0N2RiOTcxNDUwZjUxMmYzMmY5ZWYiLCJzZXNzaW9uSWQiOiI2MWU2NGJhYTFmMmU0ODkwYWYwZTZlZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIiwiR0FURTpCUkFOQ0g6QURNSU4iXSwiaWF0IjoxNjQyNTk5Mzk3LCJleHAiOjE2NDI2ODU3OTd9.MEUCIQCOvz7KgR65E5iFTG3lNuine7R8Rl-zea-W5Jo5TXmqegIgJNlFdtqZxeDNtruhCA9ggc7y5C9FRGZUMUlVspzAfeU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"storeId\":\"storeId\"}",
+					"raw": "{\"storeId\":\"61c47db971450f512f32f9ef\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,16 +131,15 @@
 					}
 				},
 				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/user/categories",
-					"protocol": "https",
+					"raw": "http://localhost:3100/user/get-categories",
+					"protocol": "http",
 					"host": [
-						"auth-dev-nest",
-						"stglobaltech",
-						"in"
+						"localhost"
 					],
+					"port": "3100",
 					"path": [
 						"user",
-						"categories"
+						"get-categories"
 					]
 				},
 				"description": "getCategoriesForUser"
@@ -144,7 +156,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"storeId\": \"storeId\"\n}",
+					"raw": "{\n    \"storeId\": \"61c47db971450f512f32f9ef\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
