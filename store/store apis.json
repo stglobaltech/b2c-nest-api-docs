@@ -136,7 +136,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/user/v1/api/product/getProducts",
+					"raw": "https://auth-dev-nest.stglobaltech.in/v1/api/product/getProducts",
 					"protocol": "https",
 					"host": [
 						"auth-dev-nest",
@@ -144,7 +144,6 @@
 						"in"
 					],
 					"path": [
-						"user",
 						"v1",
 						"api",
 						"product",
