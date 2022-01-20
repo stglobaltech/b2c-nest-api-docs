@@ -36,39 +36,6 @@
 			"response": []
 		},
 		{
-			"name": "Get store timings",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"storeId\":\"storeId\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/user/get-time",
-					"protocol": "https",
-					"host": [
-						"auth-dev-nest",
-						"stglobaltech",
-						"in"
-					],
-					"path": [
-						"user",
-						"get-time"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get-Store",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -78,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"ownerId\":\"ownerId\"}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,7 +53,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/v1/api/store/get-store",
+					"raw": "https://auth-dev-nest.stglobaltech.in/v1/api/store/getStore/618a13c1f1cdc0be11ba48c0",
 					"protocol": "https",
 					"host": [
 						"auth-dev-nest",
@@ -97,7 +64,8 @@
 						"v1",
 						"api",
 						"store",
-						"get-store"
+						"getStore",
+						"618a13c1f1cdc0be11ba48c0"
 					]
 				}
 			},
@@ -114,7 +82,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWM0N2RiOTcxNDUwZjUxMmYzMmY5ZWYiLCJzZXNzaW9uSWQiOiI2MWU2NGJhYTFmMmU0ODkwYWYwZTZlZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIiwiR0FURTpCUkFOQ0g6QURNSU4iXSwiaWF0IjoxNjQyNTk5Mzk3LCJleHAiOjE2NDI2ODU3OTd9.MEUCIQCOvz7KgR65E5iFTG3lNuine7R8Rl-zea-W5Jo5TXmqegIgJNlFdtqZxeDNtruhCA9ggc7y5C9FRGZUMUlVspzAfeU",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWM0N2RiOTcxNDUwZjUxMmYzMmY5ZWYiLCJzZXNzaW9uSWQiOiI2MWU2NGJhYTFmMmU0ODkwYWYwZTZlZDQiLCJhcHBUeXBlIjoiR0FURSIsImRldmljZVR5cGUiOiJXRUIiLCJyb2xlcyI6WyJHQVRFIiwiR0FURTpCUkFOQ0g6QURNSU4iXSwiaWF0IjoxNjQyNjA4NzQzLCJleHAiOjE2NDI2OTUxNDN9.MEQCID6rTiA01jBK41zyJHb-iji9yaOfJYNHF2a8jAeO_OLCAiAC-6EG3U6d48lX7JM188UKjoV_vXpRakVVt-1MA_r7fw",
 							"type": "string"
 						}
 					]
@@ -123,7 +91,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"storeId\":\"61c47db971450f512f32f9ef\"}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -131,15 +99,19 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3100/user/get-categories",
-					"protocol": "http",
+					"raw": "https://auth-dev-nest.stglobaltech.in/v1/api/category/getCategories/618a13c1f1cdc0be11ba48c0",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"auth-dev-nest",
+						"stglobaltech",
+						"in"
 					],
-					"port": "3100",
 					"path": [
-						"user",
-						"get-categories"
+						"v1",
+						"api",
+						"category",
+						"getCategories",
+						"618a13c1f1cdc0be11ba48c0"
 					]
 				},
 				"description": "getCategoriesForUser"
@@ -156,7 +128,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"storeId\": \"61c47db971450f512f32f9ef\"\n}",
+					"raw": "{\"storeId\":\"61e6f6ae6a6ef63a2b1a6bd0\",\n\"paginate\":{\n    \"page\":1,\n    \"perPage\":10\n}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,7 +136,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://auth-dev-nest.stglobaltech.in/user/products",
+					"raw": "https://auth-dev-nest.stglobaltech.in/user/v1/api/product/getProducts",
 					"protocol": "https",
 					"host": [
 						"auth-dev-nest",
@@ -173,7 +145,10 @@
 					],
 					"path": [
 						"user",
-						"products"
+						"v1",
+						"api",
+						"product",
+						"getProducts"
 					]
 				},
 				"description": "{\n    \"storeId\": \"Optional String\",\n    \"paginate\": {\n        \"page\": Optional Number,\n        \"perPage\": Optional Number\n    },\n    \"isAvailable\": Optional Boolean,\n    \"isActivated\": Optional Boolean,\n    \"origin\": \"Optional String\"\n}"
